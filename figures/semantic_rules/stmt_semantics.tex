@@ -1,7 +1,7 @@
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        
+        \hline
         [ASS1] & \( \dfrac{\langle x \texttt{:=} a, s \rangle \Rightarrow s[x \mapsto v]}{\text{where} s \vdash a\rightarrow_a v} \) \\
         
         
@@ -15,7 +15,8 @@
         
         [WHILE] & \( \langle \texttt{while(} b\texttt{) \{} S \texttt{\}}, s \rangle \Rightarrow \langle \texttt{if} b \texttt{then} (S\texttt{;while (} b \texttt{) \{} S\texttt{\}}) \texttt{else skip,} s\rangle) \) \\
         
-        END & END\
+        END & END\\
+        \hline
     \end{longtable}
     \caption{Caption}\label{tab:my_label}
 \end{table}

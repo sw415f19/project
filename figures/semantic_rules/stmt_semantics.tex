@@ -1,0 +1,21 @@
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        
+        [ASS1] & \( \dfrac{\langle x \texttt{:=} a, s \rangle \Rightarrow s[x \mapsto v]}{\text{where} s \vdash a\rightarrow_a v} \) \\
+        
+        
+        [IF-ELSE-TRUE] & \( \dfrac{\langle \texttt{if} b \texttt{then} S_1 \texttt{else} S_2, s \rangle \Rightarrow \langle S_1,s\rangle}{if s\vdash b \rightarrow_b tt} \) \\
+        
+        [IF-ELSE-FALSE] & \( \dfrac{\langle \texttt{if} b \texttt{then} S_1 \texttt{else} S_2, s \rangle \Rightarrow \langle S_2,s\rangle}{if s\vdash b \rightarrow_b ff} \) \\
+        
+        [IF-TRUE] & \( \dfrac{\langle \texttt{if} b \texttt{then} S_1, s \rangle \Rightarrow \langle S_1,s\rangle}{if s\vdash b \rightarrow_b tt} \) \\
+        
+        [IF-FALSE] & \( \dfrac{\langle \texttt{if} b \texttt{then} S_1, s \rangle \Rightarrow s}{if s\vdash b \rightarrow_b ff} \) \\
+        
+        [WHILE] & \( \langle \texttt{while(} b\texttt{) \{} S \texttt{\}}, s \rangle \Rightarrow \langle \texttt{if} b \texttt{then} (S\texttt{;while (} b \texttt{) \{} S\texttt{\}}) \texttt{else skip,} s\rangle) \) \\
+        
+        END & END\
+    \end{longtable}
+    \caption{Caption}\label{tab:my_label}
+\end{table}

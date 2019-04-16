@@ -1,0 +1,7 @@
+\section{Parser and Lexer}
+The first part of a compiler is the lexing and parsing of the input. As such, this is naturally the starting point in constructing our compiler, however, we do have to decide whether we want to use a lexer/parser generator tool or write our own lexer and parser.
+For this very reason, we tried implementing some smaller languages in a couple generator tools and then comparing them afterwards. These tools had their own strengths and weaknesses, which we will now compare.
+
+We used GNU bison, a yacc-based parser generator, in conjunction with flex, an open-source implementation of the lex program, to implement an infix calculator. It was not particularly complex to do, though it also wasn't always quite clear why an error-prone implementation did not work/compile, due to the unfamilliar naming scheme that bison and flex use.
+On the other hand, both of these tools are quite old, and thus most likely less error-prone than a comparable newer tool, and the context-free grammar used as input in bison was kept separate from the lexical analysis in flex, which made it a bit more clear what was actually going on.
+Flex and bison only target C and C++, meaning we would also have to write the rest of our compiler in C or C++. While C is a quite powerful language (and C++ too for that matter), it is also hard to write well, and it takes a long time to write code that works. As such, we decided against using bison and flex for generating our lexer and parser.

@@ -17,30 +17,36 @@
 \input{setup/preamble.tex}% package inclusion and set up of the document
 \input{setup/hyphenations.tex}% 
 \input{setup/macros.tex}% my new macros
+\usepackage{pdfpages}
 
 \begin{document}
 %frontmatter
 \pagestyle{empty} %disable headers and footers
 \pagenumbering{roman} %use roman page numbering in the frontmatter
-\input{sections/frontpage.tex}
-\input{sections/colophon.tex}
-\input{sections/titlepages.tex}
+\input{sections/standard_report_chapters/frontpage.tex}
+\input{sections/standard_report_chapters/titlepages.tex}
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} %enable headers and footers again
 \tableofcontents
-\input{sections/preface.tex}
+\input{sections/standard_report_chapters/preface.tex}
 %mainmatter
 \pagenumbering{arabic} %use arabic page numbering in the mainmatter
-\input{sections/introduction.tex}
-\input{sections/Analysis.tex}
-\input{sections/arduino_description.tex}
-\input{sections/current_technologies.tex}
-\input{sections/iot_research.tex}
-\input{sections/language_design/language_specification.tex}
-\input{sections/conclusion.tex}
+
+
+%struktur af rapporten
+\input{sections/one_file_chapters/introduction.tex}
+\input{sections/one_file_chapters/init_problem.tex}
+\input{sections/analysis/analysis_main.tex}
+\input{sections/language_design/language_design_main.tex}
+\input{sections/compiler-construction/compiler_construction.tex}
+\input{sections/implementation/implementation.tex}
+\input{sections/test/test_main.tex}
+\input{sections/one_file_chapters/discussion.tex}
+\input{sections/one_file_chapters/future_scope.tex}
+\input{sections/one_file_chapters/conclusion.tex}
 \printbibliography[heading=bibintoc]
 \label{bib:mybiblio}
 \appendix
-\input{sections/appAname.tex}
+\input{sections/standard_report_chapters/appAname.tex}
 \end{document}

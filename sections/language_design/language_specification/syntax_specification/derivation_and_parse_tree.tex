@@ -1,1 +1,11 @@
-\subsection{Derivation and Parse Tree (EMPTY)}
+\subsection{Parser generators}
+In this section an explanation of what kind of parser generators exist and, which one was used for the project. To understand the general concept a parser is interpreter/compiler that takes sequences of tokens and translates them into another language. An example of usage of a parser is to build a data structure for an AST to a new program language.  %(Ved ikke om jeg også skal forklarer om hvad context free grammar er. )
+The first parser generator that was reviewed was  ANTLR 3. ANTLR 3 creates an abstract syntax tree where the user have to create the details for it such as the  intermediate representation of a tree. The other parser generator is called ANTLR 4, which is different from ANTLR 3 because ANTLR 4 creates a general parser tree with either listeners or visitors, which makes it possible to go through the generated tree to find its children. %(Examples should be shown!??). %The last parser generator that was reviewed was called Coco/R, Coco/R generates a scanner and a parser  from the source language and grammar, the user have programmed in. The parser that is created is an LL(k), which make it able to peek at the next symbol k without reading it. 
+%(Kan huske forelæser snakker om Coco men kiggede vi overhovedet på det? )
+
+% Cuddling og JavaCC mangler 
+\\
+The parser generator that was used in the project was the ANTLR 4 parser generator because there was a need of creating a custom made  generated AST tree that was able to walk through to check every children it has so that it it could be checked of its value.   
+
+\subsection{Generic Types}
+The generic type of the context free grammar 

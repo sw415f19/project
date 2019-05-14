@@ -1,0 +1,34 @@
+\chapter{Semantics}
+\label{semantics}
+\section{Abstract Syntax for Ezuino}
+At this stage, we got the syntax made, and we have a general idea of the language. The next step is to construct semantics for the Ezuino programming language. This chapter will go through each semantic rule, in categorized. 
+Before we can start on semantics, we need a table, to provide an overview of the short names in each semantic. This can be  reviewed in figure \ref{semCat}.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{figures/semantics/categories.png}
+\caption{Table of Reserved Keywords}
+\label{semCat}
+\end{figure}
+
+
+\subsection{Formation Rules}
+%% SCOPE RULES INERT HERE
+\section{Type System Semantics}
+The Ezuino programming language data types is only primitive types. This is denoted in future references as :
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+      
+        \( { T_{TP} = (string,\ bool,\ double,\ integer)} \) \\
+    \end{longtable}
+    \caption{}\label{s-empty}
+\end{table}
+
+
+
+
+
+\subsection{Type Environment}
+\input{sections/semantics/type-rules.tex}
+\section{Structural Operation Semantics}
+\subsection{Environment-Store Model}

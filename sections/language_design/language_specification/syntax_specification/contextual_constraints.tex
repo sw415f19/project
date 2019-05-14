@@ -1,1 +1,14 @@
-\subsection{Contextual Constraints (Scope rules and type rules)(EMPTY)}
+\subsection{Contextual Constraints (Scope rules and type rules)}
+Scoping.
+
+There are 3 different kinds of block structures:
+\begin{list}
+    \item Monolithic
+    \item Flat
+    \item Nested
+\end{list}
+
+Monolithic: Only 1 scope, global scope. Makes it hard to see where the variables are modified since all variables are available everywhere. Especially if the code can be split over multiple files.
+Flat Block Structure: Multiple scopes but limited to being in global scope. Enables local variables but limits variables to existing only in that scope.
+Nested: Blocks within blocks. More flexible, but can be hard to remember which variables are defined in what scope.
+

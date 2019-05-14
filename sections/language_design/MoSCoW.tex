@@ -6,6 +6,42 @@ This section will provide an account for the different elements, which will be p
 
 The prioritizing of this analysis is based on initial user interviews and pre-analysis, together with developer opinions, the MoSCoW analysis will be prioritized as the following:\\  
 
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Area}          & \textbf{Subject}      & \textbf{Priority}               \\ \midrule
+Data Types             & Integer               & Must have                       \\
+                       & Double                & Must have                       \\
+                       & String                & Must have                       \\
+                       & Boolean               & Must have                       \\ \midrule
+Arithmetic operators   & Addition              & Must have                       \\
+                       & Subtraction           & Must have                       \\
+                       & Multiplication        & Must have                       \\
+                       & Division              & Must have                       \\ \midrule
+Logical Operators      & Less than             & Must have                       \\
+                       & Less than or equal    & Must have                       \\
+                       & Greater than          & Must have                       \\
+                       & Greater than or equal & Must have                       \\ \midrule
+Unary Operators        & Not                   & Must have                       \\
+                       & Minus                 & Must have                       \\ \midrule
+Control Structures     & If                    & Must have                       \\
+                       & Else                  & Must have                       \\
+                       & While                 & Must have                       \\
+                       & Return                & Must have                       \\ \midrule
+Homogeneous Collection & List                  & Should have                     \\ \midrule
+Binary Operators       & And                   & Should have                     \\
+                       & Or                    & Should have                     \\ \midrule
+Data Types             & Char                  & Could have                      \\\midrule
+Bitwise operations     & Bitwise operations    & Would have but not at this time \\
+Data types             & Float                 & Would have but not at this time \\
+                       & Unsigned numbers      & Would   have but not at this time \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\iffalse 
+This is commented out for saving purpose
 \subsection{Must have}
 \textbf{Data Types} 
 
@@ -79,16 +115,4 @@ The prioritizing of this analysis is based on initial user interviews and pre-an
     \item All bitwise shifts and operations. 
 \end{itemize} 
 
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
+\fi

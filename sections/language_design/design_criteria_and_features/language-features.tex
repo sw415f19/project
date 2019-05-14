@@ -1,0 +1,109 @@
+\subsection{Language Features}
+\label{language-features}
+* All content in this section is based on the C programming language book \cite{kernighan1988c}.\\
+This section will reflect on the different language features, operators and structures in the Ezuino code. We will go through each group of operator/structure, and discuss each element, compare them which functionality get included in the Ezuino programming language, and excluded from the target language, which is Arduino C. This will also include how they compare to the language design criteria.\\
+\subsubsection*{Data Types and Literals}
+Data types are attributes in programming languages that represent different types of data. One of the things data types affect are what operations may be performed, and therefore data types in a language is an important design decision. 
+\\ \\
+We have chosen to keep the data types integer, double and string for Ezuino. We consider integers an necessity, since it is a precise, fast and easy to understand data type, compared to other data types that might be harder to distinguish for new programmers. An case of this is long and unsigned data types. The only difference making an data type long or unsigned is for unsigned that negative numbers are not allowed and for unsigned and long that the upper limit of available numbers are larger. Considering that in most cases it is not necessary to have an larger upper limit the data types will only reduce the overall simplicity of the language. 
+\\  \\
+We chose to only keep double over float in order to also increase overall simplicity. Double was preferred over float due to its increased accuracy that could save the programmer time fixing floating point inaccuracy bugs.  We chose to keep the string data type just like in C, as it is necessary for various tasks like an output consoles an arduino can be connected to. We chose not to include char as strings are more high-level making them easier to understand and cover most of the same uses. This was also to reduce the language feature size and increase overall simplicity. 
+\\\\
+To increase readability of logical statements we have introduced the boolean data type. With the boolean data type replacing 1 and 0 with true and false it should increase readability of logical statements. 
+\\ \\
+We want to introduce a dynamic array type similar in functionality to ArrayList of Java. One of the most complex features of C is using malloc to create dynamic arrays, managing dynamic arrays, and freeing space afterwards. This data type could be simple called "list". There should be functions for adding and retrieving elements which could be called listAdd and listRemove. 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.60]{figures/language_features/langf01.png}
+\caption{Data Type comparison between C and Ezuino Programming Language}
+\label{lf01}
+\end{figure}
+\subsubsection*{Bitwise Operators}
+In the C programming language, six of its data types supports for bit manipulation. The following datatypes are char, int and long (signed and unsigned).  The different bitwise operators can be found in figure \ref{lf02}: 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.60]{figures/language_features/langf02.png}
+\caption{Bitwise Operation comparison between C and Ezuino Programming Language}
+\label{lf02}
+\end{figure}
+The reason why the Ezuino Programming language is not using the bitwise operations is that this may require a deeper understanding of how data structures work and require a more in-depth knowledge, which our target group shouldn't be forced to learn. For our target group this increases readability by increasing the overall simplicity.
+\subsubsection*{Logical Operators}
+The logical operator is a expression, which is used to express logic in a programming language, and usually returns a boolean expression in the form of true or false. \\
+As all three logical operators "and" "or" and "!" are an important part to define simple logical expressions, the Ezuino programming language has inherited all the functionality of the C programming language, although we have chosen to change the syntax. To increase writability through expressivity we have chosen to use "and" and "or" instead of && and || that is used in C.\\
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.60]{figures/language_features/langf03.png}
+\caption{Logical Operation comparison between C and Ezuino Programming Language}
+\label{lf03}
+\end{figure}
+\subsubsection*{Relational Operators}
+Relational operators define a relationship between two entities, and returns a boolean value.  
+The Ezuino programming language inherits all the features of C, as with the same case as the Logical Operators, relational operators are an important part of programming language logic. We have chosen to keep the same relational operators as their syntax is very close with the mathematical notations. Compared to C, there will be a differences in the equality operator as seen in figure \ref{syntax-overview}. The different assignment syntax is chosen for its resemblance to mathematical notations in order to increase readability for people unfamiliar with code. 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.60]{figures/language_features/langf04.png}
+\caption{Relational Operation comparison between C and Ezuino Programming Language}
+\label{lf04}
+\end{figure}
+
+\subsubsection*{Arithmetical Operators}
+Arithmetic Operators are a necessity for every programming language. 
+Compared to C we have chosen to not include the modulo operator as it is a fairly programming specific operator not used commonly regular math.  
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.60]{figures/language_features/langf05.png}
+\caption{Arithmetical Operation comparison between C and Ezuino Programming Language}
+\label{lf05}
+\end{figure}
+
+\subsubsection*{Pointer Operators}
+As described in the problem analysis, most people have difficulty understanding the pointers and address systems, as it requires a sophisticated understanding of how the computer system works. Therefore, it has been decided not to include pointers in the Ezuino programming language. 
+\subsubsection*{Assignment Operators}
+A way to assign a value to a variable is essential in any programming language Ezuino has also kept this feature. The syntax will be the one often seen as the mathematical notation for assignment ":=". Other assignment operators do several operations at once and while these are nice features we regard them as could have features, as they are not essential.
+%\begin{figure}[H]
+%\centering
+%\includegraphics[scale=0.60]{figures/language_features/langf07.png}
+%\caption{Assignment Operation comparison between C and Ezuino Programming Language}
+%\label{lf07}
+%\end{figure}
+\subsubsection*{Control Flow}
+In the C programming language, control flow statements of a programming language specify the order, in which computations get performed. To add an example, we can use a while loop. The while loop will keep running until a specific condition has not been met. For an example, if an Arduino is set to measure the outside temperature, and the Arduino executes a set of code, while the temperature is below its 20 degrees, the body of the loop will keep running until the temperature rises above 20 degrees.  \\
+\\
+This is the general idea behind control flow. Control flow is a statement which executes of which result is being made as to which of two or more path to follow in a running program. \\
+\\
+To keep the most essential control flow structures we have chosen to keep the if else commands. We have not chosen to keep else is as it is more niche and if else can cover the same use cases if the use for it is absolutely necessary. This increases overall simplicity at the cost of reduced expressivity. 
+\\
+When using loops, it has been decided only to add  “while loop” as a “for loop” and “do while loop” does not add additional functionality to the program, and people can still do everything they need in a “while loop”.
+%\begin{figure}[H]
+%\centering
+%\includegraphics[scale=0.60]{figures/language_features/langf08.png}
+%\caption{Control Flow comparison between C and Ezuino Programming %Language}
+%\label{lf08}
+%\end{figure}
+\subsubsection*{Functions and Program Structure}
+Functions in the C programming language is commonly used to task large code into smaller, reusable tasks. This enables the users to build and use the function which they have made, instead of writing all the code over again. A right style C program generally consist of a lot of minor functions, rather than having one significant function. 
+Ezuino allows nested functions, although it can be discussed how much this feature will be used.
+Some of the basic Arduino functions should also be available in Ezuino, in order to communicate with the arduino hardware.  "Digital read and write and analog read and write and pin mode, delay and delay microseconds. Serial.print Serial.begin and Serial.end."
+%The Ezuino programming language uses both function call and declaration from the C programming language. The Ezuino programming language uses a more modern style of function usage and declaration where the C programming language use void main(), the Ezuino programming language uses func main(), like most modern programming languages.  
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.80]{figures/language_features/langf10.png}
+\caption{Functions and Program Structure comparison between C and Ezuino Programming Language}
+\label{lf10}
+\end{figure}
+\subsubsection*{Additional Constructs}
+Single line comments and print also will be possible in Ezuino through #, as comments are essential for reading code at later date and print have multiple uses and are essential for simple debugging.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.60]{figures/language_features/langf09.png}
+\caption{Additional Constructs comparison between C and Ezuino Programming Language}
+\label{lf09}
+\end{figure}
+\subsubsection{Overview}
+This section has been through all the features; the Ezuino programming language has to offer. The next section will focus on the syntax and compare the syntax to the C programming language, and explain the reason behind the syntax choices.   
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.80]{figures/language_features/Logical_assign_bool.PNG}
+\caption{An overview over the syntax difference between Arduino C and Ezuino}
+\label{syntax-overview}
+\end{figure}

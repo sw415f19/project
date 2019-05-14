@@ -18,6 +18,9 @@
 \input{setup/hyphenations.tex}% 
 \input{setup/macros.tex}% my new macros
 \usepackage{pdfpages}
+\usepackage[T1]{fontenc}
+\usepackage{semantic}
+\usepackage{url}
 
 \begin{document}
 %frontmatter
@@ -35,12 +38,14 @@
 
 
 %struktur af rapporten
+
+
 \input{sections/one_file_chapters/introduction.tex}
-\input{sections/one_file_chapters/init_problem.tex}
 \input{sections/analysis/analysis_main.tex}
 \input{sections/language_design/language_design_main.tex}
 \input{sections/compiler-construction/compiler_construction.tex}
-\input{sections/implementation/implementation.tex}
+\input{sections/semantics/semantics.tex}
+\input{sections/implementation/implementation_master.tex}
 \input{sections/test/test_main.tex}
 \input{sections/one_file_chapters/discussion.tex}
 \input{sections/one_file_chapters/future_scope.tex}

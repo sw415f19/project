@@ -2,6 +2,18 @@
 The first part of a compiler is the lexing and parsing of the input. As such, this is naturally the starting point in constructing our compiler, however, we do have to decide whether we want to use a lexer/parser generator tool or write our own lexer and parser.
 For this very reason, we tried implementing some smaller languages in a couple generator tools and then comparing them afterwards. These tools had their own strengths and weaknesses, which we will now compare.
 
-We used GNU bison, a yacc-based parser generator, in conjunction with flex, an open-source implementation of the lex program, to implement an infix calculator. It was not particularly complex to do, though it also wasn't always quite clear why an error-prone implementation did not work/compile, due to the unfamilliar naming scheme that bison and flex use.
+We used GNU bison, a yacc-based parser generator, in conjunction with flex, an open-source implementation of the lex program, to implement an infix calculator. It was not particularly complex to do, though it also wasn't always quite clear why an error-prone implementation did not work/compile, due to the unfamiliar naming scheme that bison and flex use.
 On the other hand, both of these tools are quite old, and thus most likely less error-prone than a comparable newer tool, and the context-free grammar used as input in bison was kept separate from the lexical analysis in flex, which made it a bit more clear what was actually going on.
 Flex and bison only target C and C++, meaning we would also have to write the rest of our compiler in C or C++. While C is a quite powerful language (and C++ too for that matter), it is also hard to write well, and it takes a long time to write code that works. As such, we decided against using bison and flex for generating our lexer and parser.
+
+It was discussed in the group whether or not to write a custom parser for the language. The implementation would be rather simple. During the start of the project it became apparent to the group that there might be many iterations of the context free grammar. The task of maintaining the parser would therefore be quite a large task in its own.
+
+Based on the Languages and Compiler course, the 
+
+SableCC - TODO LALR(1) parser generator, lexer generated
+
+\subsubsection{ANTLR4}
+\textbf{An}other \textbf{T}ool For \textbf{L}anguage \textbf{R}ecognition is another tool which was used during the Languages and Compiler course. It generates a LL(*) parser and also generates a lexer. Another advantage is that it uses more or less raw the context free grammar EBNF, which greatly simplifies the usage of the tool. Additionally ANTLR also has the major advantage that it is rather popular and thus easier to find documentation and help for. 
+
+
+A requirement for our project is that it must be cross platform. 3 members are using Windows, 2 users on Linux and 1 on OSX. That highly narrows the 

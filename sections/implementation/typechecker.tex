@@ -1,3 +1,4 @@
+\chapter{Implementation}
 \section{Type checker}
 The type checker implements the semantic rules of Ezuino specified in chapter \ref{semantics}. \\
 We split the type checker into two visitors TypeCheckerVisitor and ReturnStatementVisitor. TypeCheckerVisitor checks that the condition in a boolean statement has the correct type and that expressions are legal. ReturnStatementVisitor ensures that the actual returned value of a program matches the type defined in the function declaration.

@@ -171,3 +171,37 @@
 	urlcolor=black,%
 	pdfstartview=FitH%
 }
+
+% code
+\usepackage{color}
+\usepackage{listings}
+\usepackage{inconsolata}
+% coding colors defined %
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.2,0.2,0.2}
+\definecolor{codeblue}{rgb}{0.13,0.13,1}
+\definecolor{codered}{rgb}{0.9,0,0}
+
+ 
+\lstset{
+  basicstyle=\tiny,        % the size of the fonts that are used for the code
+  language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  frame=single,
+  commentstyle=\color{codered},
+  keywordstyle=\color{codeblue},
+  stringstyle=\color{codegreen},
+  identifierstyle=\color{codegray},
+  numbers=left,
+  numbersep=-5pt,
+  numberstyle=\footnotesize\color{codered},
+  emph={node,out,builder,errorHandler,messageList,sb,type,symtable},
+  emphstyle={\color{codeblue}},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{orange}]{$$},
+  moredelim=[is][\textcolor{orange}]{\%\%}{\%\%}
+}

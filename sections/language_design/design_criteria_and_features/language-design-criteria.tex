@@ -1,7 +1,7 @@
-\subsection{Language Design Criteria}
+\subsection{Language Design Criteria and Language features}
 \label{language-design-criteria}
 \label{design-criteria-theory}
-\subsection*{Readability}
+\subsubsection*{Readability:}
 \subsubsection*{Overall Simplicity}
 Overall simplicity of a programming language is affected by the amount of basic structures, similarity between previous learned languages, feature multiplicity, operator overloading and trade-off between high and low level languages.
 It is easier to learn a language with fewer basic constructs than one with a larger amount. Programmers that use large languages usually do not learn all its features. \\\
@@ -10,7 +10,7 @@ Feature multiplicity is when there are multiple ways to accomplish the same oper
 Operator overloading happens when operators can have multiple uses depending on the context. An example of an commonly accepted operator overloading is using + for both integer- and floating point addition. \\
 Simplicity in readability also has an trade-off in terms of comparing high to low level languages. An high level language with more complex control statements might make an language easier to read, i.e. assembly compared to Java.
 
-\subsection*{Orthogonality}
+\subsubsection*{Orthogonality}
 "Orthogonality in a programming language means that a relatively small set
 of primitive constructs can be combined in a relatively small number of ways
 to build the control and data structures of the language. Furthermore, every possible combination of primitives is legal and meaningful."
@@ -27,14 +27,15 @@ isReady = 1 would signal true. Where in a language with boolean isReady = true w
     \item Allowing keywords to also be legal variable names can be confusing and decrease readability.
 \end{itemize}
 
-\subsection*{Writability}
+\subsection*{Writability:}
 Writability is measured in how easily a language can be used to create programs within a chosen problem domain. 
 A language must be efficient at the field it was designed for, ie. if it was designed for graphical interfaces, that is the domain it must be comparatively efficient.
 \subsubsection*{Simplicity and Orthogonality}
 Simplicity and orthogonality applies the same for writability as in readability. In writability confusion due to complex orthogonality can also lead to unintended use of features. It can also be harder to detect errors when  nearly any combination of primitives is legal.
 \subsubsection*{Expressivity}
 An high degree of expressivity is having convenient, rather than cumbersome, ways of specifying computation. Examples of this are powerful ways to execute a great of deal of computations like for loops in a very small program while also counting the iterations. It could also be using the special words "and" and "then" like in Ada for short-circuit evaluation of a Boolean expression.
-\subsubsection*{Reliability}
+
+\subsection*{Reliability:}
 Reliability is closely related to readability and writability. A language has natural ways to support algorithms will use fewer unnatural approaches to solving problems and are more likely to be correct for all possible situations.
 Reliability is also affected by a languages implementation of Type checking, Exception handling and Aliasing. 
 \subsubsection*{Type Checking}

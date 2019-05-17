@@ -1,0 +1,12 @@
+\begin{lstlisting}[caption={Private helper method for verifying predefined function parameters in FuncStructureVisitor}, label={checkFuncParameters}]
+    private void checkFuncParameters(String nodeId, List<AExpr> parameters, int requiredParameters, Type[] typeList) {
+        if (parameters.size() != requiredParameters) {
+            errorHandler.parameterLengthError(nodeId);
+        }
+        for (int i = 0; i < requiredParameters; i++) {
+            if (parameters.get(i) != null) {
+                checkSpecificType(parameters.get(i), typeList[i]);
+            }
+        }
+    }
+\end{lstlisting}

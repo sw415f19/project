@@ -1,0 +1,45 @@
+\section{User Test}
+In this chapter, our aim is to test whenever the Ezuino programming language is fulfilling its requirements, of being an easy to learn language, for people who have zero to close no previous programming experience. 
+%In the project scoping, the focus of this project is the focus of creating the language, and highly limiting the analysis part, where the programming language will be implemented with multiple real clients and get their feedback.
+In this chapter, we will test the programming language with one test person who has no programming experience all.\\
+\\
+The test setup was the following. The test person was given a short guide on how to program in the programming language and the task we wanted them to test.
+
+we got the following feedback
+\begin{itemize}
+    \item "AND" and "OR" was preferable to && and ||
+    \item The data types could be less technical named so it is easier to understand without a background. 
+\end{itemize}
+
+
+
+Fik en del feedback
+and og or istedet for && og || er godt
+data typer er ikke specielt inituetivt: int double boolean string
+kunne være noget mere sigende til newbs. Hun nævnte words eller text istedet for string men det gælder egentlig også det andet, int kunne være number og double float, eller noget i den stil, ved ikke hvad boolean kunne være istedet.
+Hvis list skulle fungere som et array du kan adde ting til ligesom ArrayList i java føler hun der manglede en funktion til at se hvilken index noget du tidligere har indsat har, ved at søge efter værdien.
+Overraskende nok havde hun ikke noget problem med ; hun mente det mindede meget om punktum, og hun ville foretrække punktum. 
+Hvis ting startede med stort ville det også give mere mening ifølge hende men tror det er lidt urealistisk ? skulle data typerne være med stort?
+char var ikke nødvendig med vores sprog (som forventet)
+hun synes også at = gav mere mening for equaility og := asssignment
+Vores typechecker error message var heller ikke særlig sigende den sage INT passer ikke med BOOL, det var svært for hende at rette på fejlen (hun prøvede) fordi hun rettede det til BOOL og INT istedet for boolean og int.
+Da vi kom til while løkker gik programmet i stykker
+og så virkede resten af tingene vi gjorde bagefter ikke, det sidste stykke kode der broke the machine var
+
+
+
+
+
+
+
+
+
+This guide can be seen in appendix (SKRIV APPENDIX IND).  
+The test setup is simple. A table, with a chair together with a computer running a text editor with one text file “code.ezuino”, and running the programming language in the background. After the compiler has compiled the program, the output program was then copied into an Arduino IDE, and executed on the Arduino. The test person was handed a syntax specification table, which contain a small explanation of what each operator did, and we tried to give them two simple tasks, which they will use the language, only using the syntax specification table. \\
+\\
+The first test which got presented to the test person were a simple programming task, where they had to construct a “hello world” string in a function, which is outside the setup and loop function, and run it the function once. At first, the test person was confused, however, after presenting them to how the setup and loop functions works, and told them what each of them did, they replicated a function, similar to the setup function, and insert a print statement, which printed “hello world”. The test person had an issue understanding functions, as they wanted to run the program right after they have added their new function. When a dialog with the test person, on how functions work, and that the code only executes the setup and main, and you must call the function in each, the test person completed this task.\\
+\\
+The second test which got presented to the test person, were harder task, but builds on the previous task, and provides a code example written C, with Arduino libraries attached. The tasks were to learn about the user’s interaction between the Arduino and applying code to get a result. The programming was to get data from a temperature sensor and get the temperature out in the Arduino console. By already providing the body, with setup, loop and serial begin as the first test setup, the only explanation we gave the test person beforehand, was that floats form the program example was double in our language, and that they had the same functionality. As the Ezuino programming language already had a lot of the library features which Arduino reside, the user could replicate the code into the Ezuino programming language, with one missing component, the language was missing (println – prints on a new line). We asked the test person whenever he understood the difference between the normal print and the print new line method, and he answered yes, and concluded that it could be a good feature to include.\\
+\\
+We can conclude from this limited test that language specification and documentation are everything. Good explanations of where to start, what each do, and where to use each feature where is vital, and can get people, with no programming experience to produce functional code. In goal with this project, is to avoid having a teacher, sitting next to the person programming, but to learn it from a set of instruction and specification. The test setup with the temperature sensor used for the second test was not user friendly for users who do not have experience at all. If home automation for Arduino would ship, we should provide easy and ready packages, where the user only should plug the Arduino into their computer and execute the code. At last, there was a feature which we did not think should have been added. The println feature was understood by the user, and as it can provide a good functionality to the program, we added this feature in the language.
+\\

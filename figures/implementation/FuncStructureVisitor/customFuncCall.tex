@@ -1,6 +1,6 @@
 \begin{lstlisting}[caption={Visit method for CustomFuncCallStmtNode in FuncStructureVisitor}, label={customFuncCall}]
-    $$@Override
-    public void visit(CustomFuncCallStmtNode node) {
-        Func_defNode funcdef = (Func_defNode) symtable.retrieveSymbol(node.getId());
-        matchParameterList(node.getId(), node.getParameters(), funcdef.getParameters());
+$$@Override
+public void visit(CustomFuncCallStmtNode node) {
+    Func_defNode funcdef = (Func_defNode) symtable.retrieveSymbol(node.getId());
+    matchParameterList(node.getId(), node.getParameters(), funcdef.getParameters());
 \end{lstlisting}

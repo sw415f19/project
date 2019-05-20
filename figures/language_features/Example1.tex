@@ -1,0 +1,20 @@
+\begin{lstlisting}[caption={Program structure where global scope work as main}, label={lf10}]
+int a := 5
+
+func myfunc() {
+	a := 8 + 2
+}
+
+a := 4
+myfunc()
+int b := 18
+a := b*a
+
+func otherfunc() {
+	int c := 321
+}
+
+while(true) {
+	otherfunc()
+}
+\end{lstlisting}

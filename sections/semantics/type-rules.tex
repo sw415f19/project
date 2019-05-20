@@ -16,7 +16,7 @@ Updating a type environment with empty have no effect on the type environment.
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [Update_{empty}] & 
+        $[Update_{empty}]$ & 
         \( {TE(\epsilon, TE) = TE} \) \\
     \end{longtable}
     \caption{}\label{s-empty}
@@ -27,7 +27,7 @@ Declaring a variable updates the type environment with the variables type.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Update_{D_v}] 
+        $[Update_{D_v}]4$ 
         & 
         \( {T E(T \ x;\ D_v, T E) = T E(D_v,\ T E[x \mapsto T])} \) 
         \\ \\
@@ -42,7 +42,7 @@ Declaring a function updates the type environment with the functions formal para
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Update_{D_f}] 
+        $[Update_{D_f}]$ 
         & 
         \( T E(T \ f(T_1 x_1,\ ...,\ T_k x_k)S \ D_f
 ,\ T E) = T E(D_f
@@ -58,7 +58,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Parenthesis] 
+        $[Parenthesis] $
         & 
         \( \dfrac{T E  \vdash  e  :  T}{T E  \vdash  (e)  :  T} \) 
         \\ \\
@@ -72,7 +72,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [ArithInt_{e}] 
+        $[ArithInt_{e}]$ 
         & 
         \( \dfrac{TE \vdash e_{1} :  int \ \ TE \vdash e_{2} : int} 
         {\ TE \vdash e_{1} \ op \ e_{2} : int} \) 
@@ -86,7 +86,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [ArithDouble_{e}] 
+        $[ArithDouble_{e}]$ 
         & 
         \( \dfrac{TE \vdash e_{1} : double \ \ TE \vdash e_{2} :  double} 
         {\ TE \vdash e_{1} \ op \ e_{2} : double} \) 
@@ -100,7 +100,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [IntRelation_{e}] 
+        $[IntRelation_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  :  int \ T E  \vdash  e_2  :  int}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
@@ -114,7 +114,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [DoubleRelation_{e}] 
+        $[DoubleRelation_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  : double \ T E  \vdash  e_2  :  double}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
@@ -127,7 +127,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [StringRelation_{e}] 
+        $[StringRelation_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{TE  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
@@ -142,7 +142,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Logical_{e}] 
+        $[Logical_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
@@ -156,7 +156,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Concat{e}] 
+        $[Concat{e}]$ 
         & 
         \( \dfrac{TE \vdash  e_1  :  string \ \ TE  \vdash  e_2  :  string }{TE \vdash  e_1 \ op \ e_2  :  string} \) 
     \end{longtable}
@@ -167,7 +167,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [NegInt_{e}] 
+        $[NegInt_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  :  int}{T E  \vdash  -e_1  :  int} \) 
     \end{longtable}
@@ -178,7 +178,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [NegDouble_{e}] 
+        $[NegDouble_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  :  double}{T E  \vdash  -e_1  :  double} \) 
     \end{longtable}
@@ -189,7 +189,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Not_{e}] 
+        $[Not_{e}]$ 
         & 
         \( \dfrac{T E  \vdash  e_1  :  bool}{T E  \vdash  !e_1  :  bool} \) 
     \end{longtable}
@@ -200,7 +200,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Var] 
+        $[Var]$ 
         & 
         \( {T E  \vdash x  :  T} {where \ T E(x)=\ T} \)
          \\ \\
@@ -216,7 +216,7 @@ Functions declared in a function declaration must be well typed as well.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [FuncDcl] 
+        $[FuncDcl]$ 
         & 
         \( \dfrac{TE' \vdash S : OK \ \ TE \vdash D_{f}: OK} 
         {T E \vdash T_r \ f(T_1 \ x_1,\ ...,\ T_n,\ x_n)S D_f : OK} \) 
@@ -232,7 +232,7 @@ In a while loop the expression must be a bool type while the statement inside th
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [While] 
+        $[While]$ 
         & 
         \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S : OK}{T E \vdash while(e) \ S : OK} \)
 
@@ -245,7 +245,7 @@ Check if and else expression are OK, and if they are OK then also make sure the 
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [If - else] 
+        $[If - else]$ 
         & 
         \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S_1 : OK \ OK \ T E \vdash S_2 : OK}
         {T E \vdash if(e) \ S_1 \ else \ S_2 : OK} \)
@@ -259,7 +259,7 @@ The return statement is only correct when its expression type is the same as the
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        [Return] 
+        $[Return]$ 
         & 
         \( \dfrac{T E  \vdash e  :  T}{T E \vdash return \ e : OK} \)
          \\ \\

@@ -1,7 +1,7 @@
 \begin{lstlisting}[caption={Visit method for FuncDefNode in FuncStructureVisitor}, label={FuncDefNode}]
-    $$@Override
-    public void visit(Func_defNode node) {
-        symtable.enterSymbol(node.getId(), node);
-        node.getBlockNode().accept(this);
-    }
+$$@Override
+public void visit(Func_defNode node) {
+    symtable.enterSymbol(node.getId(), node);
+    node.getBlockNode().accept(this);
+}
 \end{lstlisting}

@@ -1,12 +1,12 @@
 \begin{lstlisting}[caption={Visit method for AnalogReadNode in FuncStructureVisitor}, label={AnalogReadNode}]
-    $$@Override
-    public void visit(AnalogReadNode node) {
-        Type[] expectedType = {Type.INT};
-        AExpr firstParam = node.getParameters().get(0);
-        if (!(firstParam instanceof IntegerLiteral || firstParam instanceof IdNode)) {
-            errorHandler. invalidFunctionParameterError(node.getID());
-        }
-        checkArduinoRange(firstParam);
-        checkFuncParameters(node.getID(), node.getParameters(), 1, expectedType);
+$$@Override
+public void visit(AnalogReadNode node) {
+    Type[] expectedType = {Type.INT};
+    AExpr firstParam = node.getParameters().get(0);
+    if (!(firstParam instanceof IntegerLiteral || firstParam instanceof IdNode)) {
+        errorHandler. invalidFunctionParameterError(node.getID());
     }
+    checkArduinoRange(firstParam);
+    checkFuncParameters(node.getID(), node.getParameters(), 1, expectedType);
+}
 \end{lstlisting}

@@ -1,0 +1,143 @@
+\label{user_guide_appendix}
+
+\textbf{Test assignments}
+\begin{enumerate}
+    \item make two assignments, one of them must be boolean
+    \item make a while loop with AND and OR and equal logical statements. 
+    \item Make a while loop with a boolean variable as expression.
+    \item define a function and call a function
+    \item make a void function with and without return
+    \item make a if else in a if else.
+\end{enumerate}
+\begin{flushleft}
+\textbf{How to start a program} 
+\end{flushleft}
+Every program must have an setup and loop function declared. \\
+func setup()\{\\ 
+\hspace*{1cm} statements\\
+\}\\
+func loop()\{\\
+\hspace*{1cm} statements\\
+\}\\\\
+outside of loop and setup function definitions are made
+\begin{flushleft}
+\textbf{1.}\\
+\textbf{Variable declarations and assignment:}
+\end{flushleft}
+A variable is a value that is saved with another name.\\
+When you first tell that an value exist it must be "declared" so it later can  get an value, which is called a assignment.\\
+The right side of an assignment can be a expression or a function call.
+Example:\\
+int someNumber \hspace*{22mm}             \#declaration\\
+someNumber := 1 \hspace*{20mm}            \#assignment\\
+sumeNumber := 2/2 \hspace*{16mm}          \#expression\\
+someNumber := returnTwo() \hspace*{2mm}  \#function call
+\begin{flushleft}
+\textbf{Statements:}
+\end{flushleft}
+  \hspace*{3mm} variable assignments\\
+  \hspace*{3mm} function calls\\
+  \hspace*{3mm} while loops\\
+  \hspace*{3mm} if else statements\\
+\textbf{code:} all text that is programmed is called code.\\
+\begin{flushleft}
+\textbf{A value can be a:}\\
+\end{flushleft}
+int (which is whole a number ex. 1)\\
+double (which is a floating point number ex. 1.1)\\
+string (text: "hello")\\
+boolean (data type for logic, it has the values true and false and can handle expressions that compare to each other.\\
+\hspace*{13mm} Example. \\
+\hspace*{13mm} a:= true\\ 
+\hspace*{13mm} a:= false\\
+\hspace*{13mm} a:= 1<2\\
+)
+\begin{flushleft}
+\textbf{2.}\\
+\textbf{While loop:}
+\end{flushleft}
+A while loop repeats the code inside it until the condition no longer is met.\\
+Example:\\
+int a\\
+a := 0\\
+while(a<3) \{\\
+\hspace*{2mm} a = a - 1\\
+\}	
+\begin{flushleft}
+\textbf{3.}\\
+\textbf{AND OR EQUAL:}
+\end{flushleft}
+AND, OR  and equal “written =” are used for logic
+both arguments have to be true for an and statement to be true.
+Example.\\
+1<2 AND 2<3\\
+One of them must be true for OR\\
+Example.\\
+1<2 OR 2<1\\
+And equal returns true if the two compared values are the same.\\
+Example.\\
+1 = 1\\
+Example with a variable:\\
+int a\\
+int b\\
+boolean c\\
+a:= 1\\
+b:=1\\
+d := 2\\
+c :=  a = b (evaluates to c := true)\\
+c := 2 = 2 AND 1 = 1   (will be true)\\
+c := 2 = 2 OR 2 = 1    (will be true)
+\begin{flushleft}
+\textbf{4.}\\
+\textbf{Function definition and function call:}
+\end{flushleft}
+  A function executes the code inside {} brackets when called.\\
+  A function can have a type. If it have a type it must return a value.\\
+  Example:
+ \begin{flushleft}
+ \textbf{Function definition with type:}
+ \end{flushleft}
+func int returnANumber()\{\\
+\hspace*{12mm}	return 1\\
+\}
+
+\begin{flushleft}
+\textbf{Function call:}
+\end{flushleft}
+Runs the statements inside the function definition and might return a value.\\
+helloWorld()\\
+returnOne() \hspace*{15mm} \#might return the value 1 depending on the code inside it.\\
+Example:\\
+int a\\
+a := returnOne()
+\begin{flushleft}
+\textbf{5.}\\
+\textbf{Function definition without type (also called void):}
+\end{flushleft}
+func helloWorld()\{\\
+\hspace*{12mm}string hello := "hello world"\\
+\}\\
+If you want to end a function before it has run all code it can use return without a value.\\
+Example. \\
+func int returnANumber()\{\\
+\hspace*{13mm} if(error)\{\\
+\hspace*{27mm} return\\
+\}\\
+\hspace*{13mm} int a\\
+\hspace*{13mm} a:= 5 + 13\\
+\hspace*{13mm} return a\\
+\}\\
+(stops after repeating 3 times since a = 0)
+\begin{flushleft}
+\textbf{6.}\\
+\textbf{If else statements:}
+\end{flushleft}
+If decides if some code will be reaches if what inside them is true. If it is not true else will be executed instead.\\
+For example where the if statement is true and else will not be reached.\\ 
+if(1<2)\{\\
+\hspace*{11mm} int a\\
+\hspace*{11mm}	a := 5\\
+\} else\{\\
+\hspace*{11mm} int a\\
+\hspace*{11mm} a := 1\\
+\}

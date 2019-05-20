@@ -89,12 +89,7 @@ When defining the legal program structure there were three options we considered
 \subsubsection{Option 1: Using global scope as main}
 The global scope could be treated as the main function in Ezuino. This would mean everything inside the global scope should be regarded as legal statements. One of problems with this approach would be that statements and functions could be in arbitrary order. This could easily decrease readability if used improperly.
 This would also require that the users would have to implement a while loop to have the same effect as Arduiono's standard loop method, which is often necessary in Arduiono programs. 
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=0.80]{figures/language_features/Example1.PNG}}
-\caption{Program structure where global scope work as main}
-\label{lf10}
-\end{figure}
+\input{figures/language_features/Example1.tex}
 
 \subsubsection{Option 2: Having a main that works as a setup requiring the user to implement his own control structure}
 If every statement should be inside main and function declaration should be outside, code would be relatively more orderly and easier to read. 

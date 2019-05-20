@@ -1,0 +1,10 @@
+\begin{lstlisting}[caption={Code for visiting a block in the JasminCodeGeneratorVisitor}, label={code:JasminBlock}]
+$$@Override
+public void visit(BlockNode node) {
+    List<String> oldVariableEnvironment = new ArrayList<String>(currentVariableEnvironment);
+    List<String> oldLocalFunctions = new ArrayList<String>(currentLocalFunctions);
+    // < Code for visiting children omitted for readability>
+    currentVariableEnvironment = oldVariableEnvironment;
+    currentLocalFunctions = oldLocalFunctions;
+}
+\end{lstlisting}

@@ -10,8 +10,7 @@ Before we can start on semantics, we need a table, to provide an overview of the
 \label{semCat}
 \end{figure}
 
-
-\subsection{Formation Rules}
+\input{sections/language_design/semantics/semantics.tex}
 %% SCOPE RULES INERT HERE
 \section{Type System Semantics}
 The Ezuino programming language data types is only primitive types. This is denoted in future references as :
@@ -32,3 +31,5 @@ The Ezuino programming language data types is only primitive types. This is deno
 \input{sections/semantics/type-rules.tex}
 \section{Structural Operation Semantics}
 \subsection{Environment-Store Model}
+One of the ways we can describe how the Ezuino compiler must handle and store variables, we must just the Environment Store Model (ESM). There are differnet mechanism inside the ESM, and some we will go through the essentials before starting on the semantics. First, we have the location, which marks the location of every variable value in the program. The location keeps track of a variable in the environment {env_v}.
+To continue with the ESM, we got the partial function named Store (Sto), which for an instance of the program binds its storage location to values, which are contained within. An example of this, is that if we want to find the value of a specific variable, in this case named x, we write "sto env_v x".

@@ -1,0 +1,26 @@
+\section{Parse Tree}
+By passing the grammar file with the EBNF (Listing \ref{code:ebnf}), ANTLR generates both a lexer and a parser. The generated lexer and parser is ready to read and recognize any text passed to it. From the parser the group now has the ability to program any further usage of the recognized language.
+\\
+However, ANTLR4 generates a parse tree (also known as Concrete Syntax Tree) which is the literal recognition of token in the programming language. Each and every symbol is included in this parse tree, including terminal symbols like equality signs (\texttt{:=}), parenthesis(\texttt{()}) and keywords (\texttt{if}). These are named after the terminals and non-terminals in the EBNF file. While one could potentially work with these tokens directly, it's hard to navigate with all the extra tokens on the nodes.
+\\
+As an implementation, all the nodes in the parse tree were converted into an abstract syntax tree nodes. This is done by using a class called \texttt{BuildAstVisitor} which is a subclass of the \texttt{BaseVisitor} provided by ANTLR. In actuality, this provides a visitor pattern to traverse through the parse tree. During the traversal, the individual nodes in the AST are created from the information available information.
+Seen in \ref{code:visitFuncDef} is a snippet where an AST node is created. The \texttt{Func\_defContext} has access to both the rules and the actual text that was parsed. In this case, it is the syntax
+\texttt{func int test() \{\}}. While the syntax is pretty short, the word \texttt{func} is not essential for further processing in the AST. This is contained within the node itself (since it is a \texttt{Func\_defNode}) and is such not used. Something special in this case is also the fact that special functions \texttt{Setup} and \texttt{Loop} nodes are detected. This makes it easier to distuingish which node is being processed in further processing of the AST.
+\\
+\begin{lstlisting}[caption={Visit method for \texttt{Func\_defContext} in \texttt{AstBuildVisitor}}, label={code:visitFuncDef}]
+$$@Override
+public AstNode visitFunc_def(EzuinoParser.Func_defContext ctx) {
+    String ID = ctx.ID().getText();
+    Type type = getType(ctx.type());
+    List<DclNode> parameters = new ArrayList<DclNode>();
+    BlockNode blockNode = (BlockNode) ctx.block().accept(this);
+    for (DclContext child : ctx.parameters().dcl()) {
+        parameters.add((DclNode) child.accept(this));
+    }
+    switch(ID) {
+        case "Setup" : return new SetupNode(ID, type, parameters, blockNode);
+        case "Loop" : return new LoopNode(ID, type, parameters, blockNode);
+        default: return new Func_defNode(ID, type, parameters, blockNode);
+    }
+}
+\end{lstlisting}

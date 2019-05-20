@@ -1,22 +1,44 @@
+\subsection{Boolean Expressions}
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        \hline
-        [ASS1] & \( \dfrac{\langle x \texttt{:=} a, s \rangle \Rightarrow s[x \mapsto v]}{\text{where} \ s \vdash a\rightarrow_a v} \) \\
+        [ASS1] & \( \dfrac{\langle x \texttt{:=} a, s \rangle \Rightarrow s[x \mapsto v]}{\text{where} \ s \vdash a\rightarrow_a v} \) \\[4ex]
         
+ \end{longtable}
+    \caption{Small-step semantics for boolean assignment expressions}\label{tab:my_label}
+\end{table}
         
-        [IF-ELSE-TRUE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt{then} \ S_1 \ \texttt{else} \ S_2,\ s \rangle \Rightarrow \langle S_1,\s\rangle}{if\ s\vdash b \rightarrow_b tt} \) \\
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
         
-        [IF-ELSE-FALSE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt{then} \ S_1 \ \texttt{else} \ S_2,\ s \rangle \Rightarrow \langle S_2,\ s \rangle}{if\ s\vdash b \rightarrow_b ff} \) \\
+        [IF-ELSE-TRUE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt{then} \ S_1 \ \texttt{else} \ S_2,\ s \rangle \Rightarrow \langle S_1,\ s\rangle}{if\ s\vdash b \rightarrow_b tt} \) \\[4ex]
         
-        [IF-TRUE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt{then} \ S_1,\ s \rangle \Rightarrow \langle S_1,\ s \rangle}{if \ s\vdash b \rightarrow_b tt} \) \\
+        [IF-ELSE-FALSE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt{then} \ S_1 \ \texttt{else} \ S_2,\ s \rangle \Rightarrow \langle S_2,\ s \rangle}{if\ s\vdash b \rightarrow_b ff} \) \\[4ex]
         
-        [IF-FALSE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt \ S_1,\ s \rangle \Rightarrow s}{if\ s\vdash b \rightarrow_b ff} \) \\
+        [IF-TRUE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt{then} \ S_1,\ s \rangle \Rightarrow \langle S_1,\ s \rangle}{if \ s\vdash b \rightarrow_b tt} \) \\\\
         
-        [WHILE] & \( \langle \texttt{while(} \ b\texttt{) \{} S \texttt{\}},\ s \rangle \Rightarrow \langle \texttt{if} \ b \ \texttt{then} (S\texttt{;while (} b \texttt{) \{} S\texttt{\}}) \texttt{else skip,}\ s\rangle) \) \\
+        [IF-FALSE] & \( \dfrac{\langle \texttt{if} \ b \ \texttt \ S_1,\ s \rangle \Rightarrow s}{if\ s\vdash b \rightarrow_b ff} \) \\[4ex]
         
-        END & END\\
-        \hline
+ \end{longtable}
+    \caption{Small-step semantics for boolean if statement}\label{tab:my_label}
+\end{table}
+        
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        
+        [WHILE] & \( \langle \texttt{while(} \ b\texttt{) \{} S \texttt{\}},\ s \rangle \Rightarrow \langle \texttt{if} \ b \ \texttt{then} (S\texttt{;while (} b \texttt{) \{} S\texttt{\}}) \texttt{else skip,}\ s\rangle) \) \\[4ex]
+        
+ \end{longtable}
+    \caption{Small-step semantics for boolean while statements}\label{tab:my_label}
+\end{table}
+        
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+    
+        [END] & END\\
     \end{longtable}
-    \caption{Caption}\label{tab:my_label}
+    \caption{Small-step semantics for end}\label{tab:my_label}
 \end{table}

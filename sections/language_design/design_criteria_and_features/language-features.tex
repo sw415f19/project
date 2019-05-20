@@ -94,21 +94,11 @@ This would also require that the users would have to implement a while loop to h
 \subsubsection{Option 2: Having a main that works as a setup requiring the user to implement his own control structure}
 If every statement should be inside main and function declaration should be outside, code would be relatively more orderly and easier to read. 
 This would however also require that the users implement a while loop if they needed repetition. 
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=0.80]{figures/language_features/Example2.PNG}}
-\caption{Program structure where global scope work as main}
-\label{lf10}
-\end{figure}
+\input{figures/language_features/Example2.tex}
 
 \subsubsection{Option 3: Using arduino setup and loop but making loop optional}
 Using the same setup method as Arduino is both relatively easy to read as the option 2, but also semantically reminds the user that a repetition is usually needed for arduino devices by giving it a place that is suitable for grouping such code.
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=0.80]{figures/language_features/Example3.PNG}}
-\caption{Program structure similar to Arduino but where loop is optional}
-\label{lf10}
-\end{figure}
+\input{figures/language_features/Example3.tex}
 
 \subsubsection{Chosen program structure for Ezuino}
 Because option 2 and 3 both are relatively easier to read than option 1 and because option 3 semantically makes more sense we chose option 2. Loop should also be optional to follow the design philosophy that extra syntax requirement that decrease writability and are unfriendly to people new to code should not be included. 

@@ -1,14 +1,14 @@
-\begin{lstlisting}[caption={Program structure where global scope work as main}]
-func main() {
+\begin{lstlisting}[caption={Program structure similar to Arduino but where loop is optional}]
+func setup() {
 	int a := 5
 	a := 4
 	myfunc()
 	int b := 10
 	a := b*a
-	
-	while(true) {
-		otherfunc()
-	}
+}
+
+func loop() {
+	otherfunc()
 }
 
 func myfunc() {

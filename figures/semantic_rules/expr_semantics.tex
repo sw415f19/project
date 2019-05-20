@@ -1,5 +1,7 @@
 \subsection{Arithmetic Expressions}
-Old
+
+\iffalse
+Old Plus
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
@@ -11,18 +13,22 @@ Old
     \end{longtable}
     \caption{Small-step semantics for arithmetic plus expressions}\label{tab:sss_aud}
 \end{table}
-New
+\fi
+
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [PLUS-1] & \( \dfrac{ env_v,sto \vdash a_1 \rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 + a_2 \rightarrow a^{'}_{1} + a_2} \) \\
+        [PLUS-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 + a_2 \Rightarrow a^{'}_{1} + a_2} \) \\
         
-        [PLUS-2] & \( \dfrac{ env_v,sto \vdash a_2 \rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 + a_2 \rightarrow a_{1} + a_2{'}} \) \\
+        [PLUS-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 + a_2 \Rightarrow a_{1} + a_2{'}} \) \\
         
         [PLUS-3] & \(v_1 + v_2 \Rightarrow v \text{ where } v = v_1 + v_2\) \\
     \end{longtable}
     \caption{Small-step semantics for arithmetic plus expressions}\label{tab:sss_aud}
 \end{table}
+
+\iffalse
+Old Plus
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
@@ -37,28 +43,44 @@ New
     \end{longtable}
     \caption{Small-step semantics for arithmetic minus expressions}\label{tab:sss_aud}
 \end{table}
+\fi
+
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
+        [MINUS-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 - a_2 \Rightarrow a^{'}_{1} - a_2} \) \\
         
-        [MULT-1] & \( \dfrac{a_1 \Rightarrow a^{'}_{1}}{a_1 * a_2 \Rightarrow a^{'}_{1} * a_2} \) \\
+        [MINUS-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 - a_2 \Rightarrow a_{1} - a_2{'}} \) \\
         
-        [MULT-2] & \( \dfrac{a_2 \Rightarrow a^{'}_{2}}{v_1 * a_2 \Rightarrow v_1 * a^{'}_{2}} \) \\
+        [MINUS-3] & \(v_1 - v_2 \Rightarrow v \text{ where } v = v_1 - v_2\) \\
+    \end{longtable}
+    \caption{Small-step semantics for arithmetic minus expressions}\label{tab:sss_aud}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        [MULT-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 * a_2 \Rightarrow a^{'}_{1} * a_2} \) \\
         
-        [MULT-3] & \(v_1 * v_2 \Rightarrow z \text{ where } z = v_1 \cdot v_2\) \\
+        [MULT-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 * a_2 \Rightarrow a_{1} * a_2{'}} \) \\
         
+        [MULT-3] & \(v_1 * v_2 \Rightarrow v \text{ where } v = v_1 * v_2\) \\
     \end{longtable}
     \caption{Small-step semantics for arithmetic multiplicative expressions}\label{tab:sss_aud}
 \end{table}
+
+
+
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
         
-        [DIV-1] & \( \dfrac{a_1 \Rightarrow a^{'}_{1}}{a_1 / a_2 \Rightarrow a^{'}_{1} / a_2} \) \\
+        [DIV-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 / a_2 \Rightarrow a^{'}_{1} / a_2} \) \\
         
-        [DIV-2] & \( \dfrac{a_2 \Rightarrow a^{'}_{2}}{v_1 / a_2 \Rightarrow v_1 / a^{'}_{2}} \) \\
+        [DIV-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 / a_2 \Rightarrow a_{1} / a_2{'}} \) \\
         
-        [DIV-3] & \(v_1 / v_2 \Rightarrow z \text{ where } z = \lfloor\frac{v_1} {v_2}\rfloor\) \\
+        
+        [DIV-3] & \(v_1 / v_2 \Rightarrow z \text{ where } z = \lfloor\frac{v_1}{v_2}\rfloor\) \\
         
     \end{longtable}
     \caption{Small-step semantics for arithmetic expressions}\label{tab:sss_aud}
@@ -66,9 +88,9 @@ New
         \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [PARENT-1] & \( \dfrac{a_1 \Rightarrow a^{'}_{1}}{(a_1) \Rightarrow (a^{'}_{1})} \) \\
+        [PARENT-1] & \( \dfrac{env_v,sto \vdash a_1 \Rightarrow a^{'}_{1}}{env_v,sto \vdash (a_1) \Rightarrow (a^{'}_{1})} \) \\
         
-        [PARENT-2] & \( (z) \Rightarrow z \) \\
+        [PARENT-2] & \( (v) \Rightarrow v \) \\
         
     \end{longtable}
     \caption{Small-step semantics for arithmetic parenthesis expressions}\label{tab:sss_aud}
@@ -77,13 +99,16 @@ New
     \centering
     \begin{longtable}[c] { r c }
         
-        [NEG-1] & \( \dfrac{a_1 \Rightarrow a^{'}_{1}}{-a_1 \Rightarrow -a^{'}_{1}} \) \\
+        [UNARY-1] & \( \dfrac{env_v,sto \vdash a_1 \Rightarrow a^{'}_{1}}{env_v,sto \vdash -a_1 \Rightarrow -a^{'}_{1}} \) \\
         
-        [NEG-2] & \( -v_1 \Rightarrow z \text{ where } z = -v_1 \)\\
+        [UNARY-2] & \( -v_1 \Rightarrow v \text{ where } v = -v_1 \)\\
         
     \end{longtable}
     \caption{Small-step semantics for arithmetic negation expressions}\label{tab:sss_aud}
 \end{table}
+
+\iffalse
+Don't think we need intger only when we got Num and var??
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
@@ -91,6 +116,20 @@ New
         [INT-1] & \( n \Rightarrow z \text{ if } \mathbb{Z}[[n]] = z \) \\
         
         [INT-2] & \( v \Rightarrow z \text{ if } v \in \mathbb{Z} \)\\
+        
+    \end{longtable}
+    \caption{Small-step semantics for arithmetic integer expressions}\label{tab:sss_aud}
+\end{table}
+\fi
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        
+        [NUM] & \( env_v,sto \vdash n \Rightarrow v \) 
+         \\ \\
+        & 
+       \( \text{if } $\mathcal{N}$ [[n]] = v \) \\
         
     \end{longtable}
     \caption{Small-step semantics for arithmetic integer expressions}\label{tab:sss_aud}

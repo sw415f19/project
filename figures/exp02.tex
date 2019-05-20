@@ -1,0 +1,19 @@
+\begin{lstlisting}[caption={A small recursive program}, label={ex02}]
+int y
+func int add(int x, int t) {
+	if (t == 0) {
+	    return 0
+	}
+	y := add(x, t-1) + 1
+	return y
+}
+
+func main() {
+	int r
+	int a
+	int b
+	a := 5
+	b := 8
+	r := add(a, b)
+}
+\end{lstlisting}

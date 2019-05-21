@@ -1,0 +1,12 @@
+\begin{lstlisting}[caption={Visit return statement node}, label={code:TC:return}]
+$$@Override
+public void visit(Return_stmtNode node) {
+    Type nodeType = Type.VOID;
+    AExpr expression = node.getReturnExpr();
+    if (expression != null) {
+        expression.accept(this);
+        nodeType = expression.getType();
+    }
+    node.setType(nodeType);
+}
+\end{lstlisting}

@@ -1,0 +1,13 @@
+\begin{lstlisting}[caption={Visit additive expression node}, label={code:TC:Additive}]
+$$@Override
+public void visit(AdditiveExprNode node) {
+    node.getLeftNode().accept(this);
+    node.getRightNode().accept(this);
+    checkType(node.getLeftNode(), node.getRightNode());
+    node.setType(node.getLeftNode().getType());
+    if (node.getType().equals(Type.BOOL) ||
+        node.getType().equals(Type.STRING) && node.getOperator().equals("-")) {
+        errorHandler. invalidOperatorForType(node.getOperator(), node.getType());
+    }
+}
+\end{lstlisting}

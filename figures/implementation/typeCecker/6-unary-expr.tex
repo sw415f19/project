@@ -1,0 +1,19 @@
+\begin{lstlisting}[caption={Visit unary expression node}, label={code:TC:Unary}]
+$$@Override
+public void visit(UnaryExprNode node) {
+    node.getNode().accept(this);
+    Type nodeType = node.getNode().getType();
+    node.setType(nodeType);
+    String nodeOperator = node.getOperator();
+    boolean printErr = false;
+    if ("-".equals(nodeOperator)) {
+        printErr = nodeType.equals(Type.BOOL) || nodeType.equals(Type.STRING);
+    } 
+    else if ("!".equals(nodeOperator)) {
+        printErr = !nodeType.equals(Type.BOOL);
+    }
+    if (printErr) {
+        errorHandler.invalidOperatorForType(nodeOperator, nodeType);
+    }
+}
+\end{lstlisting}

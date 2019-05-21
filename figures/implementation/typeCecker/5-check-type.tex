@@ -1,0 +1,17 @@
+\begin{lstlisting}[caption={checkType function}, label={code:TC:checkType}]
+private void checkType(ITypeNode leftNode, ITypeNode rightNode) {
+    Type leftType = leftNode.getType();
+    Type rightType = rightNode.getType();
+    if (leftType == null) {
+        System.err.println("Left type null!");
+        return;
+    }
+    if (rightType == null) {
+        System.err.println("Right type null!");
+        return;
+    }
+    if (leftType != rightType) {
+        errorHandler.typeMismatch(leftNode, rightNode);
+    }
+}
+\end{lstlisting}

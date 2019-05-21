@@ -2,7 +2,14 @@
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [ASS1] & \( \dfrac{\langle x \texttt{:=} a, s \rangle \Rightarrow s[x \mapsto v]}{\text{where} \ s \vdash a\rightarrow_a v} \) \\[4ex]
+    \begin{tabular}{@{}c@{}} 
+    [ASS1] &
+    \\
+    \\
+    \end{tabular}
+  \begin{tabular}{@{}c@{}}   \( <x := a, sto, env_l> \Rightarrow (sto[l -> v], envl) \)  \\ \( env_v,sto \vdash n \Rightarrow v \)
+  \\ \( env_v,sto \vdash n \Rightarrow v \)
+  \end{tabular}
         
  \end{longtable}
     \caption{Small-step semantics for boolean assignment expressions}\label{tab:my_label}

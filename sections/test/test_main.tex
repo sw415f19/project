@@ -16,8 +16,8 @@ In this chapter, we go through the tests, which got made during the development 
 \end{figure}
 
 \section{JUnit Testing}
-Once the development of the compiler in Java has started, JUnit testing has been used during the remaining of the process. This section will go through some of the JUnit test, which gets written during the development process. The tests have been categorized into three sections: CST, AST, and Lexer/Parser test. 
-Starting from the beginning of development, we get to look at the Lexer/Parser test, which is the classes ANTLR 4 has generated and using the ANTLR maven package, can use. In these test classes, we use the Error Handler, which was explained the chapter 6, to check whenever there is an error, during the lexing/parsing of a small code snippet. If the error handler finds an error, depending on the asset, the test will either fail or pass. 
+Once the development of the compiler in Java has started, JUnit testing has been used during the remaining of the process. This section will go through some of the JUnit test, which has been written during the development process. The tests have been categorized into three sections, the tests for the concrete syntax tree, the abstract syntax tree and the lexer and the parser CST, AST, and Lexer/Parser test. 
+Starting from the beginning of development, we look at some of the Lexer and Parser tests, which is the classes ANTLR 4 has generated and using the ANTLR maven package, can use. In these test classes, we use the Error Handler, which was explained in \ref{error-handling-chap}, to check whenever there is an error, during the lexing/parsing of a small code snippet. If the error handler finds an error, depending on the assert, the test will either fail or pass. 
 \begin{figure}[H]
 \centering
 \frame{\includegraphics[scale=1]{figures/test/test2.png}}
@@ -49,7 +49,7 @@ During the development of the programming language, more tests has been added in
 \caption{Test}
 \label{testa}
 \end{figure}
-On figure \ref{testa}, a Travis build has run on a GC, which has recently been committed. In this result, we can see that the 295 tests have been ran successfully, and the program ran without any error. In case the program finds an issue, and add it to the Error Handler, it will fail the build, but no the tests. Also, the other way around, if a node has been changed, but the program may build, if one tests fails, the Travis check will fail as well. \\
+On figure \ref{testa}, a Travis build has run on a GC, which has recently been committed. In this result, we can see that the 295 tests have been ran successfully, and the program ran without any error. If any of the tests or main could not run Travis would have thrown an error. \\
 \\
 This chapter has been going through a few of the around 300 tests made in this project, and given an insight in the tests process which has been made during the development of the Ezuino programming language. It is very essential to avoid errors in the compiler in a programming language, so testing of features has been prioritized, however, there are still testing forms like code coverage and whitebox (branch testing), which has not been done at this time. If the Ezuino programming language were to get a commercial release, these tests are essential to provide a large sum of error or failure correction, as a programming language is very abstract. 
 \input{sections/test/bstest.tex}

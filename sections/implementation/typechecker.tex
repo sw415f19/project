@@ -15,7 +15,7 @@ An example of type checking expressions. When an additive expression is reached 
 \input{figures/implementation/typeCecker/4-additive-typecheck.tex}
 \noindent\newline
 
-In a unary expression it is also necessary to check that the operations performed are done with legal types. This is done through an switch case so it is easy to extend if more unary expressions needs to be added in the future. 
+In a unary expression it is also necessary to check that the operations performed are done with legal types. If "\texttt{-}" is used on nodes that do not have the type integer or double or if "\texttt{!}" is used on anything than nodes with the type boolean it notifies that there is an error to the errorhandler.   
 \input{figures/implementation/typeCecker/6-unary-expr.tex}
 \noindent\newline
 
@@ -33,26 +33,11 @@ This is the ReturnStatementVisitor. When a function is declared the type, it was
 
 \section{Checking that return are guaranteed}
 If an function is not a void function, it should only be legal if it is guaranteed that it will reach an return statement. This means that if there is no return statement in the scope of the definition body, it must be because there is an if- and else block in the scope of the body where every if statement and the else statement have an return statement. 
+\input{figures/implementation/typeCecker/3-3-return-stmt.tex}
+\noindent\newline
 
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=1.0]{figures/implementation/typeCecker/3-3-return-stmt-enter-symbol-table.png}}
-\caption{If a return statement is encountered it, it is noted for the current scope.}
-\label{lf05}
-\end{figure}
+\input{figures/implementation/typeCecker/3-2-if-stmt-return.tex}
+\noindent\newline
 
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=1.0]{figures/implementation/typeCecker/3-2-ifstmt-return-check.png}}
-\caption{If an return statement in an if else block is guaranteed, it is noted for the current scope.} 
-\label{lf05}
-\end{figure}
-
- \begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=1.0]{figures/implementation/typeCecker/3-1-func-def-missing-return.png}}
-\caption{If there is no return statement in the current scope, or an if else block where return is guaranteed throw an error.}
-\label{lf05}
-\end{figure}
-
-
+\input{figures/implementation/typeCecker/3-1-func-def-return.tex}
+\noindent\newline

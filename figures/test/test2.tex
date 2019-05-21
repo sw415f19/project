@@ -1,0 +1,7 @@
+\begin{lstlisting}[caption={Simple declaration test}, label={test2}]
+$$@Test
+public void testDcl() throws IOException {
+    ErrorHandler errorHandler = parseProgram("int a");
+    assertFalse(errorHandler.hasErrors());
+}
+\end{lstlisting}

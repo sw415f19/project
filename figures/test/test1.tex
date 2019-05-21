@@ -1,0 +1,20 @@
+\begin{lstlisting}[caption={Private function to run a test program}, label={test1}]
+private ErrorHandler parseProgram(String program) throws IOException {
+    CharStream stream = CharStreams.fromString(program);
+
+    ErrorHandler errorHandler = new ErrorHandler();
+    ErrorListener el = new ErrorListener(errorHandler);
+
+    EzuinoLexer lexer = new EzuinoLexer(stream);
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    EzuinoParser parser = new EzuinoParser(tokens);
+
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(el);
+    parser.removeErrorListeners();
+    parser.addErrorListener(el);
+    parser.start();
+
+    return errorHandler;
+}
+\end{lstlisting}

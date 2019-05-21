@@ -23,17 +23,34 @@ Given a starting symbol and a set of rules, a top-down parser will start reading
 
 An example of a top-down parsing is the recursive descent parser, which is built from a collection of subprograms that each produces its own top-down parse tree generator. The subprograms in itself are recursive and the recursive descent parser will only create one subprogram for every non-terminal it can find in the user-generated grammar\cite{conceptsOfProgrammingLanguages}.\\
 
-A bottom-up parser is the other method of parsing. A buttom-up parser also reads a line of tokens, but rather than starting at the top and deriving to terminals, it builds non-terminals based on the symbols it reads, by performing a rightmost-derivation in accord with the grammatical rules, until it reaches the starting symbol\cite{conceptsOfProgrammingLanguages}.\\
+A bottom-up parser is the other method of parsing. A bottom-up parser also reads a line of tokens, but rather than starting at the top and deriving to terminals, it builds non-terminals based on the symbols it reads, by performing a rightmost-derivation in accord with the grammatical rules, until it reaches the starting symbol\cite{conceptsOfProgrammingLanguages}.\\
 
 \subsubsection{Parsing trees and abstract parsing tree}
 The end goal of either strategy is to generate a parse tree\footnote{Sometimes known as a concrete syntax tree (a CST)}, which represents the syntactic structure of the program source code. Like the tree data-structure, it features a root node and several tree nodes, however, due to the parsing process, it is also important to maintain ordering, so that the program is aware of the constructions the parser has invoked. As such, the CST also features children and parents. The parse tree is defined by an input string and a grammar, or in this case for the project, a context-free-grammar \\
+
 \begin{figure}[H]
 \centering
-\frame{\includegraphics[width=0.7\textwidth]{figures/parse_tree_example.png}}
 \caption{Parse tree example}
 \label{exampleparse}
+\begin{tikzpicture}[sibling distance=5em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=blue!20}]]
+  \node {start}
+    child { node {dcls} }
+    child { node {stmts}
+      child { node {stmt}
+        child { node {func def}
+          child { node {func} }
+          child { node {Setup} }
+          child { node {(} }
+          child { node {parameters} }
+          child { node {)} } 
+          child { node {block} } } } };
+\end{tikzpicture}
 \end{figure}
-The picture in figure \ref{exampleparse} shows a parse tree, where the highest node, which is A will have 2 child nodes which are B and C. It will then traverse further down until it reaches an end. \\
+
+The picture in figure \ref{exampleparse} shows a parse tree, where the highest node, which is "start" has 2 child nodes which are "dcls" and "stmts". It will then traverse further down until it reaches an end. \\
 An abstract syntax tree provides the advantage that removes non-essential elements of the syntax. E.g. the colons, equality signs etc. and provides a structure which can be altered and annotated to make sure that contextual analysis is performed correctly.
 The abstract syntax tree is more an idea since it is very dependent on the construction of the programming language. The structure is a representation of the essential information from the parse tree, with inessentials removed (braces, parenthesis etc.). In an abstract syntax tree the entire source program should be stored in the structure and using this structure alone, the compiler programmer should be able to reconstruct the entire source program. If one cannot recreate the source program, essential structures have been removed.\cite{crafting-a-compiler}
 A common method of creating an abstract syntax three is through the visitor pattern. The visitor pattern is an object oriented pattern provided by the GoF Design Patterns book.
@@ -65,7 +82,6 @@ Bison           & LALR(1)       \\
 GOLD            & LALR(1)       \\
 SableCC         & LALR(1)       \\ \bottomrule
 \end{tabular}
-\caption{The different parser generator tools and what kind of parsing they perform}
 \label{parser_table}
 \end{table}
 

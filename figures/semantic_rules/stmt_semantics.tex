@@ -3,18 +3,121 @@
     \centering
     \begin{longtable}[c] { r c }
     \begin{tabular}{@{}c@{}} 
-    [ASS1] &
-    \\
-    \\
+    [ASS1] \\
+    \newline \\
+    \newline \\
+    \newline \\
     \end{tabular}
-  \begin{tabular}{@{}c@{}}   \( <x := a, sto, env_l> \Rightarrow (sto[l -> v], envl) \)  \\ \( env_v,sto \vdash n \Rightarrow v \)
-  \\ \( env_v,sto \vdash n \Rightarrow v \)
+  \begin{tabular}{@{}c@{}}   \( \langle x := a, sto, env_l \rangle \Rightarrow (sto[l \mapsto v], envl) \)  \\ \( where \ envl  = (env_v, env_p) : envl' \)
+  \\ \( and \ l = env_v x \)
+  \\ \( and \ env_v, \ sto \vdash a \rightarrow_a v \)
   \end{tabular}
         
  \end{longtable}
     \caption{Small-step semantics for boolean assignment expressions}\label{tab:my_label}
 \end{table}
         
+        
+        
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+    
+    \begin{tabular}{@{}c@{}} 
+    [IF-ELSE-TRUE] \\
+    \newline
+    \end{tabular}
+  \begin{tabular}{@{}c@{}}   \(
+  \langle if \ {b} \ then \ {S_1} \ else \ {S_2} \ sto, envl\rangle \Rightarrow \langle{S_1},sto,envl\rangle
+  \)  \\ \(
+  if \ env_v, \ sto \vdash b \rightarrow_b {tt} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
+  \) 
+  \end{tabular}
+        
+ \end{longtable}
+    \caption{Small-step semantics for boolean if-else-true expressions}\label{tab:my_label}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+    
+    \begin{tabular}{@{}c@{}} 
+    [IF-ELSE-FALSE] \\
+    \newline
+    \end{tabular}
+  \begin{tabular}{@{}c@{}}   \(
+  \langle if \ {b} \ then \ {S_1} \ else \ {S_2} \ sto, envl\rangle \Rightarrow \langle{S_2},sto,envl\rangle
+  \)  \\ \(
+  if \ env_v, \ sto \vdash b \rightarrow_b {ff} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
+  \) 
+  \end{tabular}
+        
+ \end{longtable}
+    \caption{Small-step semantics for boolean if-else-false expressions}\label{tab:my_label}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+    
+    \begin{tabular}{@{}c@{}} 
+    [IF-TRUE] \\
+    \newline
+    \end{tabular}
+  \begin{tabular}{@{}c@{}}   \(
+  \langle if \ {b} \ then \ {S_1} \ sto, envl\rangle \Rightarrow \langle{S_1},sto,envl\rangle
+  \)  \\ \(
+  if \ env_v, \ sto \vdash b \rightarrow_b {tt} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
+  \) 
+  \end{tabular}
+        
+ \end{longtable}
+    \caption{Small-step semantics for boolean if-true expressions}\label{tab:my_label}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+    
+    \begin{tabular}{@{}c@{}} 
+    [IF-FALSE] \\
+    \newline
+    \end{tabular}
+  \begin{tabular}{@{}c@{}}   \(
+  \langle if \ {b} \ then \ {S_1} \ sto, envl\rangle \Rightarrow \langle{S_2},sto,envl\rangle
+  \)  \\ \(
+  if \ env_v, \ sto \vdash b \rightarrow_b {ff} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
+  \) 
+  \end{tabular}
+        
+ \end{longtable}
+    \caption{Small-step semantics for boolean if-false expressions}\label{tab:my_label}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+    
+    \begin{tabular}{@{}c@{}} 
+    [WHILE] \\
+    \newline
+    \end{tabular} 
+  \begin{tabular}{@{}c@{}}   \(
+  \langle while \ b \ do \ S, \ sto, \ envl \rangle \Rightarrow
+  \)  \\ \(
+  \langle if \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip, \ sto, \ envl \rangle
+  \) 
+  \end{tabular}
+        
+ \end{longtable}
+    \caption{Small-step semantics for boolean while expressions}\label{tab:my_label}
+\end{table}
+
+
+
+\iffalse
+
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
@@ -49,3 +152,4 @@
     \end{longtable}
     \caption{Small-step semantics for end}\label{tab:my_label}
 \end{table}
+\fi

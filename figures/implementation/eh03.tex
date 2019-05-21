@@ -1,0 +1,20 @@
+\begin{lstlisting}[caption={Start of ErrorHandler class}, label={eh03}]
+private List<ErrorMessage> messageList = new ArrayList<>();
+private int errorCount = 0;
+
+public boolean hasErrors() {
+    return errorCount != 0;
+}
+
+public void printErrors(String reason) {
+    if (hasErrors()) {
+        StringBuilder sb = new StringBuilder();
+        String errmsg = "##  " + reason + "\n -- ## ERROR OUTPUT CONSOLE ## -- ";
+        sb.append(errmsg + "\n");
+        for (ErrorMessage message : messageList) {
+            sb.append(message + "\n");
+        }
+        System.err.println(sb.toString());
+    }
+}
+\end{lstlisting}

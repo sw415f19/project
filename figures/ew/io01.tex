@@ -1,0 +1,13 @@
+\begin{lstlisting}[caption={Visit start node in C code generator}, label={io01}]
+$$@Override
+public void visit(StartNode node) {
+    // includes
+    builder.append("#include <stdio.h>\n" +
+        "#include <string.h>\n");
+    // start tree search
+    node.getDcls().accept(this);
+    node.getStmts().accept(this);
+    // prints the final string
+    out.print(builder.toString());
+}
+\end{lstlisting}

@@ -14,26 +14,26 @@ To increase readability of logical statements we have introduced the boolean dat
 We want to introduce a dynamic array type similar in functionality to ArrayList of Java. One of the most complex features of C is using malloc to create dynamic arrays, managing dynamic arrays, and freeing space afterwards. This data type could be simple called "list". There should be functions for adding and retrieving elements which could be called listAdd and listRemove. 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.60]{figures/language_features/langf01.png}
 \caption{Data Type comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.60]{figures/language_features/langf01.png}
 \label{lf01}
 \end{figure}
 \subsubsection*{Bitwise Operators}
 In the C programming language, six of its data types supports for bit manipulation. The following datatypes are char, int and long (signed and unsigned).  The different bitwise operators can be found in figure \ref{lf02}: 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.60]{figures/language_features/langf02.png}
 \caption{Bitwise Operation comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.60]{figures/language_features/langf02.png}
 \label{lf02}
 \end{figure}
 The reason why the Ezuino Programming language is not using the bitwise operations is that this may require a deeper understanding of how data structures work and require a more in-depth knowledge, which our target group shouldn't be forced to learn. For our target group this increases readability by increasing the overall simplicity.
 \subsubsection*{Logical Operators}
 The logical operator is a expression, which is used to express logic in a programming language, and usually returns a boolean expression in the form of true or false. \\
-As all three logical operators "and" "or" and "!" are an important part to define simple logical expressions, the Ezuino programming language has inherited all the functionality of the C programming language, although we have chosen to change the syntax. To increase writability through expressivity we have chosen to use "and" and "or" instead of \&\& and || that is used in C.\\
+As all three logical operators "AND" "OR" and "!" are an important part to define simple logical expressions, the Ezuino programming language has inherited all the functionality of the C programming language, although we have chosen to change the syntax. To increase writability through expressivity we have chosen to use "and" and "or" instead of \&\& and || that is used in C.\\
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.60]{figures/language_features/langf03.png}
 \caption{Logical Operation comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.60]{figures/language_features/langf03.png}
 \label{lf03}
 \end{figure}
 \subsubsection*{Relational Operators}
@@ -41,8 +41,8 @@ Relational operators define a relationship between two entities, and returns a b
 The Ezuino programming language inherits all the features of C, as with the same case as the Logical Operators, relational operators are an important part of programming language logic. We have chosen to keep the same relational operators as their syntax is very close with the mathematical notations. Compared to C, there will be a differences in the equality operator as seen in figure \ref{syntax-overview}. The different assignment syntax is chosen for its resemblance to mathematical notations in order to increase readability for people unfamiliar with code. 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.60]{figures/language_features/langf04.png}
 \caption{Relational Operation comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.60]{figures/language_features/langf04.png}
 \label{lf04}
 \end{figure}
 
@@ -51,8 +51,8 @@ Arithmetic operators are a necessity for every programming language.
 Compared to C we have chosen to not include the modulo operator as it is a fairly programming specific operator not used commonly regular math. Furthermore the orthogonality in Ezuino makes it possible to define other arithmetic operators as functions if necessary. The modulo operator is easily implemented as a function in our language. Considering these two points, we decided against implementing modulo as an operator.
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.60]{figures/language_features/langf05.png}
 \caption{Arithmetical Operation comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.60]{figures/language_features/langf05.png}
 \label{lf05}
 \end{figure}
 
@@ -104,15 +104,16 @@ Using the same setup method as Arduino is both relatively easy to read as the op
 Because option 2 and 3 both are relatively easier to read than option 1 and because option 3 semantically makes more sense we chose option 2. Loop should also be optional to follow the design philosophy that extra syntax requirement that decrease writability and are unfriendly to people new to code should not be included. 
 \begin{figure}[H]
 \centering
-\frame{\includegraphics[scale=0.80]{figures/language_features/langf10.png}}
 \caption{Functions and Program Structure comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.80]{figures/language_features/langf10.png}
+
 \label{lf10}
 \end{figure}
 \subsubsection*{Additional Constructs}
 Single line comments will also be possible in Ezuino through \#, as comments are essential for reading code. Print will be available as print have multiple uses and are essential for simple debugging. End of statements will be without ; compared to C in order to increase writability, since it is easier not having to write the extra syntax. Requiring ; also encourages several compound statements on the same line, which reduces readability. 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.60]{figures/language_features/langf09.png}
 \caption{Additional Constructs comparison between C and Ezuino Programming Language}
+\includegraphics[scale=0.60]{figures/language_features/langf09.png}
 \label{lf09}
 \end{figure}

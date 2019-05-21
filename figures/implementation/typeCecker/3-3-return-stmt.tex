@@ -1,0 +1,6 @@
+\begin{lstlisting}[caption={If a return statement is encountered it, it is noted for the current scope.}, label={code:MISRE:returnstmt}]
+$$@Override
+public void visit(Return_stmtNode node) {
+    symtable.enterSymbol(BLOCK_RETURN_STMT, node);
+}
+\end{lstlisting}

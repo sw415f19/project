@@ -1,0 +1,22 @@
+\begin{lstlisting}[caption={If an return statement in an if else block is guaranteed, it is noted for the current scope.}, label={code:MISRE:ifstmt}]
+$$@Override
+public void visit(If_stmtNode node) {
+    symtable.openScope();
+    node.getIfBlock().accept(this);
+    boolean ifBlockHasReturnStmt = blockNodeHasReturnStmt();
+    symtable.closeScope();
+    BlockNode elseblock = node.getElseBlock();
+    
+    if (elseblock != null) {
+        symtable.openScope();
+        elseblock.accept(this);
+        boolean elseBlockHasReturnStmt = blockNodeHasReturnStmt();
+        ITypeNode returnStmt = getBlockReturnStmtNode();
+        symtable.closeScope();
+
+        if (ifBlockHasReturnStmt && elseBlockHasReturnStmt) {
+            symtable.enterSymbol(BLOCK_RETURN_STMT, returnStmt);
+        }
+    }
+}
+\end{lstlisting}

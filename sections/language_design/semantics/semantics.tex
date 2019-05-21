@@ -8,10 +8,8 @@ We have decided to make our operational semantics a small-step semantic, as a sm
 \subsection{Environment-Store Model}
 One of the ways we can describe how the Ezuino compiler must handle and store variables, we must just the Environment Store Model (ESM). There are differnet mechanism inside the ESM, and some we will go through the essentials before starting on the semantics. First, we have the location, which marks the location of every variable value in the program. The location keeps track of a variable in the environment $env_v$.
 To continue with the ESM, we got the partial function named Store (Sto), which for an instance of the program binds its storage location to values, which are contained within. An example of this, is that if we want to find the value of a specific variable, in this case named x, we write $"sto \  env_v \ x"$.
-NOTES :::
-
-EnvP proceedures
-Envl - run-time stack : envl = (envV x envP)* -> set of all lists whose elements belong to the set EnvV x EnvP 
+Next we have the run-time s tack named envl. The runtime stack is a list of pairs ($env_v$, $env_p$).
+On figure \ref{evnstoreexmp}, the ESM can be reviewed.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.75]{figures/evnstore.png}

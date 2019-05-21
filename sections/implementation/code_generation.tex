@@ -6,19 +6,14 @@ In that way instead of making many compilers for each high level language to tar
 \\
 Taken a look into the code generation. There are 3 code generator visitors in total. The first one being C Code Generator, which is generating C code from the AST visitor. The second one is Arduino C code generator, which has the special features from the Arduino library, for example serial.print and many more. The last one is Java Bytecode generator for Jasmin. As there is a lot of code in these generators, and visitors has been explained in the previous chapter, we will focus on the code generation part from each of these code generator visitors.
 The first code snippet is from the C code generator visitor, which are using its start node to include the necessary C headers within the generated code : \\
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=0.70]{figures/ew/io01.png}}
-\label{io01}
-\end{figure}
+\input{figures/ew/io01.tex}
+\noindent\newline
+
 The second case, is where we have the Arduino C code generator.
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=0.70]{figures/ew/io02.png}}
-\caption{}
-\label{io02}
-\end{figure}
-In example on figure \ref{io02}, we got two visitor function, both the delay node and the digital read node. Each of these will append the special Arduino library functions to the code generator, if it read the function id as both within the buildastvisitor. \\
+\input{figures/ew/io02.tex}
+\noindent\newline
+
+In example on listing \ref{io02}, we got two visitor function, both the delay node and the digital read node. Each of these will append the special Arduino library functions to the code generator, if it read the function id as both within the buildastvisitor. \\
 \\
 The last visitor is the Jasmin code generator.\\
 Unlike the previous two visitors, the jasmin code generator doesn't compile to a C-like language, but rather to Jasmin, which is an assembler-representation of Java bytecode. This is quite different from parsing to C or Java, as the scoping rules are a bit different, either being completely flat inside a given function, or more of a nested structure if one is using classes and access modifiers. This combined with a register-based storage model means, that the compiler has to manually keep track of the allocated registers, and when it is safe to overwrite a given register with another value. This is currently handled when the Jasmin visitor visits a block node in the AST. The code snippet in question can be seen in listing \ref{code:JasminBlock}. Note that a copy of the variable environment is reset to its pre-block state after the entire block has been generated. This is so that a variable declared in an inner scope will take precedence when being referenced in an expression, compared to a variable of the same name declared previously in an outer scope, while still "deallocating" the inner variables after the block has been processed.

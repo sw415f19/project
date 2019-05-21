@@ -132,7 +132,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         \( \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{TE  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
         & 
-        \( {where \ op \ \epsilon \ \{=\}} \)
+        \( {where \ op \ \epsilon \ \{=, \ !=\}} \)
     \end{longtable}
     \caption{}\label{s-empty}
         \end{center}
@@ -156,9 +156,12 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        $[Concat{e}]$ 
+        $[Concat]$ 
         & 
         \( \dfrac{TE \vdash  e_1  :  string \ \ TE  \vdash  e_2  :  string }{TE \vdash  e_1 \ op \ e_2  :  string} \) 
+                 \\ \\
+        & 
+        \( {where \ op \ \epsilon \ \{+ \}} \)
     \end{longtable}
     \caption{}\label{s-empty}
         \end{center}

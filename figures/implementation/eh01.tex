@@ -1,0 +1,16 @@
+\begin{lstlisting}[caption={Start of the ErrorListener class}, label={eh01}]
+private int errorCount;
+private ErrorHandler errorHandler;
+
+public ErrorListener(ErrorHandler errorHandler) {
+    this.errorHandler = errorHandler;
+    this.errorCount = 0;
+}
+
+$$@Override
+public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
+    String msg, RecognitionException e) {
+    this.errorCount++;
+    errorHandler.syntaxError(errorCount, msg, line, charPositionInLine);
+}
+\end{lstlisting}

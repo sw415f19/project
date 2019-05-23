@@ -1,0 +1,21 @@
+\section{Casting}
+
+With the Ezuino language it might be necessary to do casts from one type to another.
+The print method only accepts the type string. To make sure that the user really wants to cast, casts have been made explicit.
+That means if a user wants to use the print method on an integer, the integer firstly has to be cast to a string in order to print it.
+Likewise, casts to the same type cannot be done. The reasoning for this is that it is important to know which types the variables has. If the user isn't aware of the types, it might be difficult to implement the functionality which user wants.\\
+The reason for not including casting from String to other data types is that this requires parsing of the string and as such is not a cast that makes sense.\\
+In table \ref{tab:cast-overview}, the entire casts can be seen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lllll}
+To\textbackslash From & String   & Integer      & Double       & Boolean      \\
+String                & $\times$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+Integer               & $\times$ & $\times$     & $\checkmark$ & $\checkmark$ \\
+Double                & $\times$ & $\checkmark$ & $\times$     & $\checkmark$ \\
+Boolean               & $\times$ & $\checkmark$ & $\times$     & $\times$    
+\end{tabular}
+\caption{List over casts in Ezuino. Casts marked with $\checkmark$ are valid, $\times$ marks invalid casts}
+\label{tab:cast-overview}
+\end{table}

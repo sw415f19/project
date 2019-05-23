@@ -2,14 +2,22 @@
 \label{semantics}
 \section{Abstract Syntax for Ezuino}
 At this stage, we got the syntax made, and we have a general idea of the language. The next step is to construct semantics for the Ezuino programming language. This chapter will go through each semantic rule, in categorized. 
-Before we can start on semantics, we need a table, to provide an overview of the short names in each semantic. This can be  reviewed in figure \ref{semCat}.
-\begin{figure}[H]
+Before we can start on semantics, we need a table, to provide an overview of the short names in each semantic. This can be  reviewed in syntax table: 
+\begin{table}[H]
 \centering
-\includegraphics[scale=0.75]{figures/semantics/categories.png}
-\caption{Table of Reserved Keywords}
-\label{semCat}
-\end{figure}
-
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Syntax} & \textbf{Definition}   \\ \hline
+T               & Type                  \\ \hline
+TE              & Type Environment      \\ \hline
+$D_v$           & Variable Declarations \\ \hline
+$D_f$           & Function Declarations \\ \hline
+r               & Result                \\ \hline
+S               & Statements            \\ \hline
+T               & Type                  \\ \hline
+e               & Expression            \\ \hline
+\end{tabular}
+\end{table}
 \input{sections/language_design/semantics/semantics.tex}
 %% SCOPE RULES INERT HERE
 \section{Type System Semantics}
@@ -18,9 +26,9 @@ The Ezuino programming language data types is only primitive types. This is deno
     \centering
     \begin{longtable}[c] { r c }
       
-        \( { T_{TP} = (string,\ bool,\ double,\ integer)} \) \\
+        \( { T = (string,\ bool,\ double,\ integer)} \) \\
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:primitives}
 \end{table}
 
 \subsection{Type Environment}

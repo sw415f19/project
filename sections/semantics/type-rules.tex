@@ -1,25 +1,11 @@
-%\begin{table}[H]
-%    \begin{center}
-%    \begin{longtable}[c] { r c }
-%        [Example_{test}] 
-%        & 
-%        \( \dfrac{T E(T x; D_v, T E) = T E(D_v, T E[x 7 \mapsto T])} 
-%        {T E(T x; D_v, T E) = T E(D_v, T E[x 7 \mapsto T])} \) 
-%        \\ \\
-%        & 
-%        \( {where \ T \ \epsilon \ T_{primitive} \ \textbackslash \ %\{void,\ bool,\ text,\ number\}} \)
-%    \end{longtable}
-%    \caption{}\label{s-empty}
-%        \end{center}
-%\end{table}
 Updating a type environment with empty have no effect on the type environment.
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        $[Update_{empty}]$ & 
+        $[VarDcl_{\epsilon}]$ & 
         \( {TE(\epsilon, TE) = TE} \) \\
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:empty}
 \end{table}
 
 
@@ -27,14 +13,11 @@ Declaring a variable updates the type environment with the variables type.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
-        $[Update_{D_v}]4$ 
+        $[VarDcl]$ 
         & 
-        \( {T E(T \ x;\ D_v, T E) = T E(D_v,\ T E[x \mapsto T])} \) 
-        \\ \\
-        & 
-        \( {where \ T \ \epsilon \ T_{pt}} \)
+        \( \dfrac{TE(x)=\ T}{TE \vdash T\ x} \) 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:vardcl}
         \end{center}
 \end{table}
 
@@ -49,7 +32,7 @@ Declaring a function updates the type environment with the functions formal para
 ,\ T E[f  \mapsto  (T_1,\ ...\, T_n \ × \ T_r)])
 ( \) 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:funcdcl}
         \end{center}
 \end{table}
 
@@ -60,12 +43,9 @@ Expressions are the core of most programming operations. Ezuino supports parenth
     \begin{longtable}[c] { r c }
         $[Parenthesis] $
         & 
-        \( \dfrac{T E  \vdash  e  :  T}{T E  \vdash  (e)  :  T} \) 
-        \\ \\
-        & 
-        \( {where \ T \ \epsilon \ \{ bool,\ string,\ int,\ double\}} \)
+        \( \dfrac{T E  \vdash  e  :  T}{T E  \vdash  (e)  :  T} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:expr}
         \end{center}
 \end{table}
  
@@ -80,7 +60,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         & 
         \( {where \ op \ \epsilon \ \{+, \ -, \ /, \ *\} } \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:int-arith}
         \end{center}
 \end{table}
 \begin{table}[H]
@@ -94,7 +74,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         & 
         \( {where \ op \ \epsilon \ \{+, \ -, \ /, \ *\} } \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:double-arith}
         \end{center}
 \end{table}
 \begin{table}[H]
@@ -105,9 +85,9 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         \( \dfrac{T E  \vdash  e_1  :  int \ T E  \vdash  e_2  :  int}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
         & 
-        \( {where \ op \ \epsilon \ \{<,\ >,\ <=,\ >=,\ =,\ !=\}} \)
+        \( {where \ op \ \epsilon \ \{<,\ >,\ < =,\ >=,\ =,\ !=\}} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:int-relation}
         \end{center}
 \end{table}
 
@@ -119,9 +99,9 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         \( \dfrac{T E  \vdash  e_1  : double \ T E  \vdash  e_2  :  double}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
         & 
-        \( {where \ op \ \epsilon \ \{<,\ >,\ <=,\ >=,\ =,\ !=\}} \)
+        \( {where \ op \ \epsilon \ \{<,\ >,\ < =,\ >=,\ =,\ !=\}} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:double-relation}
         \end{center}
 \end{table}
 \begin{table}[H]
@@ -134,7 +114,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         & 
         \( {where \ op \ \epsilon \ \{=, \ !=\}} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:string-relation}
         \end{center}
 \end{table}
 
@@ -147,9 +127,9 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         \( \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
         \\ \\
         & 
-        \( {where \ op \ \epsilon \ \{=,\ !=\, AND,\ OR,\ !,\ <,\ <=,\ >,\ >= \}} \)
+        \( {where \ op \ \epsilon \ \{=,\ !=\}} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:logical-expr}
         \end{center}
 \end{table}
 
@@ -158,12 +138,9 @@ Expressions are the core of most programming operations. Ezuino supports parenth
     \begin{longtable}[c] { r c }
         $[Concat]$ 
         & 
-        \( \dfrac{TE \vdash  e_1  :  string \ \ TE  \vdash  e_2  :  string }{TE \vdash  e_1 \ op \ e_2  :  string} \) 
-                 \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{+ \}} \)
+        \( \dfrac{TE \vdash  e_1  :  string \ \ TE  \vdash  e_2  :  string }{TE \vdash  e_1 \ + \ e_2  :  string} \) 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:string-concat}
         \end{center}
 \end{table}
 
@@ -174,7 +151,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         & 
         \( \dfrac{T E  \vdash  e_1  :  int}{T E  \vdash  -e_1  :  int} \) 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:int-neg}
         \end{center}
 \end{table}
 
@@ -185,7 +162,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         & 
         \( \dfrac{T E  \vdash  e_1  :  double}{T E  \vdash  -e_1  :  double} \) 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:double-neg}
         \end{center}
 \end{table}
 
@@ -196,7 +173,7 @@ Expressions are the core of most programming operations. Ezuino supports parenth
         & 
         \( \dfrac{T E  \vdash  e_1  :  bool}{T E  \vdash  !e_1  :  bool} \) 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:bool-neg}
         \end{center}
 \end{table}
 
@@ -205,33 +182,44 @@ Expressions are the core of most programming operations. Ezuino supports parenth
     \begin{longtable}[c] { r c }
         $[Var]$ 
         & 
-        \( {T E  \vdash x  :  T} {where \ T E(x)=\ T} \)
-         \\ \\
-        & 
-        \( {and \ T \ \epsilon \ \{bool,\ string,\ int,\ double\}} \)
+        \( {TE \vdash x\ :\ T}\ where\ {TE(x) = T} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}\label{type:var-ref}
         \end{center}
 \end{table}
 In a function declaration the return type is specified and the types for the formal parameters are saved in the type environment. Afterwards there can be statements and other function declarations. \\
 Every statement in the function declaration must be OK in regards to the declared return type. This means that return statements in if and else statements as well as return statements in the function declaration body must return the declared return type. \\ 
 Functions declared in a function declaration must be well typed as well.
+Take note of the special name "return", that encapsulates the return type for the current function. It is used later when evaluating whether the return statement is well typed or not.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
         $[FuncDcl]$ 
         & 
         \( \dfrac{TE' \vdash S : OK \ \ TE \vdash D_{f}: OK} 
-        {T E \vdash T_r \ f(T_1 \ x_1,\ ...,\ T_n,\ x_n)S D_f : OK} \) 
+        {T E \vdash T_r \ f(T_1 \ x_1,\ ...,\ T_n,\ x_n)\ S\ D_f : OK} \) 
         \\ \\
         & 
-        \( {where \ TE' = TE[r \mapsto T_r]} \)
+        \( {where \ TE' = TE[return \mapsto T_r]} \)
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}
         \end{center}
 \end{table}
 
-In a while loop the expression must be a bool type while the statement inside the the while loop must be OK.
+The return statement is only correct when its expression type is the same as the function type. Note the "return" name from before.
+\begin{table}[H]
+    \begin{center}
+    \begin{longtable}[c] { r c }
+        $[Return]$ 
+        & 
+        \( \dfrac{T E  \vdash e  :  T\ TE(return) = T}{T E \vdash return \ e : OK} \)
+
+    \end{longtable}
+    \caption{}
+        \end{center}
+\end{table}
+
+In a while loop the expression must be a bool type while the statement inside the while loop must be OK.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
@@ -240,7 +228,7 @@ In a while loop the expression must be a bool type while the statement inside th
         \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S : OK}{T E \vdash while(e) \ S : OK} \)
 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}
         \end{center}
 \end{table}
 
@@ -250,35 +238,12 @@ Check if and else expression are OK, and if they are OK then also make sure the 
     \begin{longtable}[c] { r c }
         $[If - else]$ 
         & 
-        \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S_1 : OK \ OK \ T E \vdash S_2 : OK}
+        \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S_1 : OK \ T E \vdash S_2 : OK}
         {T E \vdash if(e) \ S_1 \ else \ S_2 : OK} \)
 
     \end{longtable}
-    \caption{}\label{s-empty}
+    \caption{}
         \end{center}
 \end{table}
-
-The return statement is only correct when its expression type is the same as the function type. The function return type is found in the type environment
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Return]$ 
-        & 
-        \( \dfrac{T E  \vdash e  :  T}{T E \vdash return \ e : OK} \)
-         \\ \\
-        & 
-        \( {if \ TE(r) = T } \)
-
-    \end{longtable}
-    \caption{}\label{s-empty}
-        \end{center}
-\end{table}
-
-
-
-
-
-
-
 
 \input{sections/semantics/type-rules-2.tex}

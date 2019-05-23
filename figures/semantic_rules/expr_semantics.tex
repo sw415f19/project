@@ -1,34 +1,46 @@
 \subsection{Arithmetic Expressions}
 
-\iffalse
-Old Plus
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [PLUS-1] & \( \dfrac{a_1 \Rightarrow a^{'}_{1}}{a_1 + a_2 \Rightarrow a^{'}_{1} + a_2} \) \\
+    \begin{tabular}{@{}c@{}} 
+    [VAR] \\
+    \newline \\
+    \newline \\
+    \newline \\
+    \end{tabular}
+  \begin{tabular}{@{}c@{}}   \( \langle a, \ envl, \ sto \rangle \Rightarrow \langle v, \ envl, \ sto \rangle  \)
+  \\ \( if \ env_v \ x \ = \ l \)
+  \\ \( and \ sto \ l \ = \ v \)
+  \\ \( where \ envl \ = \ (env_v, \ env_p) \ : \ envl' \)
+  \end{tabular}
         
-        [PLUS-2] & \( \dfrac{a_2 \Rightarrow a^{'}_{2}}{v_1 + a_2 \Rightarrow v_1 + a^{'}_{2}} \) \\
-        
-        [PLUS-3] & \(z_1 + z_2 \Rightarrow z \text{ where } z = v_1 + v_2\) \\
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic plus expressions}\label{tab:sss_aud}
+ \end{longtable}
+    \caption{Small-step semantics for variables expressions}\label{sem:bool-ass}
 \end{table}
-\fi
 
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [PLUS-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 + a_2 \Rightarrow a^{'}_{1} + a_2} \) \\
+        [PARENT-1] & \( \dfrac{ \langle a, \ envl, \ sto \rangle \Rightarrow \langle a', \ envl', \ sto' \rangle}{ \langle (a), \ envl, \ sto \rangle \Rightarrow \langle (a'), \ envl', \ sto' \rangle} \) \\
         
-        [PLUS-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 + a_2 \Rightarrow a_{1} + a_2{'}} \) \\
+        [PARENT-2] & \( \langle (v), \ envl, \ sto \rangle \Rightarrow \langle v, \ envl', \ sto' \rangle \) \\
+    \end{longtable}
+    \caption{Small-step semantics for parenthesis }
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        [PLUS-1] & \( \dfrac{ \langle a_1,\ envl, \ sto \rangle \Rightarrow_a (a^{'}_{1}\ envl', \ sto')}{(a_1 + a_2\ envl,\ sto) \Rightarrow (a^{'}_{1} + a_2,\ envl',\ sto')} \) \\
+        
+        [PLUS-2] & \( \dfrac{(a_2,\ envl,\ sto) \Rightarrow_a (a^{'}_{2},\ envl',\ sto')}{(v_1 + a_2,\ envl,\ sto) \Rightarrow (a_{1} + a_2{'},\ envl',\ sto')} \) \\
         
         [PLUS-3] & \(v_1 + v_2 \Rightarrow v \text{ where } v = v_1 + v_2\) \\
     \end{longtable}
-    \caption{Small-step semantics for arithmetic plus expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic plus expressions}
 \end{table}
 
-\iffalse
-Old Plus
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
@@ -41,7 +53,7 @@ Old Plus
         
         
     \end{longtable}
-    \caption{Small-step semantics for arithmetic minus expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic minus expressions}
 \end{table}
 \fi
 
@@ -54,7 +66,7 @@ Old Plus
         
         [MINUS-3] & \(v_1 - v_2 \Rightarrow v \text{ where } v = v_1 - v_2\) \\
     \end{longtable}
-    \caption{Small-step semantics for arithmetic minus expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic minus expressions}
 \end{table}
 
 \begin{table}[H]
@@ -66,7 +78,7 @@ Old Plus
         
         [MULT-3] & \(v_1 * v_2 \Rightarrow v \text{ where } v = v_1 * v_2\) \\
     \end{longtable}
-    \caption{Small-step semantics for arithmetic multiplicative expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic multiplicative expressions}
 \end{table}
 
 
@@ -80,10 +92,10 @@ Old Plus
         [DIV-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 / a_2 \Rightarrow a_{1} / a_2{'}} \) \\
         
         
-        [DIV-3] & \(v_1 / v_2 \Rightarrow z \text{ where } z = \lfloor\frac{v_1}{v_2}\rfloor\) \\
+        [DIV-3] & \(v_1 / v_2 \Rightarrow z \text{ where } v = \frac{v_1}{v_2}\) \\
         
     \end{longtable}
-    \caption{Small-step semantics for arithmetic expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic expressions}
 \end{table}
         \begin{table}[H]
     \centering
@@ -93,18 +105,18 @@ Old Plus
         [PARENT-2] & \( (v) \Rightarrow v \) \\
         
     \end{longtable}
-    \caption{Small-step semantics for arithmetic parenthesis expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic parenthesis expressions}
 \end{table}
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
         
-        [UNARY-1] & \( \dfrac{env_v,sto \vdash a_1 \Rightarrow a^{'}_{1}}{env_v,sto \vdash -a_1 \Rightarrow -a^{'}_{1}} \) \\
+        [NEGATION-1] & \( \dfrac{env_v,sto \vdash a_1 \Rightarrow a^{'}_{1}}{env_v,sto \vdash -a_1 \Rightarrow -a^{'}_{1}} \) \\
         
-        [UNARY-2] & \( -v_1 \Rightarrow v \text{ where } v = -v_1 \)\\
+        [NEGATION-2] & \( -v_1 \Rightarrow v \text{ where } v = -v_1 \)\\
         
     \end{longtable}
-    \caption{Small-step semantics for arithmetic negation expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic negation expressions}
 \end{table}
 
 \iffalse
@@ -118,7 +130,7 @@ Don't think we need intger only when we got Num and var??
         [INT-2] & \( v \Rightarrow z \text{ if } v \in \mathbb{Z} \)\\
         
     \end{longtable}
-    \caption{Small-step semantics for arithmetic integer expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic integer expressions}
 \end{table}
 \fi
 
@@ -126,11 +138,258 @@ Don't think we need intger only when we got Num and var??
     \centering
     \begin{longtable}[c] { r c }
         
-        [NUM] & \( env_v,sto \vdash n \Rightarrow v \) 
+        [NUM] & \( n \Rightarrow v \) 
          \\ \\
         & 
        \( \text{if } \mathcal{N} [[n]] = v \) \\
         
     \end{longtable}
-    \caption{Small-step semantics for arithmetic integer expressions}\label{tab:sss_aud}
+    \caption{Small-step semantics for arithmetic integer expressions}
 \end{table}
+
+\subsection{Boolean Expressions}
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        [AND TRUE] & \( \langle v_1 \ AND \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{tt}, \ envl, \ sto \rangle \) \\
+                            &       \( if \ v_1 \land v_2\)
+        \\
+
+        [AND FALSE] & \( \langle v_1 \ AND \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{ff}, \ envl, \ sto \rangle \) \\
+                            &       \( if \ 	\neg(v_1 \land v_2)\)
+        \\
+        
+    \end{longtable}
+    \caption{Small-step semantics boolean AND expression }
+\end{table}
+
+\begin{table}[H]
+    \centering
+  \begin{longtable}[c] { r c }
+        [OR TRUE] & \( \langle v_1 \ OR \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{tt}, \ envl, \ sto \rangle \) \\
+                            &       \( if \ v_1 \lor v_2\)
+        \\
+
+        [OR FALSE] & \( \langle v_1 \ OR \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{ff}, \ envl, \ sto \rangle \) \\
+                            &       \( if \ 	\neg(v_1 \lor v_2)\)
+        \\
+        
+    \end{longtable}
+    \caption{Small-step semantics boolean OR expression }
+\end{table}
+
+
+
+\begin{longtable}[c] { r c }
+  \centering
+  [NOT-1] & \( 
+    \dfrac { \langle e, envl, sto \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
+      { \langle !e, envl, sto \rangle \Rightarrow_e \langle !e', envl', sto' \rangle } \)
+  \\
+  & \\
+
+  [NOT-2] & \( 
+    \langle !v, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v = ff\) \\
+  & \\
+
+  [NOT-3] & \( 
+    \langle !v, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v = tt \) \\
+  & \\
+
+  [AND-1] & \( 
+    \dfrac { \langle e_1 \ AND \ e_2, envl, sto \rangle \Rightarrow_e \langle e_1' \ AND \ e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [AND-2] & \( 
+    \dfrac { \langle v_1 \ AND \ e_2, envl, sto \rangle \Rightarrow_e \langle v_1 \ AND \ e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [AND-3] & \( 
+    \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 = tt \land v_2 = tt\) \\
+  & \\
+
+  [AND-4] & \( 
+    \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 = ff \lor  v_2 = ff \) \\
+  & \\
+
+  [OR-1] & \( 
+    \dfrac { \langle e_1 \ OR \ e_2, envl, sto \rangle \Rightarrow_e \langle e_1' \ OR \ e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [OR-2] & \( 
+    \dfrac { \langle v_1 \ OR \ e_2, envl, sto \rangle \Rightarrow_e \langle v_1 \ OR \ e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [OR-3] & \( 
+    \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 = tt \lor v_2 = tt\) \\
+  & \\
+
+  [OR-4] & \( 
+    \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 = ff \land  v_2 = ff \) \\
+  & \\
+
+  [EQUAL-1] & \( 
+    \dfrac { \langle e_1 = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' = e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [EQUAL-2] & \( 
+    \dfrac { \langle v_1 = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 = e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [EQUAL-3] & \( 
+    \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 = v_2 \) \\
+  & \\
+
+  [EQUAL-4] & \( 
+    \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 \neq v_2 \) \\
+  & \\
+
+  [NOT-EQUAL-1] & \( 
+    \dfrac { \langle e_1 != e_2, envl, sto \rangle \Rightarrow_e \langle e_1' != e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [NOT-EQUAL-2] & \( 
+    \dfrac { \langle v_1 != e_2, envl, sto \rangle \Rightarrow_e \langle v_1 != e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [NOT-EQUAL-3] & \( 
+    \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 \neq v_2 \) \\
+  & \\
+
+  [NOT-EQUAL-4] & \( 
+    \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 = v_2 \) \\
+  & \\
+
+  [GREATER-THAN-1] & \( 
+    \dfrac { \langle e_1 > e_2, envl, sto \rangle \Rightarrow_e \langle e_1' > e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [GREATER-THAN-2] & \( 
+    \dfrac { \langle v_1 > e_2, envl, sto \rangle \Rightarrow_e \langle v_1 > e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [GREATER-THAN-3] & \( 
+    \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 > v_2 \) \\
+  & \\
+
+  [GREATER-THAN-4] & \( 
+    \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 \leq v_2 \) \\
+  & \\
+
+  [GREATER-THAN-OR-EQUAL-1] & \( 
+    \dfrac { \langle e_1 > = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' > = e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [GREATER-THAN-OR-EQUAL-2] & \( 
+    \dfrac { \langle v_1 > = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 > = e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [GREATER-THAN-OR-EQUAL-3] & \( 
+    \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 \geq v_2 \) \\
+  & \\
+
+  [GREATER-THAN-OR-EQUAL-4] & \( 
+    \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 < v_2 \) \\
+  & \\
+
+  [LESS-THAN-1] & \( 
+    \dfrac { \langle e_1 < e_2, envl, sto \rangle \Rightarrow_e \langle e_1' < e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [LESS-THAN-2] & \( 
+    \dfrac { \langle v_1 < e_2, envl, sto \rangle \Rightarrow_e \langle v_1 < e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [LESS-THAN-3] & \( 
+    \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 < v_2 \) \\
+  & \\
+
+  [LESS-THAN-4] & \( 
+    \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 \geq v_2 \) \\
+  & \\
+
+  [LESS-THAN-OR-EQUAL-1] & \( 
+    \dfrac { \langle e_1 < = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' < = e_2, envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [LESS-THAN-OR-EQUAL-2] & \( 
+    \dfrac { \langle v_1 < = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 < = e_2', envl', sto' \rangle }
+      { } \)
+  \\
+  & \\
+
+  [LESS-THAN-OR-EQUAL-3] & \( 
+    \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  \\
+  & if \( v_1 \leq v_2 \) \\
+  & \\
+
+  [LESS-THAN-OR-EQUAL-4] & \( 
+    \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  \\
+  & if \( v_1 > v_2 \) \\
+  & \\
+  \caption{Small-step semantics $<$ expression}
+\end{longtable}

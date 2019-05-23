@@ -1,1 +1,18 @@
 \chapter{Future Scope of the Project (empty)}
+If given more time to work on the project it would make sense to improve several aspects of Ezuino. There were both feedback from the user we could account for and some features we think might make sense to extend the language with in the future.
+The feedback from the user suggested we should change our data type syntax and shift to weak typing. Data type names like text and float instead of string and double are more common terms for the data types that people without programming experience are more likely to understand. Weak typing also increases writability by making the language less strict, better accommodating people less experienced in using types in practice. Although this might lead to less reliability code due to using implicit casting without intending to. \\
+We also got feedback on the dynamic array implementation called list we had intended to include in the language but had to conclude was out of scope due to our time limit. If given the time the data type should be implemented as it not only serves the purpose of arrays in Arduino C which is essential for many programming applications but also are a easy way to implement dynamic arrays. This data type would presumably have increased writability as dynamic arrays are fairly complex to implement in Arduino. This might also have increased writability due to new programmers more often opting to use dynamic arrays when it fits the situation more when a more high level data type is available. \\
+Besides those 
+
+
+
+, being easier to was preferable as an additional option to arrays.
+
+using the feedback from the user test; better type names, weak typing at least so int can be written in double types
+dynamic arrays or as we called them list
+\\\\
+things we didnt generally have time for:
+
+string concatenation in the Arduiono C code generator
+records / structs are very useful for various tasks in arduino. For example to define data types related to whether when working with whether
+parsing library. So string for example can be parsed to other data types.

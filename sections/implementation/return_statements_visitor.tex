@@ -1,0 +1,17 @@
+This is the ReturnStatementVisitor. When a function is declared the type, it was declared as is temporarily saved in a symbol table. When a return statement is reached, the return statements type is compared with a type of the last function that was declared which was saved in the symbol table within that scope. This ensures that if there are several nested function declarations, the return type is compared to the most recent “active” scope.
+\input{figures/implementation/typeCecker/2-1-func-def.tex}
+\noindent\newline
+
+\input{figures/implementation/typeCecker/2-2-return-type-check.tex}
+\noindent\newline
+
+\section{Checking that return are guaranteed}
+If an function is not a void function, it should only be legal if it is guaranteed that it will reach an return statement. This means that if there is no return statement in the scope of the definition body, it must be because there is an if- and else block in the scope of the body where every if statement and the else statement have an return statement. 
+\input{figures/implementation/typeCecker/3-3-return-stmt.tex}
+\noindent\newline
+
+\input{figures/implementation/typeCecker/3-2-if-stmt-return.tex}
+\noindent\newline
+
+\input{figures/implementation/typeCecker/3-1-func-def-return.tex}
+\noindent\newline

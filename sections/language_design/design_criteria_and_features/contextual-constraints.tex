@@ -1,25 +1,23 @@
 \section{Contextual Restraints}
+Contextual restraints in a programming language are scope rules, type binding, and block structure. This section will describe what these are and how they will be implemented in Ezuino.
 \subsection{Static vs Dynamic Scope Rules}
-Scope rules declare what bindings are used during execution of a procedure.
-When an function is statically scoped it means that it saves the function and variable environment at declaration time. So even if the variables or functions it uses are changed, the function itself will not be changed since it uses the environment from when it was declared. Most programming languages today uses static scope rules (\cite{syntax-and-semantics}, p 85). 
+Scope rules declare what bindings are used during the execution of a procedure.
+When a function is statically scoped, it means that it saves the function and variable environment at declaration time. So even if the variables or functions it uses are changed, the function itself will not be changed since it uses the environment from when it was declared. Most programming languages today use static scope rules (\cite{syntax-and-semantics}, p 85). 
 \subsection{Static vs Dynamic Type Binding}
-The type of an declaration can be inferred at compile time (static type binding), or run times (dynamic type binding). Static type binding requires the programmer to declare the type when declaring a variable, while dynamic type binding binds a type to the variable when it is first assigned a value. Static type checking is the type binding most commonly used today(\cite{conceptsOfProgrammingLanguages}, p 228). \\ 
+The type of a declaration can be inferred at compile time (static type binding) or run times (dynamic type binding). Static type binding requires the programmer to declare the type when declaring a variable, while dynamic type binding binds a type to the variable when it is first assigned a value. Static type checking is the type binding most commonly used today(\cite{conceptsOfProgrammingLanguages}, p 228). \\ 
 It has several advantages over dynamic type binding
 \begin{itemize}
-    \item It has more reliable at error detection. Since an variable has not been declared with a type in dynamic binding, there is no type check the first time the variable is assigned.
-    \item The implementation is more complex and runs slower. Languages with dynamic type binding must use an run time descriptor to ensure that the variable assigned in run-time has enough storage.
+    \item It has more reliable at error detection. Since a variable has not been declared with a type in dynamic binding, there is no type check the first time the variable is assigned.
+    \item The implementation is more complex and runs slower. Languages with dynamic type binding must use a run time descriptor to ensure that the variable assigned in run-time has enough storage.
     The execution is also slower since type checking has to be done while executing and cannot be done at compile time.
     \item Since the type of variables are only known at execution time Dynamic Type Binding is only suited for interpreters, since it is not possible to generate machine instruction without knowing the data types.
 \end{itemize}
 
-
-\subsection{Block Structure }
-When an variable is declared the declaration type and identifier is saved in an identification table, also known as an symbol table. \\
-%The symbol table is a structure that typically is responsible for scope in a programming language.
-The organization of the symbol table depends on the languages block structure, which is the textual relationships of blocks in programs. \\
+\subsection{Block Structure and Symbol Tables}
+In this section we will describe what symbol tables are and the different block structures they can implement.
 Block structures are divided between three types, monolithic, flat and nested (\cite{compilers-and-intepreters}, chapter 5). \\
 In a monolithic block structure the entire program is one block. This means that there may be no variables with the same identifier.
-In a flat block structure, there is distinction between
+In a flat block structure, there is distinction between.
 \begin{itemize}
     \item Local scope. Applied occurrence of locally declared identifiers are restricted to a particular block.
     \item Other declaration are global in scope. Applied occurrences of locally declared identifiers are allowed anywhere in the program. 
@@ -28,13 +26,14 @@ In a flat block structure, there is distinction between
 Finally nested blocks are a block structure where blocks may be nested in other blocks. 
 \begin{itemize}
     \item Declarations in the outermost block are global in scope. We say that the outermost block is at scope level 1.
-
     \item Declarations inside an inner block are local to that block. Every inner block is completely enclosed by another block. If enclosed by the outermost block, we say that the inner block is at scope level; if enclosed by a level-2 block, we say that the inner block is scope level 3; and so on.
 \end{itemize}
+Block structure is implemented in a programming language by the symbol table. The purpose of the symbol table is to keep track of scopes and save variables or functions declaration type and their identifier when they are declared. The type of block structure then decides how many scopes the symbol table should be designated to considerate.\\
+The symbol table in a programming language has various uses. Some of the most common uses are for ensuring that variables are not declared twice in the same scope and type checking that return statements matches the type declared in the function declaration.
 
 \subsection{Contextual Restraints For Ezuino}
-The target group for Ezuino is people with no prior coding experience [\ref{targetedGroup}]. We have chosen Static Dynamic Scope rules since it is more commonly used today and to be consistent with static type binding which we have also chosen for Ezuino. The biggest advantage if we had chosen dynamic type binding is its increased ease of cost in terms of training new programmers that are not familiar with basic data types. While this fit our target group the disadvantage of less reliable error detection could lead to about the same amount of frustration if not worse, for someone inexperienced in writing code. Furthermore it is harder to implement a dynamic type checker, since it has not been taught in details in the courses this semester. \\
-In terms of block structure even though Monolithic block structure is the simplest concept to understand for new programmers, it is less flexible especially regarding the readability of control statements. Declaring variables in the block they are used, makes for more readable code. For the same reason nested block structure are more suitable than flat block structure because it allows multiple nested control statements to have their variables declared inside their block. 
-The variable declarations have been limited to be at the very top of a block. In that way the variables are always found at the same place. It takes inspiration from Pascal in that way that pascal must define variables in a special block. While the special block in Pascal was good for separation, it seemed excessive to explicitly make a special block structure for declarations. As such the Ezuino language still requires the user to specify variables in the beginning, but without the special block.
+The target group for Ezuino is people with no prior coding experience [\ref{targetedGroup}]. We have chosen Static Dynamic Scope rules since it is more commonly used today and to be consistent with static type binding, which we have also chosen for Ezuino. The biggest advantage if we had chosen dynamic type binding is its increased ease of cost in terms of training new programmers that are not familiar with basic data types. While this fit our target group the disadvantage of less reliable error detection could lead to about the same amount of frustration if not worse, for someone inexperienced in writing code. Furthermore, it is harder to implement a dynamic type checker, since it has not been taught in details in the courses this semester. \\
+In terms of block structure even though Monolithic block structure is the simplest concept to understand for new programmers, it is less flexible especially regarding the readability of control statements. Declaring variables in the block they are used, makes for more readable code. For the same reason, nested block structure is more suitable than flat block structure because it allows multiple nested control statements to have their variables declared inside their block.
+The variable declarations have been limited to be at the very top of a block. In that way, the variables are always found in the same place. It takes inspiration from Pascal in that way that pascal must define variables in a special block. While the special block in Pascal was good for separation, it seemed excessive to explicitly make a special block structure for declarations. As such, the Ezuino language still requires the user to specify variables in the beginning, but without the special block. \\
 In Ezuino nested block structure will not include functions. Functions are limited to be declared in the global scope. This ensures that functions cannot be defined within other functions. The structure of a function is somewhat complex as a function can be very long and if Ezuino had nested block structures for functions it can be hard to distinguish which functions are available at a given time.
 

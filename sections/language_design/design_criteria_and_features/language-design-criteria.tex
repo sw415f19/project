@@ -5,64 +5,64 @@
 \subsubsection*{Overall Simplicity}
 Overall simplicity of a programming language is affected by the amount of basic structures, similarity between previous learned languages, feature multiplicity, operator overloading and trade-off between high and low level languages.
 It is easier to learn a language with fewer basic constructs than one with a larger amount. Programmers that use large languages usually do not learn all its features. \\\
-Readability problems can occur when the same syntax have different meaning than the one the reader is familiar with.  \\\
+Readability problems can occur when the same syntax have a different meaning than the one the reader is familiar with. \\\
 Feature multiplicity is when there are multiple ways to accomplish the same operation increasing possible complexity. \\
-Operator overloading happens when operators can have multiple uses depending on the context. An example of an commonly accepted operator overloading is using + for both integer- and floating point addition. \\
-Simplicity in readability also has an trade-off in terms of comparing high to low level languages. An high level language with more complex control statements might make an language easier to read, i.e. assembly compared to Java.
+Operator overloading happens when operators can have multiple uses depending on the context. An example of a commonly accepted operator overloading is using + for both integer- and floating point addition. \\
+Simplicity in readability also has a trade-off in terms of comparing high to low level languages. A high level language with more complex control statements might make a language easier to read, i.e. assembly compared to Java.
 
 \subsubsection*{Orthogonality}
-"Orthogonality in a programming language means that a relatively small set
+“Orthogonality in a programming language means that a relatively small set
 of primitive constructs can be combined in a relatively small number of ways
-to build the control and data structures of the language. Furthermore, every possible combination of primitives is legal and meaningful."
-Bad orthogonality is when a programmer can use constructs in combinations where the result is not obvious. An example of this is "+" in C allows the addition of characters and integers. As it does not give a compiler error it can take longer to find the error as well.
-An limited amount of combinations and therefore orthogonality increases the overall simplicity of an language.
+to build the control and data structures of the language. Furthermore, every possible combination of primitives is legal and meaningful.”
+Bad orthogonality is when a programmer can use constructs in combinations where the result is not obvious. An example of this is “+” in C allows the addition of characters and integers. As it does not give a compiler error, it can take longer to find the error as well.
+A limited amount of combinations and therefore orthogonality increases the overall simplicity of a language.
 
 \subsubsection*{Data Types}
-An adequate amount of data types to fit the need of different situations significantly increases readability . For example, in a languages without the boolean datatype a statement 
-isReady = 1 would signal true. Where in a language with boolean isReady = true would be the equivalent, which is more clear.
+An adequate amount of data types to fit the need of different situations significantly increases readability. For example, in a language without the boolean datatype a statement 
+isReady = 1 would signal true. Where in a language with boolean isReady = true would be the equivalent which is more clear.
 
 \subsubsection*{Syntax Design}
 \begin{itemize}
-    \item Simplicity versus readability in compound statements. Fontran 95 and Ada, uses end if and end loop to differentiate between when an if statement and loop ends, instead of using curly brackets for both like they do in C and Java.
-    \item Allowing keywords to also be legal variable names can be confusing and decrease readability.
+ \item Simplicity versus readability in compound statements. Fontran 95 and Ada, use end if and end loop to differentiate between when an if statement and loop ends, instead of using curly brackets for both like they do in C and Java.
+\item Allowing keywords to also be legal variable names can be confusing and decrease readability.
 \end{itemize}
 
 \subsection*{Writability:}
-Writability is measured in how easily a language can be used to create programs within a chosen problem domain. 
-A language must be efficient at the field it was designed for, ie. if it was designed for graphical interfaces, that is the domain it must be comparatively efficient.
+Writability is measured in how easily a language can create programs within a chosen problem domain.
+A language must be efficient at the field it was designed for, i.e. if it was designed for graphical interfaces, that is the domain it must be comparatively efficient.
 \subsubsection*{Simplicity and Orthogonality}
-Simplicity and orthogonality applies the same for writability as in readability. In writability confusion due to complex orthogonality can also lead to unintended use of features. It can also be harder to detect errors when  nearly any combination of primitives is legal.
+Simplicity and orthogonality apply the same for writability as in readability. In writability confusion due to complex orthogonality can also lead to unintended use of features. It can also be harder to detect errors when nearly any combination of primitives is legal.
 \subsubsection*{Expressivity}
-An high degree of expressivity is having convenient, rather than cumbersome, ways of specifying computation. Examples of this are powerful ways to execute a great of deal of computations like for loops in a very small program while also counting the iterations. It could also be using the special words "and" and "then" like in Ada for short-circuit evaluation of a Boolean expression.
+A high degree of expressivity is having a convenient, rather than cumbersome, ways of specifying computation. Examples of this are powerful ways to execute a great deal of computations like for loops in a very small program while also counting the iterations. It could also be using the special words “and” and “then” like in Ada for short-circuit evaluation of a Boolean expression.
 
 \subsection*{Reliability:}
 Reliability is closely related to readability and writability. A language has natural ways to support algorithms will use fewer unnatural approaches to solving problems and are more likely to be correct for all possible situations.
-Reliability is also affected by a languages implementation of Type checking, Exception handling and Aliasing. 
+Reliability is also affected by the implementation of a language of Type checking, Exception handling and Aliasing.
 \subsubsection*{Type Checking}
-Type checking is how the language ensures that types are used in a legal way. Java is very reliable in the sense that it has virtually eliminated type errors by type checking all variable and expressions during compile time .
+Type checking is how the language ensures that types are used in a legal way. Java is very reliable in the sense that it has virtually eliminated type errors by type checking all variable and expressions during compile time.
 \subsubsection*{Exception handling}
-"The ability of a program to intercept run- time errors (as well as other
+“The ability of a program to intercept run- time errors (as well as other
 unusual conditions detectable by the program), take corrective measures, and
-then continue is an obvious aid to reliability."
-Some languages like C do not feature exception handling, while other languages like C\# and Java does. 
+then continue is an obvious aid to reliability.”
+Some languages like C do not feature exception handling, while other languages like C\# and Java does.
 \subsubsection*{Aliasing}
-"Loosely defined, aliasing is having two or more distinct names in a program that can be used to access the same memory cell." \\
-Allowing aliasing requires the programmer to remember which names are referring to the same memory cell and failure to do this can lead to bugs.  It is now generally accepted
-that aliasing is a dangerous feature in a programming language .
+“Loosely defined, aliasing is having two or more distinct names in a program that can access the same memory cell.” \\
+Allowing aliasing requires the programmer to remember which names are referring to the same memory cell and failure to do this can lead to bugs. It is now generally accepted
+that aliasing is a dangerous feature in a programming language.
 
 
 
 
 %\subsubsection*{Cost}
-%The cost of a programming language depend on many characteristics .
+%The cost of a programming language depends on many characteristics.
 %\begin{itemize}
- %   \item The cost of training programmers to use the language. How costly that is depends largely on the simplicity and orthogonality of the language.
- %   \item Writability affect the continues cost of using the programming language, and the cost of using the programming language is also closely related to how well the programming language fit the purpose of the application. 
- %   \item Compiling cost can be a concern depending on who leases the compiler. 
- %   \item The cost of a language is also the execution time of the code it produces. There is typically an trade-off between compilation versus execution time, and which is more important depend on how many times a program is expected to be run after compilation. 
- %   \item The cost in maintainability because of readability. Maintainability is a huge factor in cost. "It has
- %   been estimated that for large software systems with relatively long lifetimes, maintenance costs can be as high as two to four times as much as development costs (Sommerville, 2010)."
- %   \item Cost of poor reliability. In industries where mistakes are very expensive reliability is an important cost when considering a programming language.
+% \item The cost of training programmers to use the language. How costly that depends on the simplicity and orthogonality of the language.
+% \item Writability affect the continues cost of using the programming language, and the cost of using the programming language is also closely related to how well the programming language fit the purpose of the application.
+% \item Compiling cost can be a concern depending on who leases the compiler.
+% \item The cost of a language is also the execution time of the code it produces. There is typically a trade-off between compilation versus execution time, and which is more important depending on how many times a program is expected to be run after compilation.
+% \item The cost in maintainability because of readability. Maintainability is a huge factor in cost. “It has
+% been estimated that for large software systems with relatively long lifetimes, maintenance costs can be as high as two to four times as much as development costs (Sommerville, 2010).”
+% \item Cost of poor reliability. In industries where mistakes are very expensive reliability is an important cost when considering a programming language.
 %\end{itemize}
 
 

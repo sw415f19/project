@@ -1,0 +1,14 @@
+\begin{lstlisting}[caption={Private functions in the reserved keyword visitor for comparing a given Id with reserved keywords.}, label={code:RKW:keywordCheck}]
+private void checkReservedKeywords(String Id) {
+    String key = Id.toUpperCase();
+    if (reservedKeywords.containsKey(key) && (!reservedKeywords.get(key).equals(Id))) {
+        errorHandler.reservedKeyword(Id, reservedKeywords.get(key));
+    }
+}
+
+private void checkCompatibilityKeywords(String Id) {
+    if (compatibilityKeywords.contains(Id)) {
+        errorHandler.compatibilityKeyword(Id);
+    }
+}
+\end{lstlisting}

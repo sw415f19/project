@@ -1,14 +1,14 @@
 \chapter{Implementation}
 This chapter will go through the implementation of the Ezuino programming language\\
-Like any compiler, the Ezuino compiler takes a text file of a program and verifies and translates it to one of the compiler's target languages.
+Like any compiler, the Ezuino compiler takes a text file of a program and verifies and translates it to one of the compiler’s target languages.
 \\\\
-The Ezuino compiler's foundation is built upon using ANTLR4 for language recognition. To do this, the compiler has it's own specified grammar. Giving ANTLR this grammar and a text file, ANTLR generates a Concrete Syntax Tree (CST) based on what is recognized.\\
-Using the CST, the Ezuino compiler generates it's own Abstract Syntax tree (AST) and uses that to verify the given program.\\
-To verify the program, the Ezuino compiler has a number of different visitors, each which has a different purpose. The visitors visits and each node in the AST and does work based on it's job.\\
+The Ezuino compiler’s foundation is built upon using ANTLR4 for language recognition. To do this, the compiler has its own specified grammar. Giving ANTLR this grammar and a text file, ANTLR generates a Concrete Syntax Tree (CST) based on what is recognized.\\
+Using the CST, the Ezuino compiler generates its own Abstract Syntax tree (AST) and uses that to verify the given program.\\
+To verify the program, the Ezuino compiler has a number of different visitors, each which has a different purpose. The visitors visit and each node in the AST and does work based on its job.\\
 The Ezuino compiler includes eleven different AST visitors used to visit the generated AST.
 \\\\
 Two of the eleven does not have a role in verifying a given program, but has other usages.\\
-The first of these are the is the \texttt{AstVisitor} class. this visitor is an abstract class which includes a method for visiting each node in the AST. The other visitors extends from this class to inherit these visit methods.\\
+The first of these is the \texttt{AstVisitor} class. this visitor is an abstract class which includes an abstract method for visiting each node in the AST. The other visitors extend from this class to inherit these visit methods.\\
 The second visitor is the \texttt{IndentedPrintVisitor} class. This visitor is used to print a visual structure of the AST. It does not do anything in verifying a program.
 \\\\
 Of the remaining nine visitors, six different types of visitors exists. The visitors of the visitors type which have multiple visitors, are similar enough to be of the same type. These types are:

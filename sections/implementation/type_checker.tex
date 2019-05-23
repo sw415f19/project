@@ -9,11 +9,11 @@ The boolean condition is checked in an if- and else statements.
 \input{figures/implementation/typeCecker/2-if-stmt.tex}
 \noindent\newline
 
-An example of type checking expressions. When an additive expression is reached both nodes are type checked.
+An example of type checking expressions is when an additive expression is reached, both nodes are type checked.
 \input{figures/implementation/typeCecker/4-additive-typecheck.tex}
 \noindent\newline
 
-In a unary expression it is also necessary to check that the operations performed are done with legal types. If "\texttt{-}" is used on nodes that do not have the type integer or double or if "\texttt{!}" is used on anything than nodes with the type boolean it notifies that there is an error to the errorhandler.   
+In a unary expression, it is also necessary to check that the operations performed are done with legal types. If “\texttt{-}” is used on nodes that do not have the type integer or double or if “\texttt{!}” is used on anything than nodes with the type boolean it notifies that there is an error to the errorhandler.
 \input{figures/implementation/typeCecker/6-unary-expr.tex}
 \noindent\newline
 

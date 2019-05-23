@@ -1,10 +1,10 @@
-\section{Symboltable}
-
-The symboltable is a data structure which enables storage of variables across different scopes. It is used whenever during the visitor pattern there is a need to reference another node in the abstract syntax tree. This could for instance be whenever a variable is used within a scope. To find out the type of the variable, there is a need for a data structure which can search up though the different scopes of the program (E.g. from local to function to global scope).
-There are multiple ways of implementing it and storing the data in memory for further investigating, but the Ezuino compiler only has references in each visitor to the symboltable.
+\section{Symbol table visitor}
+\ref{Block_Structure_Symbol_Tables}
+The symbol table is a data structure that enables storage of variables across different scopes. It is used whenever during the visitor pattern there is a need to reference another node in the abstract syntax tree. This could, for instance be whenever a variable is used within a scope. To find out the type of the variable, there is a need for a data structure which can search up though the different scopes of the program (E.g. from local to function to global scope).
+There are multiple ways of implementing it and storing the data in memory for further investigation, but the Ezuino compiler only has references in each visitor to the symbol table.
 The data structure is a stack and the elements in the stack are called \texttt{SymbolTable}. Each symbol table is a simple hash map with a reference to the parent level in the stack. By holding the reference to the scope above, it is possible to make a recursive search algorithm when looking for the variable in different scopes.
 The data structure that contains the stack is called \texttt{SymbolTableHandler} and provides an API for storing and retrieving references to other nodes in the abstract syntax tree. By implementing it this way, the storage and searching is hidden for potential visitors which needs to store variables.
-During the compilation, there are 4 visitors which uses the \texttt{SymbolTableHandler}.
+During the compilation, there are 4 visitors that use the \texttt{SymbolTableHandler}.
 \begin{enumerate}
     \item \texttt{SymbolTableVisitor}: Stores function and variable declarations to check if there is declaration before use of functions and variables
     \item \texttt{FuncStructureVisitor} Stores functions to check if the function calls invoke with the correct parameters

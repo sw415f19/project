@@ -55,7 +55,7 @@
     \end{longtable}
     \caption{Small-step semantics for arithmetic minus expressions}
 \end{table}
-\fi
+
 
 \begin{table}[H]
     \centering
@@ -146,6 +146,90 @@ Don't think we need intger only when we got Num and var??
     \end{longtable}
     \caption{Small-step semantics for arithmetic integer expressions}
 \end{table}
+
+\begin{longtable}[c] { r c }
+  \centering
+
+  [PARENT-1] & 
+    \( \dfrac { \langle a, envl, sto \rangle \Rightarrow \langle a', envl', sto' \rangle }
+      { \langle (a), envl, sto \rangle  \Rightarrow \langle (a'), envl', sto' \rangle } \) \\
+  & \\
+
+  [PARENT-2] & 
+    \( (v) \Rightarrow v \) \\
+  & \\
+
+  [PLUS-1] & 
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle )}
+      {\langle a_1 + a_2, envl, sto \rangle \Rightarrow \langle a_1' + a_2, envl', sto' \rangle } \) \\
+  & \\
+
+  [PLUS-2] & 
+    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
+      {\langle v_1 + a_2, envl, sto \rangle  \Rightarrow \langle a_1 + a_2', envl', sto' \rangle } \) \\
+  & \\
+
+  [PLUS-3] & 
+    \( v_1 + v_2 \Rightarrow v \) where \( v = v_1 + v_2\) \\
+  & \\
+
+  [MINUS-1] & 
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow \langle a_1', envl', sto' \rangle }
+      {\langle a_1 - a_2, envl, sto \rangle \Rightarrow \langle a_1' - a_2, envl', sto' \rangle } \) \\
+  & \\
+
+  [MINUS-2] & 
+    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow \langle a_2', envl', sto' \rangle }
+      {\langle v_1 - a_2, envl, sto \rangle \Rightarrow \langle v_1 - a_2', envl', sto' \rangle } \) \\
+  & \\
+
+  [MINUS-3] & 
+    \( v_1 - v_2 \Rightarrow v \) where \( v = v_1 - v_2\) \\
+  & \\
+
+  [MULT-1] & 
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
+      {\langle a_1 * a_2, envl, sto \rangle \Rightarrow \langle a_1' * a_2, envl', sto' \rangle } \) \\
+  & \\
+
+  [MULT-2] & 
+    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
+      {\langle v_1 * a_2, envl, sto \rangle \Rightarrow \langle v_1 * a_2', envl', sto' \rangle } \) \\
+  & \\
+
+  [MULT-3] & 
+    \( v_1 * v_2 \Rightarrow v \) where \( v = v_1 * v_2\) \\
+  & \\
+
+  [DIV-1] & 
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
+      {\langle a_1 / a_2, envl, sto \rangle \Rightarrow \langle a_1' / a_2, envl', sto' \rangle } \) \\
+  & \\
+
+  [DIV-2] & 
+    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
+      {\langle v_1 / a_2, envl, sto \rangle \Rightarrow \langle v_1 / a_2', envl', sto' \rangle } \) \\
+  & \\
+
+  [DIV-3] & 
+    \( v_1 / v_2 \Rightarrow v \) where \( v = \dfrac{ v_1 }{ v_2 } \) \\
+  & \\
+
+  [NEGATION-1] & 
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow \langle a_1', envl', sto' \rangle }
+      {\langle -a_1, envl, sto \rangle \Rightarrow \langle -a_1', envl', sto' \rangle } \) \\
+  & \\
+
+  [NEGATION-2] & 
+    \( -v_1 \Rightarrow v \) where \( v = -v_1 \)\\
+  & \\
+
+  [NUM] & 
+    \( n \Rightarrow v \) \\
+  & \( \text{if } \mathcal{N} [[n]] = v \) \\
+
+  \caption{Arithmetic Expressions}
+\end{longtable}
 
 \subsection{Boolean Expressions}
 \begin{longtable}[c] { r c }

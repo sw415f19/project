@@ -52,8 +52,20 @@
   \\
   & \\
 
+  [WHILE] & \( 
+    \langle while (e) \{S\}, envl, sto \rangle \Rightarrow_S \) 
+  \\
+  & \(\langle if (e) \{S\ while (e') \{S\}\} else \{skip\}, envl', sto' \rangle \) 
+  \\
+  & \\
+
+  [SKIP] & \( 
+    \langle skip, envl, sto \rangle \Rightarrow_S \langle envl, sto \rangle \)
+  \\
+  & \\
+
   \caption{IF-ELSE}
-\end{longtable}   
+\end{longtable}
         
         
 \begin{table}[H]
@@ -150,8 +162,12 @@
  \end{longtable}
     \caption{Small-step semantics for boolean while expressions}\label{sem:while}
 \end{table}
-
-\begin{longtable}[c]{ r c}
-  [FUNC-DEC] & \(x + x\)
-  \caption{Small-step semantics for function declarations}
-\end{longtable}
+As previously mentioned, the function environment is a partial function from the name of the function to the 4-tuple of a sequence of commands, a set of parameters, a variable environment, and a function environment.
+\begin{table}[H]
+    \centering
+    \begin{longtable}[c] { r c }
+        [FUNC-DEC-1] & \( \dfrac{env_v \vdash \langle D_f, env_f[f \mapsto (S'', x, env_v, env_f)] \rangle \Rightarrow_{DF} env_f[f \mapsto S', x, env_v, env_f)] } %lower half of dfrac below
+        {env_v \vdash \langle func T_{desc} f()} \)
+    \end{longtable}
+    \caption{Small-step semantics for function declaration}\label{sem:func}
+\end{table}

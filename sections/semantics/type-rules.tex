@@ -37,7 +37,7 @@ Declaring a function updates the type environment with the functions formal para
 \end{table}
 
 \subsubsection*{Expressions}
-Expressions are the core of most programming operations. Ezuino supports parenthesis, arithmetic and logical expressions. Since casting is explicit integers and doubles are not compatible and their type rules are therefore separated despite both using type rules operating on numbers. As it was argued in \ref{language-features} string also supports the equality and concatenation operation as these are seen as essential features of strings.
+Expressions are the core of most programming operations. Ezuino supports parentheses, arithmetic and logical expressions. Since casting is explicit integers and doubles are not compatible and their type rules are therefore separated despite both using type rules operating on numbers. As it was argued in \ref{language-features} string also supports the equality and concatenation operation as these are seen as essential features of strings.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }
@@ -187,10 +187,10 @@ Expressions are the core of most programming operations. Ezuino supports parenth
     \caption{}\label{type:var-ref}
         \end{center}
 \end{table}
-In a function declaration the return type is specified and the types for the formal parameters are saved in the type environment. Afterwards there can be statements and other function declarations. \\
-Every statement in the function declaration must be OK in regards to the declared return type. This means that return statements in if and else statements as well as return statements in the function declaration body must return the declared return type. \\ 
+In a function declaration, the return type is specified and the types for the formal parameters are saved in the type environment. Afterwards, there can be statements and other function declarations. \\
+Every statement in the function declaration must be OK in regard to the declared return type. This means that return statements in if and else statements as well as return statements in the function declaration body must return the declared return type. \\
 Functions declared in a function declaration must be well typed as well.
-Take note of the special name "return", that encapsulates the return type for the current function. It is used later when evaluating whether the return statement is well typed or not.
+Take note of the special name “return” that encapsulates the return type for the current function. It is used later when evaluating whether the return statement is well typed or not.
 \begin{table}[H]
     \begin{center}
     \begin{longtable}[c] { r c }

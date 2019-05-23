@@ -1,4 +1,4 @@
-This is the ReturnStatementVisitor. When a function is declared the type, it was declared as is temporarily saved in a symbol table. When a return statement is reached, the return statements type is compared with a type of the last function that was declared which was saved in the symbol table within that scope. This ensures that if there are several nested function declarations, the return type is compared to the most recent “active” scope.
+This is the ReturnStatementVisitor. When a function is declared the type, it was declared as temporarily saved in a symbol table. When a return statement is reached, the return statements type is compared with a type of the last function that was declared which was saved in the symbol table within that scope. This ensures that if there are several nested function declarations, the return type is compared to the most recent “active” scope.
 \input{figures/implementation/typeCecker/2-1-func-def.tex}
 \noindent\newline
 

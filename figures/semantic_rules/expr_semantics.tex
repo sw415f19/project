@@ -148,38 +148,6 @@ Don't think we need intger only when we got Num and var??
 \end{table}
 
 \subsection{Boolean Expressions}
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        [AND TRUE] & \( \langle v_1 \ AND \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{tt}, \ envl, \ sto \rangle \) \\
-                            &       \( if \ v_1 \land v_2\)
-        \\
-
-        [AND FALSE] & \( \langle v_1 \ AND \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{ff}, \ envl, \ sto \rangle \) \\
-                            &       \( if \ 	\neg(v_1 \land v_2)\)
-        \\
-        
-    \end{longtable}
-    \caption{Small-step semantics boolean AND expression }
-\end{table}
-
-\begin{table}[H]
-    \centering
-  \begin{longtable}[c] { r c }
-        [OR TRUE] & \( \langle v_1 \ OR \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{tt}, \ envl, \ sto \rangle \) \\
-                            &       \( if \ v_1 \lor v_2\)
-        \\
-
-        [OR FALSE] & \( \langle v_1 \ OR \ v_2, \ envl, \ sto \rangle \Rightarrow \langle \textit{ff}, \ envl, \ sto \rangle \) \\
-                            &       \( if \ 	\neg(v_1 \lor v_2)\)
-        \\
-        
-    \end{longtable}
-    \caption{Small-step semantics boolean OR expression }
-\end{table}
-
-
-
 \begin{longtable}[c] { r c }
   \centering
   [NOT-1] & \( 
@@ -201,14 +169,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [AND-1] & \( 
-    \dfrac { \langle e_1 \ AND \ e_2, envl, sto \rangle \Rightarrow_e \langle e_1' \ AND \ e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 \ AND \ e_2, envl, sto \rangle \Rightarrow_e \langle e_1' \ AND \ e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [AND-2] & \( 
-    \dfrac { \langle v_1 \ AND \ e_2, envl, sto \rangle \Rightarrow_e \langle v_1 \ AND \ e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 \ AND \ e_2, envl, sto \rangle \Rightarrow_e \langle v_1 \ AND \ e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -225,14 +193,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [OR-1] & \( 
-    \dfrac { \langle e_1 \ OR \ e_2, envl, sto \rangle \Rightarrow_e \langle e_1' \ OR \ e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 \ OR \ e_2, envl, sto \rangle \Rightarrow_e \langle e_1' \ OR \ e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [OR-2] & \( 
-    \dfrac { \langle v_1 \ OR \ e_2, envl, sto \rangle \Rightarrow_e \langle v_1 \ OR \ e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 \ OR \ e_2, envl, sto \rangle \Rightarrow_e \langle v_1 \ OR \ e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -249,14 +217,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [EQUAL-1] & \( 
-    \dfrac { \langle e_1 = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' = e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' = e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [EQUAL-2] & \( 
-    \dfrac { \langle v_1 = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 = e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 = e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -273,14 +241,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [NOT-EQUAL-1] & \( 
-    \dfrac { \langle e_1 != e_2, envl, sto \rangle \Rightarrow_e \langle e_1' != e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 != e_2, envl, sto \rangle \Rightarrow_e \langle e_1' != e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [NOT-EQUAL-2] & \( 
-    \dfrac { \langle v_1 != e_2, envl, sto \rangle \Rightarrow_e \langle v_1 != e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 != e_2, envl, sto \rangle \Rightarrow_e \langle v_1 != e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -297,14 +265,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [GREATER-THAN-1] & \( 
-    \dfrac { \langle e_1 > e_2, envl, sto \rangle \Rightarrow_e \langle e_1' > e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 > e_2, envl, sto \rangle \Rightarrow_e \langle e_1' > e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [GREATER-THAN-2] & \( 
-    \dfrac { \langle v_1 > e_2, envl, sto \rangle \Rightarrow_e \langle v_1 > e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 > e_2, envl, sto \rangle \Rightarrow_e \langle v_1 > e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -321,14 +289,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [GREATER-THAN-OR-EQUAL-1] & \( 
-    \dfrac { \langle e_1 > = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' > = e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 > = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' > = e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [GREATER-THAN-OR-EQUAL-2] & \( 
-    \dfrac { \langle v_1 > = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 > = e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 > = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 > = e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -345,14 +313,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [LESS-THAN-1] & \( 
-    \dfrac { \langle e_1 < e_2, envl, sto \rangle \Rightarrow_e \langle e_1' < e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 < e_2, envl, sto \rangle \Rightarrow_e \langle e_1' < e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [LESS-THAN-2] & \( 
-    \dfrac { \langle v_1 < e_2, envl, sto \rangle \Rightarrow_e \langle v_1 < e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 < e_2, envl, sto \rangle \Rightarrow_e \langle v_1 < e_2', envl', sto' \rangle } \)
   \\
   & \\
 
@@ -369,14 +337,14 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [LESS-THAN-OR-EQUAL-1] & \( 
-    \dfrac { \langle e_1 < = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' < = e_2, envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      { \langle e_1 < = e_2, envl, sto \rangle \Rightarrow_e \langle e_1' < = e_2, envl', sto' \rangle } \)
   \\
   & \\
 
   [LESS-THAN-OR-EQUAL-2] & \( 
-    \dfrac { \langle v_1 < = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 < = e_2', envl', sto' \rangle }
-      { } \)
+    \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      { \langle v_1 < = e_2, envl, sto \rangle \Rightarrow_e \langle v_1 < = e_2', envl', sto' \rangle } \)
   \\
   & \\
 

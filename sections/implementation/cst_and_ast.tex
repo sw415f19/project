@@ -1,26 +1,21 @@
 \section{Concrete and Abstract Syntax Tree}
-From the grammar file with the EBNF in Listing \ref{code:ebnf}, ANTLR generates both a lexer and a parser. 
+As mentioned in the start of the chapter, Ezuino builds ontop of the ANTLR generated CST. The goal of this section is to explain in details how Ezuino uses ANTLR to build it's own AST.
 \\\\
-However, ANTLR4 can only generate a concrete syntax tree (CST) which is the literal recognition of token in the programming language. Each and every symbol is included in the concrete syntax tree, including terminal symbols like equality signs "\texttt{:=}", parenthesis  "\texttt{()}" and keywords "\texttt{if}". These are named after the terminals and non-terminals in the EBNF file. While one could potentially work with these tokens directly, it's hard to navigate with all the extra tokens on the nodes.
+For ANTLR to work, it requires a grammar file in Extended Backus–Naur form (EBNF). For this Ezuino has it's own specified grammar. The grammar can be found in Listing \ref{code:ebnf}.\\
+Based on the grammar ANTLR generates both a lexer and a parser, as well as a CST and a \texttt{BaseVisitor} for visiting the nodes of the CST.
 \\\\
-To improve this, the concrete parse tree must be converted into an abstract syntax tree (AST). This is done by using the \texttt{BuildAstVisitor} class, which is a subclass of the \texttt{BaseVisitor} provided by ANTLR. The \texttt{BuildAstVisitor} class provides a visitor pattern to traverse through the concrete parse tree nodes. While traversing the nodes, abstract syntax tree nodes are made from the CST nodes.  \\
-Seen in \ref{code:visitFuncDef} is a example where a AST node for \texttt{Func\_def} is created. The \texttt{Func\_defContext} has access to text that was parsed. If for example, the syntax text of a CST node was \texttt{func int test() \{\}}, the "\texttt{func}" would be unnecessary for the generated AST node. This is the case since the fact that it is a function definition node will be contained in AST node itself, because the class name of the AST node is \texttt{Func\_defNode}. \\
-The other thing that happens in the example is showing how the special functions \texttt{Setup} and \texttt{Loop} are handled when creating the AST. What node is created depends on whether the text of the function definition name is \texttt{Setup}, \texttt{Loop} or some other function definition.
-\\
-\begin{lstlisting}[caption={Visit method for \texttt{Func\_defContext} in \texttt{AstBuildVisitor}}, label={code:visitFuncDef}]
-$$@Override
-public AstNode visitFunc_def(EzuinoParser.Func_defContext ctx) {
-  String ID = ctx.ID().getText();
-  Type type = getType(ctx.type());
-  List<DclNode> param = new ArrayList<DclNode>();
-  BlockNode block = (BlockNode) ctx.block().accept(this);
-  for (DclContext child : ctx.parameters().dcl()) {
-    parameters.add((DclNode) child.accept(this));
-  }
-  switch(ID) {
-    case "Setup": return new SetupNode(ID, type, param, block);
-    case "Loop": return new LoopNode(ID, type, param, block);
-    default: return new Func_defNode(ID, type, param, block);
-  }
-}
-\end{lstlisting}
+However, the ANTLR generated CST is the literal recognition of tokens. Each and every symbol is included in the CST, including terminal symbols like equality signs "\texttt{:=}", parenthesis  "\texttt{()}" and keywords "\texttt{if}". These are named after the terminals and non-terminals in the EBNF file. While one could potentially work with these tokens directly, it's hard to navigate with all the extra tokens on the nodes.
+\\\\
+To improve this, the CST must be converted into an AST. Ezuino does this using the \texttt{BuildAstVisitor} class, which is a subclass of the ANTLR \texttt{BaseVisitor}. Using the \texttt{BuildAstVisitor} class to transverse the ANTLR CST, Ezuino converts each node of the CST into AST nodes to build it's own AST.
+\\\\
+Listing \ref{code:visitFuncDef} is a example where a AST node for \texttt{Func\_def} is created. The \texttt{Func\_defContext} has access to text that was parsed. If for example, the syntax text of a CST node was \texttt{func int test() \{\}}, the "\texttt{func}" would be unnecessary for the generated AST node.
+\\\\
+The reason for this, is that since this is a function, it will be created as a function node in the AST. This means that when the visitors of Ezuino runs through the generated AST. Each visitor will know that the node is a function node, based on the type of visit called to visit the node.\\
+In this case, the \texttt{Func\_defContext} will be created in the AST as a \texttt{Func\_defNode} node.
+\\\\
+Additionally listing \ref{code:visitFuncDef} shows a special case for how the Arduino functions \texttt{Setup} and \texttt{Loop} are handled.\\
+If the \texttt{Func\_defContext} node has the function Id \texttt{Setup} or \texttt{Loop}, a special type of node is created in the AST for it. Otherwise a normal \texttt{Func\_def} node is created. This is seen on line 10-14 of the listing.
+\\\\
+When Eziuno is done converting the ANTLR CST into it's own AST, Ezuino starts running all of it's AST visitors through the generated AST to verify the given program.\\
+In the next sections we will be describing the different purposes of the visitors.\\
+\input{figures/implementation/cst_and_ast/func_def_context.tex}

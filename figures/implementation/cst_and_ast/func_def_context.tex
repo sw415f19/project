@@ -1,0 +1,17 @@
+\begin{lstlisting}[caption={Visit method for \texttt{Func\_defContext} in \texttt{AstBuildVisitor}}, label={code:visitFuncDef}]
+$$@Override
+public AstNode visitFunc_def(EzuinoParser.Func_defContext ctx) {
+  String ID = ctx.ID().getText();
+  Type type = getType(ctx.type());
+  List<DclNode> param = new ArrayList<DclNode>();
+  BlockNode block = (BlockNode) ctx.block().accept(this);
+  for (DclContext child : ctx.parameters().dcl()) {
+    parameters.add((DclNode) child.accept(this));
+  }
+  switch(ID) {
+    case "Setup": return new SetupNode(ID, type, param, block);
+    case "Loop": return new LoopNode(ID, type, param, block);
+    default: return new Func_defNode(ID, type, param, block);
+  }
+}
+\end{lstlisting}

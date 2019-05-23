@@ -17,6 +17,43 @@
     \caption{Small-step semantics for boolean assignment expressions}\label{sem:bool-ass}
 \end{table}
         
+
+\begin{longtable}[c] { r c }
+  \centering
+  [IF-ELSE-1] & \( 
+    \dfrac { \langle e, envl, sto \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
+      { \langle if (e) \{S_1\} else \{S_2\}, envl, sto \rangle \Rightarrow_S \langle if (e') \{S_1\} else \{S_2\}, envl', sto' \rangle } \)
+  \\
+  & \\
+
+  [IF-ELSE-2] & \( 
+    \langle if (tt) \{S_1\} else \{S_2\}, envl, sto \rangle \Rightarrow_S \langle S_1, envl', sto' \rangle \)
+  \\
+  & \\
+
+  [IF-ELSE-3] & \( 
+    \langle if (ff) \{S_1\} else \{S_2\}, envl, sto \rangle \Rightarrow_S \langle S_2, envl', sto' \rangle \)
+  \\
+  & \\
+
+  [IF-1] & \( 
+    \dfrac { \langle e, envl, sto \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
+      { \langle if (e) \{S_1\}, envl, sto \rangle \Rightarrow_S \langle if (e') \{S_1\}, envl', sto' \rangle } \)
+  \\
+  & \\
+
+  [IF-2] & \( 
+    \langle if (tt) \{S_1\}, envl, sto \rangle \Rightarrow_S \langle S_1, envl', sto' \rangle \)
+  \\
+  & \\
+
+  [IF-3] & \( 
+    \langle if (ff) \{S_1\}, envl, sto \rangle \Rightarrow_S \langle skip, envl', sto' \rangle \)
+  \\
+  & \\
+
+  \caption{IF-ELSE}
+\end{longtable}   
         
         
 \begin{table}[H]
@@ -113,3 +150,8 @@
  \end{longtable}
     \caption{Small-step semantics for boolean while expressions}\label{sem:while}
 \end{table}
+
+\begin{longtable}[c]{ r c}
+  [FUNC-DEC] & \(x + x\)
+  \caption{Small-step semantics for function declarations}
+\end{longtable}

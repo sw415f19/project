@@ -67,7 +67,7 @@ The LR parser (Left to right and rightmost derivation) is a parser that parses i
 The LALR(k) parser is a parser that utilizes the same parsing strategy as the LR(k) parser (bottom-up), but with a different way to generate a parse table, the part of an LR parser that instructs the parser how to react to a given input. Usually, an LALR-parser is of magnitude 1, as an LALR(1)-parser is more powerful than an LR(0)-parser, but not as resource intensive as an LR(1)-parser. It should be noted, that the LR(1)-parser is still more powerful than the LALR(1)-parser, which is why it is still in use\cite{crafting-a-compiler}.
 
 \subsubsection*{Table driven LL(K) parsing}
-The table driven LL(k) parser uses a similarity analysis to the generated grammar so that when it starts with pushing the start symbol into the stack, the parser would try and find a match of symbols from the input and when found, put the symbol into the top of the stack\cite{crafting-a-compiler}. This is nice for when you have a big code block and you want the parsing to be automated by using a stack.
+The table driven LL(k) parser uses a similarity analysis to the generated grammar so that when it starts with pushing the start symbol into the stack, the parser would try to find a match of symbols from the input and when found, put the symbol into the top of the stack\cite{crafting-a-compiler}. This is nice for when you have a big code block and you want the parsing to be automated by using a stack.
 
 \subsubsection{Considered parser generators and choice}
 In this subsection we will list the different parser generator tools we tried and which one we chose. \\
@@ -86,11 +86,11 @@ SableCC         & LALR(1)       \\ \bottomrule
 \end{table}
 
 \noindent
-Out of all the possible generators we researched we seriously considered two of them. \\
+Out, of all the possible generators we researched, we seriously considered two of them. \\
 \\
-One of them was using a tool called Flex, an open-source implementation of the Lex program for generating a scanner and Bison, a Yacc-based parser generator, for generating a parser. To get familiar with the tools we attempted to implement an infix calculator. It was not particularly complex to use the tools together, but it was not always clear why an error occurred, due to the unfamiliar naming scheme that bison and flex use. \\
+One of them was using a tool called Flex, an open-source implementation of the Lex program for generating a scanner and Bison, a Yacc-based parser generator, for generating a parser. To get familiar with the tools, we attempted to implement an infix calculator. It was not particularly complex to use the tools together, but it was not always clear why an error occurred, due to the unfamiliar naming scheme that bison and flex use. \\
 Flex and Bison only target C and C++, meaning we would also have to write the rest of our compiler in C or C++. While both C and C++ are powerful languages, it is also hard to write well, and it takes a long time to write code that works. \\
-The other alternative, which is also the one we chose, was ANTLR4. ANTLR4 targets Java is comparative more efficient and which we were more familiar with. The naming convention used by the ANTLR4 parser made more sense as well, and the context free grammar format for ANTLR4 were also slightly more practical. Another advantage of ANTLR4 was that it also generates a base abstract syntax tree interface that can be extended by the programmer. This helped setting up the structure of the abstract syntax tree. ANTLR4 is also more popular and were therefore also easier to find documentation for. 
+The other alternative which is also the one we chose, was ANTLR4. ANTLR4 targets Java is comparative more efficient and which we were more familiar with. The naming convention used by the ANTLR4 parser made more sense as well, and the context free grammar format for ANTLR4 was also slightly more practical. Another advantage of ANTLR4 was that it also generates a base abstract syntax tree interface that can be extended by the programmer. This helped setting up the structure of the abstract syntax tree. ANTLR4 is also more popular and was therefore also easier to find documentation for.
 
 
 

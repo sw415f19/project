@@ -68,7 +68,7 @@
 \end{longtable}
 
 As previously mentioned, the function environment is a partial function from the name of the function to the 4-tuple of a sequence of commands, a set of parameters, a variable environment, and a function environment.
-It should be noted, that the semantics for FUNC-DEC is written in way that resembles big-step semantics, as it is simpler and better conveys the meaning, rather than trying to declare 
+It should be noted, that the semantics for FUNC-DEC is written in way that resembles big-step semantics, as it is simpler and better conveys the meaning, rather than trying to add the components of the function environment step by step.
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
@@ -77,6 +77,7 @@ It should be noted, that the semantics for FUNC-DEC is written in way that resem
         \newline & where \(P = \{P_1, P_2,..., P_n\}\)\\
         \newline & and \(T \in \{int, bool, double\}\)\\
         \newline & and \(n \geq 0\)\\
+        [FUNC-CALL] & \( \dfrac{}{} \)
     \end{longtable}
-    \caption{Small-step semantics for function declaration}\label{sem:func}
+    \caption{Small-step semantics for function declarations and calls}\label{sem:func}
 \end{table}

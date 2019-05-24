@@ -3,12 +3,12 @@
 \label{design-criteria-theory}
 \subsection*{Readability:}
 \subsubsection*{Overall Simplicity}
-Overall simplicity of a programming language is affected by the amount of basic structures, similarity between previous learned languages, feature multiplicity, operator overloading and trade-off between high and low level languages.
+Overall simplicity of a programming language is affected by the amount of basic structures, similarity between previous learned languages, feature multiplicity, operator overloading and trade-off between high and low-level languages.
 It is easier to learn a language with fewer basic constructs than one with a larger amount. Programmers that use large languages usually do not learn all its features. \\\
 Readability problems can occur when the same syntax have a different meaning than the one the reader is familiar with. \\\
 Feature multiplicity is when there are multiple ways to accomplish the same operation increasing possible complexity. \\
 Operator overloading happens when operators can have multiple uses depending on the context. An example of a commonly accepted operator overloading is using + for both integer- and floating point addition. \\
-Simplicity in readability also has a trade-off in terms of comparing high to low level languages. A high level language with more complex control statements might make a language easier to read, i.e. assembly compared to Java.
+Simplicity in readability also has a trade-off in terms of comparing high to low-level languages. A high-level language with more complex control statements might make a language easier to read, i.e. assembly compared to Java.
 
 \subsubsection*{Orthogonality}
 “Orthogonality in a programming language means that a relatively small set
@@ -18,12 +18,12 @@ Bad orthogonality is when a programmer can use constructs in combinations where 
 A limited amount of combinations and therefore orthogonality increases the overall simplicity of a language.
 
 \subsubsection*{Data Types}
-An adequate amount of data types to fit the need of different situations significantly increases readability. For example, in a language without the boolean datatype a statement 
+An adequate amount of data types to fit the need of different situations significantly increases readability. For example, in a language without the boolean datatype a statement
 isReady = 1 would signal true. Where in a language with boolean isReady = true would be the equivalent which is more clear.
 
 \subsubsection*{Syntax Design}
 \begin{itemize}
- \item Simplicity versus readability in compound statements. Fontran 95 and Ada, use end if and end loop to differentiate between when an if statement and loop ends, instead of using curly brackets for both like they do in C and Java.
+ \item Simplicity versus readability in compound statements. The programming language Fontran 95 and Ada, use end if and end loop to differentiate between when an if statement and loop ends, instead of using curly brackets for both like they do in C and Java.
 \item Allowing keywords to also be legal variable names can be confusing and decrease readability.
 \end{itemize}
 

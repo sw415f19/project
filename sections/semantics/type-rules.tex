@@ -42,59 +42,50 @@ Expressions are the core of most programming operations. Ezuino supports parenth
 \begin{longtable}[c] { r c }
   \centering
 
-  & \(num = integer \ | \ double\) \\
+  & \(num = integer | double\) \\
   & \\
 
   [PARENTHESIS] & \(
-    \dfrac{T E  \vdash  e  :  T}{T E  \vdash  (e)  :  T} \) \\
+    \dfrac{T E \vdash  e : T}{T E \vdash  (e) : T} \) \\
   & \\
 
-  [ARITH] &  \(
+  [ARITH] & \(
   \dfrac{TE \vdash e_{1} :  num \ \ TE \vdash e_{2} : num} 
-  {\ TE \vdash e_{1} \ op \ e_{2} : num} \) \\
-  & where \( op \ \in \ \{+, \ -, \ /, \ *\} \) \\
+    {\ TE \vdash e_{1} \ op \ e_{2} : num} \) \\
+  & where \( op \in \{+, \ -, \ /, \ *\} \) \\
   & \\
 
-  [ARITHDOUBLE] &  \(
-  \dfrac{TE \vdash e_{1} : double \ \ TE \vdash e_{2} :  double} 
-  {\ TE \vdash e_{1} \ op \ e_{2} : double} \) \\
-  & where \( op \ \in \ \{+, \ -, \ /, \ *\} \) \\
+  [NUMRELATION] & \(
+  \dfrac{T E \vdash  e_1 : num \ T E \vdash  e_2 : num}
+    {T E \vdash  e_1 \ op \ e_2 : bool} \) \\
+  & where \( op \in \{<, >, < =, >=, =, \ !=\} \) \\
   & \\
 
-  [INTRELATION] &  \(
-  \dfrac{T E  \vdash  e_1  :  int \ T E  \vdash  e_2  :  int}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) \\
-  & where \( op \ \in \ \{<,\ >,\ < =,\ >=,\ =,\ !=\} \) \\
+  [STRINGRELATION] & \(
+  \dfrac{T E \vdash  e_1 : string \ TE \vdash  e_2 : string }
+    {TE \vdash  e_1 \ op \ e_2 : bool} \) \\
+  & where \( op \in \{=, \ !=\} \) \\
   & \\
 
-  [DOUBLERELATION] &  \(
-  \dfrac{T E  \vdash  e_1  : double \ T E  \vdash  e_2  :  double}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) \\
-  &  where \( op \ \in \ \{<,\ >,\ < =,\ >=,\ =,\ !=\} \) \\
+  [LOGICAL] & \(
+  \dfrac{T E \vdash  e_1 : bool \ TE \vdash  e_2 : bool }
+    {T E \vdash  e_1 \ op \ e_2 : bool} \) \\
+  & where \( op \in \{=, \ !=, AND, OR\} \) \\
   & \\
 
-  [STRINGRELATION] &  \(
-  \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{TE  \vdash  e_1 \ op \ e_2  :  bool} \) \\
-  & where \( op \ \in \ \{=, \ !=\} \) \\
+  [CONCAT] & \(
+  \dfrac{TE \vdash  e_1 : string \ \ TE \vdash  e_2 : string }
+    {TE \vdash  e_1 + e_2 : string} \) \\
   & \\
 
-  [LOGICAL] &  \(
-  \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{T E  \vdash  e_1 \ op \ e_2  :  bool} \) \\
-  & where \( op \ \in \ \{=,\ !=\} \) \\
+  [NEG] & \(
+  \dfrac{T E \vdash  e_1 : num}
+    {T E \vdash -e_1 : num} \) \\
   & \\
 
-  [CONCAT] &  \(
-  \dfrac{TE \vdash  e_1  :  string \ \ TE  \vdash  e_2  :  string }{TE \vdash  e_1 \ + \ e_2  :  string} \) \\
-  & \\
-
-  [NEGINT] &  \(
-  \dfrac{T E  \vdash  e_1  :  int}{T E  \vdash  -e_1  :  int} \) \\
-  & \\
-
-  [NEGDOUBLE] &  \(
-  \dfrac{T E  \vdash  e_1  :  double}{T E  \vdash  -e_1  :  double} \) \\
-  & \\
-
-  [NOT] &  \(
-  \dfrac{T E  \vdash  e_1  :  bool}{T E  \vdash  !e_1  :  bool} \) \\
+  [NOT] & \(
+  \dfrac{T E \vdash  e_1 : bool}
+    {T E \vdash \ !e_1 : bool} \) \\
   & \\
 
   [VAR] & \(

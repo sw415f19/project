@@ -1,6 +1,6 @@
 \subsection{Language Features}
 \label{language-features}
-* All content in this section is based on the C programming language book \cite{kernighan1988c}.\\
+All content in this section is based on the C programming language book \cite{kernighan1988c}.\\
 This section will reflect on the different language features, operators and structures in the Ezuino code. We will go through each group of operator/structure, and discuss each element, compare them which functionality get included in the Ezuino programming language, and excluded from the target language, which is Arduino C. This will also include what effect they have on the language design criteria.\\
 \subsubsection*{Data Types and Literals}
 Data types are attributes in programming languages that represent different types of data. One of the things data types affect are what operations may be performed, and therefore data types in a language is an important design decision.
@@ -126,7 +126,9 @@ The print method should only accept the type string. To make sure that the user 
 That means if a user wants to use the print method on an integer, the integer firstly has to be cast to a string in order to print it.
 Likewise, casts to the same type cannot be done. The reasoning for this is that it is important to know which types the variables has. If the user isn't aware of the types, it might be difficult to implement the functionality which user wants.\\
 %The reason for not including casting from String to other data types is that this requires parsing of the string and as such is not a cast that makes sense.\\
-The reason for not including casting from String to other data types is that this would require parsing and is not the same as casting. Since parsing strings to other data types have many practical uses but is slightly more time consuming and complex than parsing it should be included in Ezuino if there is enough time.  \\
+The reason for not including casting from String to other data types is that this would require parsing and this is not the same as casting. One way to do parsing is for example to only accept changing a string to a int is if the string represents a integer
+
+Since parsing strings to other data types have many practical uses but is slightly more time consuming and complex than parsing it should be included in Ezuino if there is enough time.  \\
 When casting from boolean to integer false will equal 0 and true will equal 1.
 In table \ref{tab:cast-overview}, the entire casts can be seen.
 \begin{table}[H]

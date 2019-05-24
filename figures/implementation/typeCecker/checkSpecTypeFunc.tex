@@ -1,0 +1,11 @@
+\begin{lstlisting}[caption={private function checkSpecificType in the type checker}, label={code:TC:checkSpecType}]
+private void checkSpecificType(ITypeNode node, Type expectedType) {
+    Type nodeType = node.getType();
+    if (nodeType == null) {
+        System.err.println("Compiler error. nodeType was null in Typechecker.");
+    }
+    if (nodeType != expectedType) {
+        errorHandler.unexpectedType(node, expectedType);
+    }
+}
+\end{lstlisting}

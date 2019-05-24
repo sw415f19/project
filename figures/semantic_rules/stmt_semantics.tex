@@ -64,110 +64,19 @@
   \\
   & \\
 
-  \caption{IF-ELSE}
+  \caption{Small-step semantics for statements}
 \end{longtable}
-        
-        
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    
-    \begin{tabular}{@{}c@{}} 
-    [IF-ELSE-TRUE] \\
-    \newline
-    \end{tabular}
-  \begin{tabular}{@{}c@{}}   \(
-  \langle if \ {b} \ then \ {S_1} \ else \ {S_2} \ sto, envl\rangle \Rightarrow \langle{S_1},sto,envl\rangle
-  \)  \\ \(
-  if \ env_v, \ sto \vdash b \rightarrow_b {tt} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
-  \) 
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for boolean if-else-true expressions}\label{sem:if-else-true}
-\end{table}
 
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    
-    \begin{tabular}{@{}c@{}} 
-    [IF-ELSE-FALSE] \\
-    \newline
-    \end{tabular}
-  \begin{tabular}{@{}c@{}}   \(
-  \langle if \ {b} \ then \ {S_1} \ else \ {S_2} \ sto, envl\rangle \Rightarrow \langle{S_2},sto,envl\rangle
-  \)  \\ \(
-  if \ env_v, \ sto \vdash b \rightarrow_b {ff} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
-  \) 
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for boolean if-else-false expressions}\label{sem:if-else-false}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    
-    \begin{tabular}{@{}c@{}} 
-    [IF-TRUE] \\
-    \newline
-    \end{tabular}
-  \begin{tabular}{@{}c@{}}   \(
-  \langle if \ {b} \ then \ {S_1} \ sto, envl\rangle \Rightarrow \langle{S_1},sto,envl\rangle
-  \)  \\ \(
-  if \ env_v, \ sto \vdash b \rightarrow_b {tt} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
-  \) 
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for boolean if-true expressions}\label{sem:if-true}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    
-    \begin{tabular}{@{}c@{}} 
-    [IF-FALSE] \\
-    \newline
-    \end{tabular}
-  \begin{tabular}{@{}c@{}}   \(
-  \langle if \ {b} \ then \ {S_1} \ sto, envl\rangle \Rightarrow \langle{S_2},sto,envl\rangle
-  \)  \\ \(
-  if \ env_v, \ sto \vdash b \rightarrow_b {ff} \ where \ envl \ = \ (env_v, env_p) \ : \ envl' 
-  \) 
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for boolean if-false expressions}\label{sem:if-false}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    
-    \begin{tabular}{@{}c@{}} 
-    [WHILE] \\
-    \newline
-    \end{tabular} 
-  \begin{tabular}{@{}c@{}}   \(
-  \langle while \ b \ do \ S, \ sto, \ envl \rangle \Rightarrow
-  \)  \\ \(
-  \langle if \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip, \ sto, \ envl \rangle
-  \) 
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for boolean while expressions}\label{sem:while}
-\end{table}
 As previously mentioned, the function environment is a partial function from the name of the function to the 4-tuple of a sequence of commands, a set of parameters, a variable environment, and a function environment.
+It should be noted, that the semantics for FUNC-DEC is written in way that resembles big-step semantics, as it is simpler and better conveys the meaning, rather than trying to declare 
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [FUNC-DEC-1] & \( \dfrac{env_v \vdash \langle D_f, env_f[f \mapsto (S'', x, env_v, env_f)] \rangle \Rightarrow_{DF} env_f[f \mapsto S', x, env_v, env_f)] } %lower half of dfrac below
-        {env_v \vdash \langle func T_{desc} f()} \)
+        [FUNC-DEC] & \( \dfrac{env_v \vdash \langle D_F, env_F[f \mapsto (S, P, env_v, env_F)] \rangle \Rightarrow_{DF} env_F' } %lower half of dfrac below
+        {env_v \vdash \langle func\ T \cup \epsilon\ f(T\ P_1, T\  P_2,...,T\ P_n)\{S\} D_F, env_F \rangle \Rightarrow_{DF} env_F'} \) \\
+        \newline & where \(P = \{P_1, P_2,..., P_n\}\)\\
+        \newline & and \(T \in \{int, bool, double\}\)\\
+        \newline & and \(n \geq 0\)\\
     \end{longtable}
     \caption{Small-step semantics for function declaration}\label{sem:func}
 \end{table}

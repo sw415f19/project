@@ -1,0 +1,23 @@
+\section{Return statement visitors}
+When a return statement is returned it's type is set to its expression, this is important for type checking the return statement with the function declaration later in ReturnStatementVisitor.
+It is also here that return in void functions is implemented. If a return statement has no value,we assume it to be a void function. This in practice makes the return key-word a way to preemptively end void functions.
+\input{figures/implementation/returnStmtVisitor/1-return-stmt.tex}
+\noindent\newline
+
+This is the ReturnStatementVisitor. When a function is declared the type, it was declared as temporarily saved in a symbol table. When a return statement is reached, the return statements type is compared with a type of the last function that was declared which was saved in the symbol table within that scope. This ensures that if there are several nested function declarations, the return type is compared to the most recent “active” scope.
+\input{figures/implementation/returnStmtVisitor/2-1-func-def.tex}
+\noindent\newline
+
+\input{figures/implementation/returnStmtVisitor/2-2-return-type-check.tex}
+\noindent\newline
+
+\subsection{Checking that return are guaranteed}
+If a function is not a void function, it should only be legal if it is guaranteed that it will reach a return statement. This means that if there is no return statement in the scope of the definition body, it must be because there is an if- and else block in the scope of the body where every if statement and the else statement have a return statement.
+\input{figures/implementation/returnStmtVisitor/3-3-return-stmt.tex}
+\noindent\newline
+
+\input{figures/implementation/returnStmtVisitor/3-2-if-stmt-return.tex}
+\noindent\newline
+
+\input{figures/implementation/returnStmtVisitor/3-1-func-def-return.tex}
+\noindent\newline

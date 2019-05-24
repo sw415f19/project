@@ -1,13 +1,35 @@
 \section{Symbol table visitor}
-\ref{Block_Structure_Symbol_Tables}
-The symbol table is a data structure that enables storage of variables across different scopes. It is used whenever during the visitor pattern there is a need to reference another node in the abstract syntax tree. This could, for instance be whenever a variable is used within a scope. To find out the type of the variable, there is a need for a data structure which can search up though the different scopes of the program (E.g. from local to function to global scope).
-There are multiple ways of implementing it and storing the data in memory for further investigation, but the Ezuino compiler only has references in each visitor to the symbol table.
-The data structure is a stack and the elements in the stack are called \texttt{SymbolTable}. Each symbol table is a simple hash map with a reference to the parent level in the stack. By holding the reference to the scope above, it is possible to make a recursive search algorithm when looking for the variable in different scopes.
-The data structure that contains the stack is called \texttt{SymbolTableHandler} and provides an API for storing and retrieving references to other nodes in the abstract syntax tree. By implementing it this way, the storage and searching is hidden for potential visitors which needs to store variables.
-During the compilation, there are 4 visitors that use the \texttt{SymbolTableHandler}.
-\begin{enumerate}
+In this section two things will be discussed. First the Ezuino implementation of symbol tables and how it works. Secondly the symbol table visitor implementation.\\
+The reason behind the order is that: because the symbol table visitor rely on the symbol table implementation. Therefore symbol tables are described first.
+
+\subsection{Symbol table implementation}\label{SymbolTableImpl}
+The purpose of the symbol table visitor is to check that any variable and function is declared, before it is used. To do this, the visitor uses the symbol table implementation to check that all variable and function usage has been declared.
+\\\\
+To store declarations of variables and functions, visitors use a class named \texttt{SymbolTableHandler}. The Handler provides an interface that allows storing and retrieving of references to variable and function declarations throughout the AST.
+The Handler itself does not store the declarations, but instead stores them in symbol tables, which lies on a stack. As such, the Handler stores a stack of the class \texttt{SymbolTable}.
+\\\\
+The \texttt{SymbolTable} class holds a HashMap, in which it stores any declaration given to it by the Handler. Additionally, the \texttt{SymbolTable} class holds a reference to the previous symbol table.\\
+By holding the reference to the scope above, it is possible to make a recursive search algorithm when looking for the variable in different scopes.\\
+If the symbol table is the first symbol table on the stack, the reference to the previous symbol table is null. As such, the symbol table which previous symbol table reference is null, is the symbol table for the global scope.
+\\\\
+This implementation allows the symbol table visitor and other visitors to use symbol tables to store data and perform various forms of checks. In total, four different visitors uses this symbol table implementation:
+\begin{itemize}
     \item \texttt{SymbolTableVisitor}: Stores function and variable declarations to check if there is declaration before use of functions and variables
     \item \texttt{FuncStructureVisitor} Stores functions to check if the function calls invoke with the correct parameters
     \item \texttt{MissingReturnStmtVisitor}: Stores return node to check if the function has a return statement if the returntype is a type.
     \item \texttt{ReturnStmtTypeCheckVisitor}: Stores function declarations to check whether the type of the return statement is the same as the function is declared to return
-\end{enumerate}
+\end{itemize}
+
+\subsection{Symbol table visitor implementation}
+As mentioned at the start of section \ref{SymbolTableImpl}, the purpose of the symbol table visitor is to verify that every variable and function has been declared, before it is used.\\
+Additionally, some nodes are given their type during the symbol table visitor’s traversal.
+\\\\
+Similarly to the other visitors, the \texttt{SymbolTableVisitor} extends the \texttt{AstVisitor} class to inherit the visit methods to visit each node in the AST.\\
+At the end of it's traversals, the symbol table visitor performs an special check to verify whether or not the program includes a \texttt{Setup} and \texttt{Loop} function declaration. The \texttt{Setup} function are needed for Arduino to do an initial setup. If it is missing, an error occurs.\\
+However, the \texttt{Loop} function is not required and will therefore only give a warning if it is missing.\\
+This check occurs in listing \ref{code:STV:EssentialFunc}.\\
+\input{figures/implementation/SymbolTableVisitor/checkEssentialFunctions.tex}
+\noindent\newline
+Listing \ref{code:STV:FuncDclCheck} a  private method the symbol table visitor uses to check whether or not a function has been declared. As seen on line 2-4, if the result from the symbol table is null, an error occurs. 
+\input{figures/implementation/SymbolTableVisitor/functionDclCheck.tex}
+\noindent

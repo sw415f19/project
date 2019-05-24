@@ -2,9 +2,7 @@
 %-- MoSCoW til language features (Use MoSCoW to clarify the prioritization of the languages features ex. datastructures, if else for etc.)
 
 
-This section will provide an account of the different elements, which will be prioritized within a MoSCoW analysis. MoSCoW analysis is an abbreviation for Must have, Could Have, Would have and Would have but no at this time. This analysis will provide an account and ensure that the critical elements in the programming language will be included in the project.
-
-The prioritizing of this analysis is based on initial user interviews and pre-analysis, together with developer opinions, the MoSCoW analysis will be prioritized as the following:\\
+This section will provide an account of the different elements, which will be prioritized within a MoSCoW analysis. MoSCoW analysis is an abbreviation for Must have, Could Have, Would have and wont have (this time). This analysis will provide an account and ensure that the critical elements in the programming language will be included in the project.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -13,29 +11,40 @@ The prioritizing of this analysis is based on initial user interviews and pre-an
 \begin{tabular}{@{}lll@{}}
 \toprule
 \caption{Requirements for the programming language}
-\textbf{Area}          & \textbf{Subject}      & \textbf{Priority}               \\ \midrule
-Data Types             & Integer               & Must have                       \\
-                       & Double                & Must have                       \\
-                       & String                & Must have                       \\
-                       & Boolean               & Must have                       \\ 
-                       & List                  & Should have                     \\
-                       & Struct                & Could have                      \\\midrule
-Arithmetic operators   & Addition              & Must have                       \\
-                       & Subtraction           & Must have                       \\
-                       & Multiplication        & Must have                       \\
-                       & Division              & Must have                       \\ \midrule
-Relational Operators   & Less than             & Must have                       \\
-                       & Less than or equal    & Must have                       \\
-                       & Greater than          & Must have                       \\
-                       & Greater than or equal & Must have                       \\ \midrule
-Unary Operators        & Not                   & Must have                       \\
-                       & Minus                 & Must have                       \\ \midrule
-Control Structures     & If                    & Must have                       \\
-                       & Else                  & Must have                       \\
-                       & While                 & Must have                       \\
-Logical Operators      & AND                   & Must have                     \\
-                       & OR                    & Must have                     \\ 
-                       & NOT                   & Must have                     \\\midrule
+\textbf{Area}          & \textbf{Subject}        & \textbf{Priority}               \\ \midrule
+Data Types             & Integer                 & Must have                       \\
+                       & Double                  & Must have                       \\
+                       & String                  & Must have                       \\
+                       & Boolean                 & Must have                       \\ 
+                       & List                    & Must have                     \\
+                       & Struct                  & Could have                      \\\midrule
+Arithmetic operators   & Addition                & Must have                       \\
+                       & Subtraction and negate  & Must have                       \\
+                       & Multiplication          & Must have                       \\
+                       & Division                & Must have                       \\ \midrule
+Logical Operators      & AND                     & Must have                     \\
+                       & OR                      & Must have                     \\ 
+                       & NOT                     & Must have                     \\\midrule
+Relational Operators   & Equal                   & Must have                       \\
+                       & Not equal               & Must have                       \\
+                       & Less than               & Must have                       \\
+                       & Less than or equal      & Must have                       \\
+                       & Greater than            & Must have                       \\
+                       & Greater than or equal   & Must have                       \\ \midrule
+Assignment operators   & Assignment              & Must have                       \\
+                       & Assignment with 
+                         arithmetic operations   & Wont have (this time)          \\ \midrule
+Control Structures     & If                      & Must have                       \\
+                       & Else                    & Must have                       \\
+                       & While                   & Must have                       \\\midrule
+%                       & For                     & Wont have (this time)           \\\midrule
+Functions and program structure     & Function declarations             & Must have \\
+                                    & Function calls                    & Must have \\ 
+                                    & Arduino basic functions           & Must have \\ 
+                                    & Other Arduino library functions   & Could have \\
+                                    & Setup and Loop                    & Must have \\ \midrule
+Casting and parsing                 & Casting to string and other data types         & Must have \\
+                                    & Parsing from string to other data types        & Could have \\ \midrule
                        
 \end{tabular}
 \end{table}

@@ -1,0 +1,8 @@
+\begin{lstlisting}[caption={Visit for a while statement node in the type checker.}, label={code:TC:while}]
+$$@Override
+public void visit(While_stmtNode node) {
+    node.getExprNode().accept(this);
+    node.getBlockNode().accept(this);
+    checkSpecificType(node.getExprNode(), Type.BOOL);
+}
+\end{lstlisting}

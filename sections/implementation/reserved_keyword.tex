@@ -8,8 +8,9 @@ Listing \ref{code:RKW:keywordList} shows the constructor for the reserved keywor
 Ezuino specified keywords are stored in the HashMap named \texttt{reservedKeywords}. These are stored with the upper case version of the keywords.\\
 Java reserved keywords are keywords which are used in the Java language. As such the most common Java keywords, which are not already checked in Ezuino keywords, are stored in the HashSet named \texttt{compatibilityKeywords}.
 \\\\
-
-\ref{code:RKW:keywordCheck}
-
+The Ezuino keywords are stored in the HashMap with an all upper case version of the keyword. The reason behind this is that, no variation of the keyword is allowed to be used. Doing this is to reduce the ambiguity of the language.\\
+An example is the spelling of "true" as "tRuE". This would result in an error because "tRuE" is too similar to "true". Therefore any spelling of "true" must be the exact spelling of "true".\\
+In the case of a Java keyword, only the excat spelling of the Java keyword results in an error. An example is spelling "Integer" as "integer". This spelling would be allowed since "integer" is not a Ezuino keyword and the spelling is different from the Java "Integer".\\
+The private methods for executing these checks are shown in listing \ref{code:RKW:keywordCheck}.\\
 \input{figures/implementation/reserved_keyword/reserved_keyword_list.tex}
 \input{figures/implementation/reserved_keyword/reserved_keyword_check.tex}

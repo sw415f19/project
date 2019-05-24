@@ -36,7 +36,7 @@ As all three logical operators “AND” “OR” and “!” are an important p
 \begin{figure}[H]
 \centering
 \caption{Logical Operation comparison between Arduino C and Ezuino}
-\includegraphics[scale=0.60]{figures/language_features/langf03.png}
+\includegraphics[scale=0.80]{figures/language_features/langf03.png}
 \label{lf03}
 \end{figure}
 \subsubsection*{Relational Operators}
@@ -45,17 +45,18 @@ The Ezuino programming language inherits all the features of C, as with the same
 \begin{figure}[H]
 \centering
 \caption{Relational Operation comparison between Arduino C and Ezuino}
-\includegraphics[scale=0.60]{figures/language_features/langf04.png}
+\includegraphics[scale=0.80]{figures/language_features/langf04.png}
 \label{lf04}
 \end{figure}
 
-\subsubsection*{Arithmetical Operators}
+\subsubsection*{Arithmetical Operators and Negate}
 Arithmetic operators are a necessity for every programming language.
 Compared to C we have chosen to not include the modulo operator as it is a fairly programming specific operator not used commonly regular math. Furthermore, the orthogonality in Ezuino makes it possible to define other arithmetic operators as functions if necessary. The modulo operator is easily implemented as a function in our language. Considering these two points, we decided against implementing modulo as an operator.
+The "-" sign will also work as negate, converting minus to plus and plus to minus. The functionality of this operator should be fine for people new to programming compared to modulus since it is often used in relatively basic mathematics.
 \begin{figure}[H]
 \centering
 \caption{Arithmetical Operation comparison between Arduino C and Ezuino}
-\includegraphics[scale=0.60]{figures/language_features/langf05.png}
+\includegraphics[scale=0.80]{figures/language_features/langf05.png}
 \label{lf05}
 \end{figure}
 
@@ -115,7 +116,7 @@ Single line comments will also be possible in Ezuino through \#, as comments are
 \begin{figure}[H]
 \centering
 \caption{Additional Constructs comparison Arduino C and Ezuino}
-\includegraphics[scale=0.60]{figures/language_features/langf09.png}
+\includegraphics[scale=0.80]{figures/language_features/langf09.png}
 \label{lf09}
 \end{figure}
 

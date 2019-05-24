@@ -1,0 +1,12 @@
+\begin{lstlisting}[caption={Private functions in the symbol table visitor for verifying Setup and Loop declaration.}, label={code:STV:EssentialFunc}]
+private void checkEssentialFunctions() {
+    String setup = "Setup";
+    String loop = "Loop";
+    if(stFunctions.retrieveSymbol(setup) == null) {
+        errorHandler.missingEssentialFunction(setup, true);
+    }
+    if(stFunctions.retrieveSymbol(loop) == null) {
+        errorHandler.missingEssentialFunction(loop, false);
+    }
+}
+\end{lstlisting}

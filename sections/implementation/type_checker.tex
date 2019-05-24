@@ -1,24 +1,24 @@
-\section{Type checker}
-The type checker implements the semantic rules of Ezuino specified in chapter \ref{semantics}. \\
-We split the type checker into two visitors TypeCheckerVisitor and ReturnStatementVisitor. TypeCheckerVisitor checks that the condition in a boolean statement has the correct type and that expressions are legal. ReturnStatementVisitor ensures that the actual returned value of a program matches the type defined in the function declaration.
-The way TypeCheckerVisitor type checks expressions is through a setup where every expression node extends that inherits from an interface called ITypeNode. The ITypeNode interface requires that every child class have the method for getting and setting a type attribute. When type checking happens, we then compare each node through the checkType method.
-\input{figures/implementation/typeCecker/5-check-type.tex}
+\section{Type checker visitor}
+As mentioned in the start of the chapter, the purpose of the type checker is to verify types. Specifically, this means verifying that the type of AST nodes has the correct types.\\
+The rules of the type checker is the semantic rules of Ezuino, which was described in chapter \ref{semantics}. The semantic rules describes which types nodes should have, in order to make an expression legal.
+\\\\
+The type checker implements two private functions, which it uses to compare types. As both functions are used to compare types, they are very similar to each other. The difference between them is that one compares with nodes, while the other compares with a node with an expected type.
+\\\\
+Listing \ref{code:TC:checkType} shows the private function \texttt{checkType}, used comparing two nodes. This function is the main function used for comparing expressions. The reason behind this, is that every expression node extends from an interface named \texttt{ITypeNode}.\\
+This interface allows a AST node to hold a type. The type checker then uses the \texttt{ITypeNode} of two nodes and compares them, using the rules from chapter \ref{semantics}. Listing \ref{code:TC:Additive} on line 5, shows an example of this comparison.\\
+\input{figures/implementation/typeCecker/checkTypeFunc.tex}
+\noindent\newline
+\input{figures/implementation/typeCecker/additiveTypeCheck}
 \noindent\newline
 
-The boolean condition is checked in an if- and else statements.
-\input{figures/implementation/typeCecker/2-if-stmt.tex}
+Listing \ref{code:TC:checkSpecType} shows the private function for comparing a node with a specific type. Hence the name \texttt{checkSpecificType}. Similarly to the \texttt{checkType} function, the \texttt{checkSpecificType} function compares a node using the \texttt{ITypeNode} interface. However, instead of comparing two nodes, it compares the node with an \texttt{expectedType}.\\
+This allows the type checker to compare a node, with a type direcly. This is useful for when a node's type is already known. An example of this is verifying the type of a while node.\\
+Because the node is a while node, it can only have the type Boolean. This is shown in listing \ref{code:TC:while}.\\
+\input{figures/implementation/typeCecker/checkSpecTypeFunc.tex}
+\noindent\newline
+\input{figures/implementation/typeCecker/whileStmtCheck.tex}
 \noindent\newline
 
-An example of type checking expressions is when an additive expression is reached, both nodes are type checked.
-\input{figures/implementation/typeCecker/4-additive-typecheck.tex}
+For unary expression, it is also necessary to check that the operations performed are done with legal types. If “\texttt{-}” is used on nodes that do not have the type integer or double, and if “\texttt{!}” is used on nodes with the type boolean, an error has occurred and is thrown to the errorHandler. This is shown in listing \ref{code:TC:Unary}.\\
+\input{figures/implementation/typeCecker/unaryExprCheck.tex}
 \noindent\newline
-
-In a unary expression, it is also necessary to check that the operations performed are done with legal types. If “\texttt{-}” is used on nodes that do not have the type integer or double or if “\texttt{!}” is used on anything than nodes with the type boolean it notifies that there is an error to the errorhandler.
-\input{figures/implementation/typeCecker/6-unary-expr.tex}
-\noindent\newline
-
-When a return statement is returned it is set to its expression, this is important for type checking the return statement with the function declaration later in ReturnStatementVisitor.
-It is also here that return in void functions is implemented. If a return statement has no value,we assume it to be a void function. This in practice makes the return key-word a way to preemptively end void functions.
-\input{figures/implementation/typeCecker/1-return-stmt.tex}
-\noindent\newline
-

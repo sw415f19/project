@@ -1,0 +1,10 @@
+\begin{lstlisting}[caption={Private function in the symbol table visitor for verifying a function declaration.}, label={code:STV:FuncDclCheck}]
+private Func_defNode getFunctionDef(String key) {
+    Func_defNode result = (Func_defNode) stFunctions.retrieveSymbol(key);
+    if (result == null) {
+        errorHandler.undeclaredFunction(key);
+    }
+    return result;
+}
+\end{lstlisting}
+

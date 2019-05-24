@@ -19,216 +19,88 @@
     \caption{Small-step semantics for variables expressions}\label{sem:bool-ass}
 \end{table}
 
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        [PARENT-1] & \( \dfrac{ \langle a, \ envl, \ sto \rangle \Rightarrow \langle a', \ envl', \ sto' \rangle}{ \langle (a), \ envl, \ sto \rangle \Rightarrow \langle (a'), \ envl', \ sto' \rangle} \) \\
-        
-        [PARENT-2] & \( \langle (v), \ envl, \ sto \rangle \Rightarrow \langle v, \ envl', \ sto' \rangle \) \\
-    \end{longtable}
-    \caption{Small-step semantics for parenthesis }
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        [PLUS-1] & \( \dfrac{ \langle a_1,\ envl, \ sto \rangle \Rightarrow_a (a^{'}_{1}\ envl', \ sto')}{(a_1 + a_2\ envl,\ sto) \Rightarrow (a^{'}_{1} + a_2,\ envl',\ sto')} \) \\
-        
-        [PLUS-2] & \( \dfrac{(a_2,\ envl,\ sto) \Rightarrow_a (a^{'}_{2},\ envl',\ sto')}{(v_1 + a_2,\ envl,\ sto) \Rightarrow (a_{1} + a_2{'},\ envl',\ sto')} \) \\
-        
-        [PLUS-3] & \(v_1 + v_2 \Rightarrow v \text{ where } v = v_1 + v_2\) \\
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic plus expressions}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        
-        [MINUS-1] & \( \dfrac{a_1 \Rightarrow a^{'}_{1}}{a_1 - a_2 \Rightarrow a^{'}_{1} - a_2} \) \\
-        
-        [MINUS-2] & \( \dfrac{a_2 \Rightarrow a^{'}_{2}}{v_1 - a_2 \Rightarrow v_1 - a^{'}_{2}} \) \\
-        
-        [MINUS-3] & \(v_1 - v_2 \Rightarrow z \text{ where } z = v_1 - v_2\) \\
-        
-        
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic minus expressions}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        [MINUS-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 - a_2 \Rightarrow a^{'}_{1} - a_2} \) \\
-        
-        [MINUS-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 - a_2 \Rightarrow a_{1} - a_2{'}} \) \\
-        
-        [MINUS-3] & \(v_1 - v_2 \Rightarrow v \text{ where } v = v_1 - v_2\) \\
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic minus expressions}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        [MULT-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 * a_2 \Rightarrow a^{'}_{1} * a_2} \) \\
-        
-        [MULT-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 * a_2 \Rightarrow a_{1} * a_2{'}} \) \\
-        
-        [MULT-3] & \(v_1 * v_2 \Rightarrow v \text{ where } v = v_1 * v_2\) \\
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic multiplicative expressions}
-\end{table}
-
-
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        
-        [DIV-1] & \( \dfrac{ env_v,sto \vdash a_1 \Rightarrow_a a^{'}_{1}}{env_v,sto \vdash a_1 / a_2 \Rightarrow a^{'}_{1} / a_2} \) \\
-        
-        [DIV-2] & \( \dfrac{ env_v,sto \vdash a_2 \Rightarrow_a a^{'}_{2}}{env_v,sto \vdash v_1 / a_2 \Rightarrow a_{1} / a_2{'}} \) \\
-        
-        
-        [DIV-3] & \(v_1 / v_2 \Rightarrow z \text{ where } v = \frac{v_1}{v_2}\) \\
-        
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic expressions}
-\end{table}
-        \begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        [PARENT-1] & \( \dfrac{env_v,sto \vdash a_1 \Rightarrow a^{'}_{1}}{env_v,sto \vdash (a_1) \Rightarrow (a^{'}_{1})} \) \\
-        
-        [PARENT-2] & \( (v) \Rightarrow v \) \\
-        
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic parenthesis expressions}
-\end{table}
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        
-        [NEGATION-1] & \( \dfrac{env_v,sto \vdash a_1 \Rightarrow a^{'}_{1}}{env_v,sto \vdash -a_1 \Rightarrow -a^{'}_{1}} \) \\
-        
-        [NEGATION-2] & \( -v_1 \Rightarrow v \text{ where } v = -v_1 \)\\
-        
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic negation expressions}
-\end{table}
-
-\iffalse
-Don't think we need intger only when we got Num and var??
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        
-        [INT-1] & \( n \Rightarrow z \text{ if } \mathbb{Z}[[n]] = z \) \\
-        
-        [INT-2] & \( v \Rightarrow z \text{ if } v \in \mathbb{Z} \)\\
-        
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic integer expressions}
-\end{table}
-\fi
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-        
-        [NUM] & \( n \Rightarrow v \) 
-         \\ \\
-        & 
-       \( \text{if } \mathcal{N} [[n]] = v \) \\
-        
-    \end{longtable}
-    \caption{Small-step semantics for arithmetic integer expressions}
-\end{table}
-
 \begin{longtable}[c] { r c }
   \centering
 
   [PARENT-1] & 
-    \( \dfrac { \langle a, envl, sto \rangle \Rightarrow \langle a', envl', sto' \rangle }
-      { \langle (a), envl, sto \rangle  \Rightarrow \langle (a'), envl', sto' \rangle } \) \\
+    \( \dfrac { \langle a, envl, sto \rangle \Rightarrow_a \langle a', envl', sto' \rangle }
+      { \langle (a), envl, sto \rangle  \Rightarrow_a \langle (a'), envl', sto' \rangle } \) \\
   & \\
 
   [PARENT-2] & 
-    \( (v) \Rightarrow v \) \\
+    \( \langle (v), envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
   & \\
 
   [PLUS-1] & 
     \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle )}
-      {\langle a_1 + a_2, envl, sto \rangle \Rightarrow \langle a_1' + a_2, envl', sto' \rangle } \) \\
+      {\langle a_1 + a_2, envl, sto \rangle \Rightarrow_a \langle a_1' + a_2, envl', sto' \rangle } \) \\
   & \\
 
   [PLUS-2] & 
     \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 + a_2, envl, sto \rangle  \Rightarrow \langle a_1 + a_2', envl', sto' \rangle } \) \\
+      {\langle v_1 + a_2, envl, sto \rangle  \Rightarrow_a \langle a_1 + a_2', envl', sto' \rangle } \) \\
   & \\
 
   [PLUS-3] & 
-    \( v_1 + v_2 \Rightarrow v \) where \( v = v_1 + v_2\) \\
+    \( \langle v_1 + v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = v_1 + v_2\) \\
   & \\
 
   [MINUS-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow \langle a_1', envl', sto' \rangle }
-      {\langle a_1 - a_2, envl, sto \rangle \Rightarrow \langle a_1' - a_2, envl', sto' \rangle } \) \\
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
+      {\langle a_1 - a_2, envl, sto \rangle \Rightarrow_a \langle a_1' - a_2, envl', sto' \rangle } \) \\
   & \\
 
   [MINUS-2] & 
-    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow \langle a_2', envl', sto' \rangle }
-      {\langle v_1 - a_2, envl, sto \rangle \Rightarrow \langle v_1 - a_2', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
+      {\langle v_1 - a_2, envl, sto \rangle \Rightarrow_a \langle v_1 - a_2', envl', sto' \rangle } \) \\
   & \\
 
   [MINUS-3] & 
-    \( v_1 - v_2 \Rightarrow v \) where \( v = v_1 - v_2\) \\
+    \( \langle v_1 - v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = v_1 - v_2\) \\
   & \\
 
   [MULT-1] & 
     \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
-      {\langle a_1 * a_2, envl, sto \rangle \Rightarrow \langle a_1' * a_2, envl', sto' \rangle } \) \\
+      {\langle a_1 * a_2, envl, sto \rangle \Rightarrow_a \langle a_1' * a_2, envl', sto' \rangle } \) \\
   & \\
 
   [MULT-2] & 
     \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 * a_2, envl, sto \rangle \Rightarrow \langle v_1 * a_2', envl', sto' \rangle } \) \\
+      {\langle v_1 * a_2, envl, sto \rangle \Rightarrow_a \langle v_1 * a_2', envl', sto' \rangle } \) \\
   & \\
 
   [MULT-3] & 
-    \( v_1 * v_2 \Rightarrow v \) where \( v = v_1 * v_2\) \\
+    \( \langle v_1 * v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = v_1 * v_2\) \\
   & \\
 
   [DIV-1] & 
     \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
-      {\langle a_1 / a_2, envl, sto \rangle \Rightarrow \langle a_1' / a_2, envl', sto' \rangle } \) \\
+      {\langle a_1 / a_2, envl, sto \rangle \Rightarrow_a \langle a_1' / a_2, envl', sto' \rangle } \) \\
   & \\
 
   [DIV-2] & 
     \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 / a_2, envl, sto \rangle \Rightarrow \langle v_1 / a_2', envl', sto' \rangle } \) \\
+      {\langle v_1 / a_2, envl, sto \rangle \Rightarrow_a \langle v_1 / a_2', envl', sto' \rangle } \) \\
   & \\
 
   [DIV-3] & 
-    \( v_1 / v_2 \Rightarrow v \) where \( v = \dfrac{ v_1 }{ v_2 } \) \\
+    \( \langle v_1 / v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = \dfrac{ v_1 }{ v_2 } \) \\
   & \\
 
   [NEGATION-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow \langle a_1', envl', sto' \rangle }
-      {\langle -a_1, envl, sto \rangle \Rightarrow \langle -a_1', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
+      {\langle -a_1, envl, sto \rangle \Rightarrow_a \langle -a_1', envl', sto' \rangle } \) \\
   & \\
 
   [NEGATION-2] & 
-    \( -v_1 \Rightarrow v \) where \( v = -v_1 \)\\
+    \( \langle -v_1, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = -v_1 \)\\
   & \\
 
   [NUM] & 
     \( n \Rightarrow v \) \\
   & \( \text{if } \mathcal{N} [[n]] = v \) \\
 
-  \caption{Arithmetic Expressions}
+  \caption{Small-step semantics for arithmetic expressions}
 \end{longtable}
 
 \subsection{Boolean Expressions}
@@ -240,14 +112,14 @@ Don't think we need intger only when we got Num and var??
   \\
   & \\
 
-  [NOT-2] & \( 
-    \langle !v, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+  [NOT-TRUE] & \( 
+    \langle !v, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v = ff\) \\
   & \\
 
-  [NOT-3] & \( 
-    \langle !v, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+  [NOT-FALSE] & \( 
+    \langle !v, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
   & if \( v = tt \) \\
   & \\
@@ -265,15 +137,15 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [AND-3] & \( 
-    \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
-  & if \( v_1 = tt \land v_2 = tt\) \\
+  & if \( v_1 \land v_2 \) \\
   & \\
 
   [AND-4] & \( 
-    \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 = ff \lor  v_2 = ff \) \\
+  & if \( !(v_1 \land v_2) \) \\
   & \\
 
   [OR-1] & \( 
@@ -289,15 +161,15 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [OR-3] & \( 
-    \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
-  & if \( v_1 = tt \lor v_2 = tt\) \\
+  & if \( v_1 \lor v_2 \) \\
   & \\
 
   [OR-4] & \( 
-    \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 = ff \land  v_2 = ff \) \\
+  & if \( !(v_1 \lor  v_2) \) \\
   & \\
 
   [EQUAL-1] & \( 
@@ -313,13 +185,13 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [EQUAL-3] & \( 
-    \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v_1 = v_2 \) \\
   & \\
 
   [EQUAL-4] & \( 
-    \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
   & if \( v_1 \neq v_2 \) \\
   & \\
@@ -337,13 +209,13 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [NOT-EQUAL-3] & \( 
-    \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v_1 \neq v_2 \) \\
   & \\
 
   [NOT-EQUAL-4] & \( 
-    \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
   & if \( v_1 = v_2 \) \\
   & \\
@@ -361,15 +233,15 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [GREATER-THAN-3] & \( 
-    \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v_1 > v_2 \) \\
   & \\
 
   [GREATER-THAN-4] & \( 
-    \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 \leq v_2 \) \\
+  & if \( !(v_1 > v_2) \) \\
   & \\
 
   [GREATER-THAN-OR-EQUAL-1] & \( 
@@ -385,15 +257,15 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [GREATER-THAN-OR-EQUAL-3] & \( 
-    \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v_1 \geq v_2 \) \\
   & \\
 
   [GREATER-THAN-OR-EQUAL-4] & \( 
-    \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 < v_2 \) \\
+  & if \( !(v_1 \geq v_2) \) \\
   & \\
 
   [LESS-THAN-1] & \( 
@@ -409,15 +281,15 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [LESS-THAN-3] & \( 
-    \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v_1 < v_2 \) \\
   & \\
 
   [LESS-THAN-4] & \( 
-    \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 \geq v_2 \) \\
+  & if \( !(v_1 < v_2) \) \\
   & \\
 
   [LESS-THAN-OR-EQUAL-1] & \( 
@@ -433,15 +305,15 @@ Don't think we need intger only when we got Num and var??
   & \\
 
   [LESS-THAN-OR-EQUAL-3] & \( 
-    \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl', sto' \rangle \)
+    \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
   & if \( v_1 \leq v_2 \) \\
   & \\
 
   [LESS-THAN-OR-EQUAL-4] & \( 
-    \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl', sto' \rangle \)
+    \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 > v_2 \) \\
+  & if \( !(v_1 \leq v_2) \) \\
   & \\
-  \caption{Small-step semantics $<$ expression}
+  \caption{Small-step semantics boolean expressions}
 \end{longtable}

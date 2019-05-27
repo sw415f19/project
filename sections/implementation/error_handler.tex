@@ -13,42 +13,11 @@ Next we have Ezuino's own custom error handling system. As mentioned, the \textt
 Listing \ref{eh03} shows a code snippet of the \texttt{ErrorHandler}. On it, is the error message, error count and public method for printing all of the errors in the list.\\
 \input{figures/implementation/errorHandler/eh03.tex}
 \noindent\newline
-Just like the \texttt{ErrorListener} used the handler class to add errors, the visitors of Ezuino can also use the handler class to add errors that might occur during their execution. Because the visitors can use handler class to report their errors, it's possible to divide the compiler into different sections, as described earlier.
+Just like the \texttt{ErrorListener} used the handler class to add errors, the visitors of Ezuino can also use the handler class to add errors that might occur during their execution. Because the visitors can use handler class to report their errors, it's possible to divide the compiler into different sections, as described earlier. This allows the compiler to stop compiling early, if an error has occurred.
 \\\\
-
-
-
-Listing \ref{eh04} shows three examples of different errors the visitors can use to give detailed error messages to the user.
+The Ezuino error system also implements custom error messages, which is designed to give more detailed error messages, whenever an error occurs. The custom error messages are built within the class \texttt{ErrorMessage}. Three different types of errors exist within the Ezuino error system. The different types are: \texttt{GeneralError}, \texttt{SemanticError} and \texttt{SyntaxError}. \texttt{SyntaxError} was the type of error the \texttt{ErrorListener} gave to the handler when an error occurred.\\
+Which type of error that occurs are specified within the visitors. The error can be one of the three types and depending on how critical the error is, it can either be a warning or error.\\
+Only errors stop the compiler from finishing. If a program has a warning, it will still be compiled. However, the warning will still be printed to the user.\\
+Listing \ref{eh04} shows three examples of different errors the visitors can use to give detailed error messages to the user. The types of errors on the listing is: Syntax, General and General error.
 \input{figures/implementation/errorHandler/eh04.tex}
 \noindent\newline
-
-
-
-
-The \texttt{ErrorListener} class implements the \texttt{ANTLRErrorListener} interface, which is used for implementing methods for the different kinds of ANTLR errors. This allows the listener to syntax errors.
-
-The one we’re interested in is shown in listing \ref{eh01}. In this code, we’re inside the \texttt{ErrorListener} class, which implements the \texttt{ANTLRErrorListener} interface. In listing \ref{eh01}, one global variables exist. The global variable: \texttt{errorCount}, which is used to count the number of errors, ANTLR found during the parsing.\\
-The ErrorHandler instantiation is from the ErrorHandler class, which handles a specific type of errors during the AST and covers more abstract error handling, for example, cast exceptions, type exceptions and many more. The \texttt{ErrorHandler} class will be described later in this section.
-\\\\
-The only method we are interested in is the \texttt{syntaxError} method, which is recognizing syntax errors made by the users. As an example, if the users input the code (int int), this would be a violation of the ANTLR grammar, as it’s two literals, the scanner review as int type declarations, without any ID after both the declarations. If the scanner recognizes this error, it will not run the visitors, or future visitors through, as the error was caught in the earlier stages of the process.
-\\\\
-Going back to the ErrorHandler class, we got 3 methods, which has the main functionality of the error handler. 
-\input{figures/implementation/errorHandler/eh03.tex}
-\noindent\newline
-Listing \ref{eh03}, is a snippet from the ErrorHandler class. On line 1, we got a List, which contains all the error messages found during the contextual analysis, reported by errors in the AST visitor classes. The method hasErrors() from line 4, checks if the errorCount on line 2, is bigger than 0. If it is, that means that the error handler has added an error to the error list.\\
-Finally, from line 13 we got the printErrors() method, which prints the methods, which is in listing \ref{eh04}. First, it checks whenever there are errors, then it prints all the messages in the List, by running a for each loop for 18. 
-\input{figures/implementation/errorHandler/eh04.tex}
-\noindent\newline
-Listing \ref{eh04} has 3 methods, which is being used within the visitors. The methods take either string as ID’s, or nodes and do in-method conversions of messages, which are being added to the List on listing \ref{eh03}, line 1. The SyntaxError and GeneralError classes both contain different string representations of each error. 
-\input{figures/implementation/errorHandler/eh05.tex}
-\noindent\newline
-Listing \ref{eh05} is an example of the SyntaxError class, for every error method in Listing \ref{eh04}, which constructs a new SyntaxError, will need the input of an Error Type and Error Message. Then, the toString() method from line 8, returns a string with a specific format, for this syntax error. 
-To get an overview of these classes together, a relationship diagram has been created and can be reviewed in figure \ref{eh06} below.
-\begin{figure}[H]
-\centering
-\frame{\includegraphics[scale=0.45]{figures/implementation/errorHandler/eh06.png}}
-\caption{Diagram of the error classes}
-\label{eh06}
-\end{figure}
-Figure \ref{eh06} uses the ANTLRErrorListener interface to overwrite with a new class named ErrorListener, which is then associated with the ErrorHandler. The ErrorHandler got a ErrorType and ErrorMessage, which there are three versions (GeneralError, SemanticError and SyntaxError).\\
-As we are done going through the different visitors and its implementation, we can now move on towards testing the compiler.

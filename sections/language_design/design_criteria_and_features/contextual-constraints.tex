@@ -10,9 +10,8 @@ The type of a declaration can be inferred from explicit declarations at compile 
 Static and dynamic type binding defines when type should be allowed to change. When a programming language uses static type binding it will remember the type a value was declared and not allow it to change. Dynamic type binding, on the other hand, allows the variable to change types\cite{conceptsOfProgrammingLanguages}.
 Static type binding has several advantages over dynamic type binding
 \begin{itemize}
-    \item It has more reliable at error detection. Since a variable remember the type it was first assigned it can compare the values it is later set to with the initial type.
-    \item The implementation is more complex and runs slower. Languages with dynamic type binding must use a run time descriptor to ensure that the variable assigned in run-time has enough storage.
-    The execution is also slower since type checking has to be done while executing and cannot be done at compile time.
+    \item It has more reliable at error detection. Since variables remember the type they were first declared or assigned it can use this type for type checking. 
+    \item Dynamic type binding runs slower. Execution time is slower since types must be assigned at run time. Languages with dynamic type binding must also use a run time descriptor to ensure that the variable has enough storage. The run time descriptor will keep track of the current type size of the variable, which can vary during execution since types can be changed and different types have different sizes, The execution is also slower since type checking has to be done while executing and cannot be done at compile time\cite{conceptsOfProgrammingLanguages}.
     \item Since the type of variables are only known at execution time Dynamic Type Binding is only suited for interpreters, since it is not possible to generate machine instruction without knowing the data types.
 \end{itemize}
 \subsection{Block Structure and Symbol Tables}\label{Block_Structure_Symbol_Tables}

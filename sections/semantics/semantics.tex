@@ -15,11 +15,13 @@ $D_v$           & Variable Declarations \\ \hline
 $D_f$           & Function Declarations \\ \hline
 S               & Statements            \\ \hline
 T               & Type                  \\ \hline
+$T_{dcl}$         & Type for function declarations\\ \hline
 a               & Arithmetic expressions\\ \hline
 b               & Boolean expressions   \\ \hline
 n               & Numeral literal(Integer or Double) \\ \hline
 e               & Expression            \\ \hline
 $\beta$         & Boolean literal       \\ \hline
+str             & String literal        \\ \hline
 x               & Variables             \\ \hline
 $f$             & Function Names        \\ \hline
 P               & Parameters            \\ \hline
@@ -35,22 +37,28 @@ r               & Return statement      \\ \hline
   \label{abstract-syntax}
   \centering
   
-  \(a\) & \(::=\) & \(\ n\ |\ x\ |\ a_1*a_2\ |\ a_1 + a_2\ |\ a_1 - a_2\ |\ a_1 / a_2\ |\ -a \) \\
+  \(a\) & \(::=\) & \(\ n\ |\ x\ |\ str\footnote{strings can only be used for concatination}\ |\ a_1*a_2\ |\ a_1 + a_2\ |\ a_1 - a_2\ |\ a_1 / a_2\ |\ -a \) \\
     &  & \\
   
   \(b\) & \(::=\) & \(\ \beta \ |\ !b\ |\ x\ |\ b_1 = b_2\ |\ b_1 != b_2\ |\ b_1\ AND\ b_2\ |\ b_1\ OR\ b_2\ \) \\
     &  & \\
   
-  \(e\) & \(::=\) & \(\ (e)\ |\ f(param)\ |\ a\ |\ b\ \) \\
+  \(e\) & \(::=\) & \(\ (e)\ |\ f(param)\ |\ a\ |\ b\) \\
     &  & \\
 
-  \(S\) & \(::=\) & \(x := e\ |\ if(e)\ C_1\ else\ C_2\ |\ while\ (e)\ C\ |\ return\ e\ |\ return\ |\ S_1\ S_2\ |\ f(param) |\ \epsilon\ \) \\
+  \(S\) & \(::=\) & \(x := e\ |\ if(e)\ C_1\ else\ C_2\ |\ while\ (e)\ C\ |\ S_1\ S_2\ |\ f(param)\ |\ \epsilon\ \) \\
     &  & \\
 
-  \(D_f\) & \(::=\) & \(func\ T\ f(P)\ C \) \\
+  \(D_f\) & \(::=\) & \(func\ f(P)\ C\ D_f\ |\ func\ T\ f(P)\ C\ D_f\ |\ \epsilon \) \\
     &  & \\
 
   \(D_v\) & \(::=\) & \( T\ x\ |\ T\ x\ D_v\ |\ \epsilon \) \\
+    &  & \\
+
+  \(r\) & \(::=\) & \( return\ e\ |\ return\ |\ \epsilon \) \\
+    &  & \\
+
+  \(C\) & \(::=\) & \( \{ D_v\ S\ r\} \) \\
     &  & \\
 
   \(P\) & \(::=\) & \( T\ x\ |\ T x,\ P\ |\ \epsilon \) \\

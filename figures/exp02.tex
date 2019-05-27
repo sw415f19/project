@@ -1,18 +1,19 @@
-\begin{lstlisting}[caption={A small recursive program}, label={ex02}]
-int y
-func int add(int x, int t) {
-	if (t == 0) {
-	    return 0
-	}
-	y := add(x, t-1) + 1
-	return y
+\begin{lstlisting}[caption={A small recursive program, printing the first 20 numbers of the fibonacci sequence}, label={ex02}]
+func int fib(int fibNum){
+  if(fibNum < 3){
+    return 1
+  }
+  else{
+    return fib(fibNum - 1) + fib(fibNum - 2)
+  }
 }
-func main() {
-	int r
-	int a
-	int b
-	a := 5
-	b := 8
-	r := add(a, b)
+
+func Setup(){
+  int i
+  i := 1
+  while(i <= 20){
+    Print(String(fib(i)))
+    i := i + 1
+  }
 }
 \end{lstlisting}

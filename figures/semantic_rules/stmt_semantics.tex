@@ -1,83 +1,103 @@
 \subsection{Statements}
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    \begin{tabular}{@{}c@{}} 
-    [ASS1] \\
-    \newline \\
-    \newline \\
-    \newline \\
-    \end{tabular}
-  \begin{tabular}{@{}c@{}}   \( \langle x := a, sto, envl \rangle \Rightarrow (sto[l \mapsto v], envl) \)  \\ \( where \ envl  = (env_v, env_p) : envl' \)
-  \\ \( and \ l = env_v x \)
-  \\ \( and \ env_v, \ sto \vdash a \rightarrow_a v \)
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for boolean assignment expressions}\label{sem:bool-ass}
-\end{table}
-        
 
 \begin{longtable}[c] { r c }
   \centering
+  [ASS1] & \( \langle x := a, sto, envl \rangle \Rightarrow \langle sto[l \mapsto v], envl \rangle \) \\ 
+  & where \(envl  = (env_V, env_f) : envl' \) \\
+  & and \(l = env_v x \) \\
+  & and \(env_V, \ sto \vdash a \rightarrow_a v \) \\
+  & \\
+
   [IF-ELSE-1] & \( 
-    \dfrac { \langle e, envl, sto \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
-      { \langle if (e) \{S_1\} else \{S_2\}, envl, sto \rangle \Rightarrow_S \langle if (e') \{S_1\} else \{S_2\}, envl', sto' \rangle } \)
-  \\
+    \dfrac { \langle e, sto, envl \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
+      { \langle if (e) C_1 else C_2, sto, envl \rangle \Rightarrow_S \langle if (e') C_1 else C_2, envl', sto' \rangle } \) \\
   & \\
 
   [IF-ELSE-2] & \( 
-    \langle if (tt) \{S_1\} else \{S_2\}, envl, sto \rangle \Rightarrow_S \langle S_1, envl', sto' \rangle \)
-  \\
+    \langle if (tt) C_1 else C_2, sto, envl \rangle \Rightarrow_S \langle C_1, envl', sto' \rangle \) \\
   & \\
 
   [IF-ELSE-3] & \( 
-    \langle if (ff) \{S_1\} else \{S_2\}, envl, sto \rangle \Rightarrow_S \langle S_2, envl', sto' \rangle \)
-  \\
+    \langle if (ff) C_1 else C_2, sto, envl \rangle \Rightarrow_S \langle C_2, envl', sto' \rangle \) \\
   & \\
 
   [IF-1] & \( 
-    \dfrac { \langle e, envl, sto \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
-      { \langle if (e) \{S_1\}, envl, sto \rangle \Rightarrow_S \langle if (e') \{S_1\}, envl', sto' \rangle } \)
-  \\
+    \dfrac { \langle e, sto, envl \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
+      { \langle if (e) C, sto, envl \rangle \Rightarrow_C \langle if (e') C, envl', sto' \rangle } \) \\
   & \\
 
   [IF-2] & \( 
-    \langle if (tt) \{S_1\}, envl, sto \rangle \Rightarrow_S \langle S_1, envl', sto' \rangle \)
-  \\
+    \langle if (tt) C, sto, envl \rangle \Rightarrow_C \langle C, envl', sto' \rangle \) \\
   & \\
 
   [IF-3] & \( 
-    \langle if (ff) \{S_1\}, envl, sto \rangle \Rightarrow_S \langle skip, envl', sto' \rangle \)
-  \\
+    \langle if (ff) C_1, sto, envl \rangle \Rightarrow_C \langle skip, envl', sto' \rangle \) \\
   & \\
 
   [WHILE] & \( 
-    \langle while (e) \{S\}, envl, sto \rangle \Rightarrow_S \) 
-  \\
-  & \(\langle if (e) \{S\ while (e') \{S\}\} else \{skip\}, envl', sto' \rangle \) 
-  \\
+    \langle while (e) C, sto, envl \rangle \Rightarrow_C \) \\
+  & \(\langle if (e) \{C\ while (e')\ C\} else skip, envl', sto' \rangle \) \\
   & \\
 
   [SKIP] & \( 
-    \langle skip, envl, sto \rangle \Rightarrow_S \langle envl, sto \rangle \)
-  \\
+    \langle skip, sto, envl \rangle \Rightarrow_S \langle sto, envl \rangle \) \\
+  & \\
+
+  [BLOCK-1] & \( 
+    \dfrac{ \langle D_V, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle }
+      { \langle \{ D_V \ C \}, sto, envl \rangle \Rightarrow \langle \text{active} \ C \ \text{end}, sto', envl' \rangle} \) \\
+  & where \(env_P' = \text{upd}_P(D_P, env_V', env_P) \) \\
+  & where \(envl' = (env_V' env_P') : envl\) \\
+  & where \(envl = (env_V, env_P) : envl'' \) \\
+  & \\
+
+  [BLOCK-2] & \( 
+    \dfrac{ \langle C, sto, envl \rangle \Rightarrow \langle C', envl', sto' \rangle }
+      { \langle \text{active} \ C \ \text{end}, sto, envl \rangle \Rightarrow \langle \text{active} \ C' \ \text{end}, sto', envl' \rangle} \) \\
+  & \\
+
+  [BLOCK-3] & \( 
+    \dfrac{ \langle C, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle}
+      { \langle \text{active} \ C \ \text{end}, sto, envl \rangle \Rightarrow \langle C, sto', envl' \rangle} \) \\
+  & \\
+
+  [COMP-1] & \( 
+    \dfrac{ \langle C_1, sto, envl \rangle \Rightarrow \langle C_1', envl', sto' \rangle}
+      { \langle C_1;C_2, sto, envl \rangle \Rightarrow \langle C_1';C_2, sto', envl' \rangle} \) \\
+  & \\
+
+  [COMP-2] & \( 
+    \dfrac{ \langle C_1, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle}
+      { \langle C_1;C_2, sto, envl \rangle \Rightarrow \langle C_2, sto', envl' \rangle} \) \\
   & \\
 
   \caption{Small-step semantics for statements}
 \end{longtable}
+        
+
 
 As previously mentioned, the function environment is a partial function from the name of the function to the 4-tuple of a sequence of commands, a set of parameters, a variable environment, and a function environment.
-It should be noted, that the semantics for FUNC-DEC is written in way that resembles big-step semantics, as it is simpler and better conveys the meaning, rather than trying to add the components of the function environment step by step.
+
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        [FUNC-DEC] & \( \dfrac{env_v \vdash \langle D_F, env_F[f \mapsto (S, P, env_v, env_F)] \rangle \Rightarrow_{DF} env_F' } %lower half of dfrac below
-        {env_v \vdash \langle func\ T \cup \epsilon\ f(T\ P_1, T\  P_2,...,T\ P_n)\{S\} D_F, env_F \rangle \Rightarrow_{DF} env_F'} \) \\
-        \newline & where \(P = \{P_1, P_2,..., P_n\}\)\\
-        \newline & and \(T \in \{int, bool, double\}\)\\
-        \newline & and \(n \geq 0\)\\
-        [FUNC-CALL] & \( \dfrac{}{} \)
+        \([FUNC-DEC]\) & \( \dfrac{env_v \vdash \langle D_F, env_F[f \mapsto (S, P, env_v, env_F)] \rangle \Rightarrow_{DF} env_F' } %lower half of dfrac below
+        {env_v \vdash \langle func\ T \cup \epsilon\ f(T\ P_1, T\  P_2,...,T\ P_n)\ C\ D_F, env_F \rangle \Rightarrow_{DF} env_F'} \) \\
+        & where \(P = \{P_1, P_2,..., P_n\}\)\\
+        & and \(n \geq 0 \) \\
+        & and \(T \in \{int, boolean, double, string\}\)\\
+        & \\
+        \([FUNC-CALL]\) & \( \langle f(e_1,...,e_n), sto[return \mapsto  l_ret][next \mapsto new l_{ret}], envl \rangle \Rightarrow\)\\
+        & \(\langle active\ C\ end, sto, (env_v'[l_1 \mapsto v_1,..., l_n \mapsto v_n, return \mapsto l_{ret}],\)\\
+        & \(env_F'[f \mapsto (C, P, env_v', env_F')]) : envl \rangle \)\\
+        & where \(env_F f = (C, P, env_v', env_F')\)\\
+        & and \(envl = (env_v, env_F) : envl'\)\\
+        & and \(envl, sto \vdash e_1,...,e_n \rightarrow v_1,...,v_n\)\\
+        & and \(env_v P_1 = l_1,..., env_v P_n = l_n\)\\
+        & and \(n \geq 0\)\\
+        \([RETURN]\) & \( envl', sto' \vdash \langle return\ e \rangle \Rightarrow \langle envl[return \mapsto l_{ret}], sto'[l_ret \mapsto v_ret] \rangle \) \\
+        & where \( envl', sto' \vdash e \rightarrow_e v_ret \)\\
     \end{longtable}
     \caption{Small-step semantics for function declarations and calls}\label{sem:func}
 \end{table}
+Note that the bindings of the RETURN rule are the same as in the FUNC-CALL rule, and that the special "return" name is used to store the return value from the function.

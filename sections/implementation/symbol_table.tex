@@ -5,14 +5,14 @@ The reason behind the order is that: because the symbol table visitor rely on th
 \subsection{Symbol table implementation}\label{SymbolTableImpl}
 The purpose of the symbol table visitor is to check that any variable and function is declared, before it is used. To do this, the visitor uses the symbol table implementation to check that all variable and function usage has been declared.
 \\\\
-To store declarations of variables and functions, visitors use a class named \texttt{SymbolTableHandler}. The Handler provides an interface that allows storing and retrieving of references to variable and function declarations throughout the AST.
+To store declarations of variables and functions, visitors use a class named \texttt{SymbolTableHandler}. The Handler provides an interface that allows storing and retrieval of references to variable and function declarations throughout the AST.
 The Handler itself does not store the declarations, but instead stores them in symbol tables, which lies on a stack. As such, the Handler stores a stack of the class \texttt{SymbolTable}.
 \\\\
 The \texttt{SymbolTable} class holds a HashMap, in which it stores any declaration given to it by the Handler. Additionally, the \texttt{SymbolTable} class holds a reference to the previous symbol table.\\
 By holding the reference to the scope above, it is possible to make a recursive search algorithm when looking for the variable in different scopes.\\
 If the symbol table is the first symbol table on the stack, the reference to the previous symbol table is null. As such, the symbol table which previous symbol table reference is null, is the symbol table for the global scope.
 \\\\
-This implementation allows the symbol table visitor and other visitors to use symbol tables to store data and perform various forms of checks. In total, four different visitors uses this symbol table implementation:
+This implementation of \texttt{SymbolTable}, allows the symbol table visitor and other visitors to use symbol tables to store data and perform various forms of checks. In total, four different visitors uses this symbol table implementation:
 \begin{itemize}
     \item \texttt{SymbolTableVisitor}: Stores function and variable declarations to check if there is declaration before use of functions and variables
     \item \texttt{FuncStructureVisitor} Stores functions to check if the function calls invoke with the correct parameters

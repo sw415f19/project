@@ -1,4 +1,5 @@
 \subsection{Language Design Criteria and Language features}
+The theory of language design criteria is based on \cite{conceptsOfProgrammingLanguages}.
 \label{language-design-criteria}
 \label{design-criteria-theory}
 \subsection*{Readability:}
@@ -7,7 +8,7 @@ Overall simplicity of a programming language is affected by the amount of basic 
 It is easier to learn a language with fewer basic constructs than one with a larger amount. Programmers that use large languages usually do not learn all its features. \\\
 Readability problems can occur when the same syntax have a different meaning than the one the reader is familiar with. \\\
 Feature multiplicity is when there are multiple ways to accomplish the same operation increasing possible complexity. \\
-Operator overloading happens when operators can have multiple uses depending on the context. An example of a commonly accepted operator overloading is using + for both integer- and floating point addition. \\
+Operator overloading happens when operators can have multiple uses depending on the context. An example this is C++ where one can define a new +-operator for a given custom defined data structure. \\
 Simplicity in readability also has a trade-off in terms of comparing high to low-level languages. A high-level language with more complex control statements might make a language easier to read, i.e. assembly compared to Java.
 
 \subsubsection*{Orthogonality}
@@ -37,7 +38,7 @@ A high degree of expressivity is having a convenient, rather than cumbersome, wa
 
 \subsection*{Reliability:}
 Reliability is closely related to readability and writability. A language has natural ways to support algorithms will use fewer unnatural approaches to solving problems and are more likely to be correct for all possible situations.
-Reliability is also affected by the implementation of a language of Type checking, Exception handling and Aliasing.
+Reliability is also affected by the implementation of a language of type checking, exception handling and aliasing.
 \subsubsection*{Type Checking}
 Type checking is how the language ensures that types are used in a legal way. Java is very reliable in the sense that it has virtually eliminated type errors by type checking all variable and expressions during compile time.
 \subsubsection*{Exception handling}
@@ -47,8 +48,7 @@ then continue is an obvious aid to reliability.”
 Some languages like C do not feature exception handling, while other languages like C\# and Java does.
 \subsubsection*{Aliasing}
 “Loosely defined, aliasing is having two or more distinct names in a program that can access the same memory cell.” \\
-Allowing aliasing requires the programmer to remember which names are referring to the same memory cell and failure to do this can lead to bugs. It is now generally accepted
-that aliasing is a dangerous feature in a programming language.
+Allowing aliasing requires the programmer to remember which names are referring to the same memory cell and failure to do this can lead to bugs. It is now generally accepted that aliasing is a dangerous feature in a programming language.
 
 
 

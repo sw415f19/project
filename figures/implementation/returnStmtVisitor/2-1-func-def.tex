@@ -1,9 +1,0 @@
-\begin{lstlisting}[caption={Visit function definition node in return statement visitor}, label={code:ReturnCheck:FuncDef}]
-$$@Override
-public void visit(Func_defNode node) {
-    symtable.openScope();
-    symtable.enterSymbol(FUNC_DEF_ID, node);
-    node.getBlockNode().accept(this);
-    symtable.closeScope();
-}
-\end{lstlisting}

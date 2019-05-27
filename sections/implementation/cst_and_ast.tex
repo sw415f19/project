@@ -6,9 +6,9 @@ Based on the grammar ANTLR generates both a lexer and a parser, as well as a CST
 \\\\
 However, the ANTLR generated CST is the literal recognition of tokens. Each and every symbol is included in the CST, including terminal symbols like equality signs “\texttt{:=}”, parenthesis “\texttt{()}” and keywords “\texttt{if}”. These are named after the terminals and non-terminals in the EBNF file. While one could potentially work with these tokens directly, it’s hard to navigate with all the extra tokens on the nodes.
 \\\\
-To improve this, the CST must be converted into an AST. Ezuino does this using the \texttt{BuildAstVisitor} class, which is a subclass of the ANTLR \texttt{BaseVisitor}. Using the \texttt{BuildAstVisitor} class to transverse the ANTLR CST, Ezuino converts each node of the CST into AST nodes to build its own AST.
+To improve this, the CST must be converted into an AST. Ezuino does this by using the \texttt{BuildAstVisitor} class, which is a subclass of the ANTLR \texttt{BaseVisitor}. Using the \texttt{BuildAstVisitor} class to transverse the ANTLR CST, Ezuino converts each node of the CST into AST nodes to build its own AST.
 \\\\
-Listing \ref{code:visitFuncDef} is an example where a AST node for \texttt{Func\_def} is created. The \texttt{Func\_defContext} has access to a text that was parsed. If for example, the syntax text of a CST node was \texttt{func int test() \{\}}, the “\texttt{func}” would be unnecessary for the generated AST node.
+Listing \ref{code:visitFuncDef} is an example where an AST node for \texttt{Func\_def} is created. The \texttt{Func\_defContext} has access to a text that was parsed. If for example, the syntax text of a CST node was \texttt{func int test() \{\}}, the “\texttt{func}” would be unnecessary for the generated AST node.
 \\\\
 The reason for this, is that since this is a function, it will be created as a function node in the AST. This means that when the visitors of Ezuino runs through the generated AST. Each visitor will know that the node is a function node, based on the type of visit called to visit the node.\\
 In this case, the \texttt{Func\_defContext} will be created in the AST as a \texttt{Func\_defNode} node.

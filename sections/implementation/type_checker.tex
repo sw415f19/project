@@ -1,10 +1,11 @@
 \section{Type checker visitor}
+In this section Eziuno's type checking and the type checker visitor is discussed.\\
 As mentioned in the start of the chapter, the purpose of the type checker is to verify types. Specifically, this means verifying that the type of AST nodes has the correct types.\\
 The rules of the type checker is the semantic rules of Ezuino, which was described in chapter \ref{semantics}. The semantic rules describes which types nodes should have, in order to make an expression legal.
 \\\\
-The type checker implements two private functions, which it uses to compare types. As both functions are used to compare types, they are very similar to each other. The difference between them is that one compares with nodes, while the other compares with a node with an expected type.
+The type checker implements two private functions, which it uses to compare types. As both functions are used to compare types, they are very similar to each other. The difference between them is that one compares the attributes of nodes, while the other a expected type.
 \\\\
-Listing \ref{code:TC:checkType} shows the private function \texttt{checkType}, used comparing two nodes. This function is the main function used for comparing expressions. The reason behind this, is that every expression node extends from an interface named \texttt{ITypeNode}.\\
+Listing \ref{code:TC:checkType} shows the private function \texttt{checkType}, used for comparing two nodes. This function is the main function used for comparing expressions. The reason behind this, is that every expression node extends from an interface named \texttt{ITypeNode}.\\
 This interface allows a AST node to hold a type. The type checker then uses the \texttt{ITypeNode} of two nodes and compares them, using the rules from chapter \ref{semantics}. Listing \ref{code:TC:Additive} on line 5, shows an example of this comparison.\\
 \input{figures/implementation/typeCecker/checkTypeFunc.tex}
 \noindent\newline
@@ -12,8 +13,7 @@ This interface allows a AST node to hold a type. The type checker then uses the 
 \noindent\newline
 
 Listing \ref{code:TC:checkSpecType} shows the private function for comparing a node with a specific type. Hence the name \texttt{checkSpecificType}. Similarly to the \texttt{checkType} function, the \texttt{checkSpecificType} function compares a node using the \texttt{ITypeNode} interface. However, instead of comparing two nodes, it compares the node with an \texttt{expectedType}.\\
-This allows the type checker to compare a node, with a type direcly. This is useful for when a node's type is already known. An example of this is verifying the type of a while node.\\
-Because the node is a while node, it can only have the type Boolean. This is shown in listing \ref{code:TC:while}.\\
+This allows the type checker to compare a node, with a type directly. One place where this is useful is in logical statements since the condition always should be boolean. This is shown in listing \ref{code:TC:while}.\\
 \input{figures/implementation/typeCecker/checkSpecTypeFunc.tex}
 \noindent\newline
 \input{figures/implementation/typeCecker/whileStmtCheck.tex}

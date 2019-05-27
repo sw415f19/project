@@ -1,6 +1,26 @@
 \section{Syntax Specification}
+Now that we have been through the different thoughts about the parsing techniques and we can move on towards the actual syntax and programming example of the Ezuino programming language.
+This section will go through the Ezuino programming language syntax choice, and the reserved keywords used within the language. This goal of this section, is to provide an overview of the different operations, when programming the language. 
+\subsection{Keywords in the Ezuino Programming Language}
+These are the keywords used in the Ezuino programming language, without the reserved and Arduino based syntax.
+\begin{table}[H]
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Syntax Name} & \textbf{Syntax}      & \textbf{Syntax Name} & \textbf{Syntax}         \\ \hline
+int                  & Integer declaration  & !                    & Not                     \\ \hline
+double               & Double delcaration   & !=                   & Not Equal               \\ \hline
+string               & String declaration   & \textless{}          & Less Than x             \\ \hline
+boolean              & Boolean declaration  & \textless{}=         & Less Than or Equal x    \\ \hline
+:=                   & Assign Statement     & \textgreater{}       & Greater Than x          \\ \hline
++                    & Plus Operator        & \textgreater{}=      & Greater Than or Equal x \\ \hline
+-                    & Minus Operator       & if                   & If Statement            \\ \hline
+/                    & Division Opeartor    & else                 & Else Statement          \\ \hline
+*                    & Mult Operator        & while                & While Statement         \\ \hline
+func                 & Function Declaration & return               & Return Statement        \\ \hline
+\end{tabular}
+\end{table}
 \subsection{Reserved words \& Keywords}
-In the Ezuino programming language, a reserved keyword is vital to prevent users to overwrite, define and use keywords, which is used in the programming language already. In case a user tries to define a variable or function named a reserved keyword, they will receive an error, which will be thrown into the error handler. The error handler will then tell the users, where and which reserved keyword they used where. The reserved keywords are words primarily used in the Java and C programming languages. The following reserved keywords can be found in table \ref{reservedKeywordsList}.
+In the Ezuino programming language, a reserved keyword is vital to prevent users to overwrite, define and use keywords, which is used in the programming language already. In case a user tries to define a variable or function named a reserved keyword, they will receive an error, which will be thrown into the error handler. The error handler will then tell the users, where and which reserved keyword they used where. The reserved keywords can be found in table \ref{reservedKeywordsList}.
 
 \begin{table}[H]
 \centering

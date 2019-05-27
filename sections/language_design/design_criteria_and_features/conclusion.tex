@@ -1,9 +1,28 @@
 \subsection*{Language design criteria and language feature overview}
 After having described what the language design criteria is, the choice of every planned feature of Ezuino has been explained in comparison to C and what effect they should have on the language design criteria.
-\begin{figure}[H]
-\centering
-\caption{An overview on language features of Ezuino overview and their effect on the language design criteria}
-\includegraphics[scale=0.80]{figures/language_features/Operators-and-effect-on-language-criteria.png}
 
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
 \label{feature-overview}
-\end{figure}
+\caption{An overview on language features of Ezuino overview and their effect on the language design criteria}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Operator}                                      & \textbf{Effect on Language Design Criteria}                          \\ \midrule
+int                                                    & Necessity                                                            \\ \midrule
+double rather than float                               & +Reliability                                                         \\ \midrule
+string without char                                    & +Readability                                                         \\ \midrule
+No char, unsigned and long                             & +Readability                                                         \\ \midrule
+Boolean true/false instead of 1/0                      & \begin{tabular}[c]{@{}l@{}}+Readability\\ +Writeability\end{tabular} \\ \midrule
+Different equality "="                                 & \begin{tabular}[c]{@{}l@{}}+Readability\\ +Writeability\end{tabular} \\ \midrule
+Different logical and "AND"                            & \begin{tabular}[c]{@{}l@{}}+Readability\\ +Writeability\end{tabular} \\ \midrule
+No pointers                                            & +Reliability                                                         \\ \midrule
+While                                                  & Necessity                                                            \\ \midrule
+Different logical or "OR"                              & \begin{tabular}[c]{@{}l@{}}+Readability\\ +Writeability\end{tabular} \\ \midrule
+List instead of array, "list", "listAdd", "listRemove" & \begin{tabular}[c]{@{}l@{}}+Readability\\ +Writeability\end{tabular} \\ \midrule
+Basic Arduino functions                                & Necessity                                                            \\ \midrule
+Print                                                  & +Writeability                                                        \\ \midrule
+Single line comments                                   & +Readability                                                         \\ \midrule
+Explicit casting                                       & \begin{tabular}[c]{@{}l@{}}+Reliability\\ -Writeability\end{tabular} \\ \bottomrule
+\end{tabular}
+\end{table}

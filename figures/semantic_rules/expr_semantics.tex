@@ -1,99 +1,97 @@
 \subsection{Arithmetic Expressions}
-
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-    \begin{tabular}{@{}c@{}} 
-    [VAR] \\
-    \newline \\
-    \newline \\
-    \newline \\
-    \end{tabular}
-  \begin{tabular}{@{}c@{}}   \( \langle a, \ envl, \ sto \rangle \Rightarrow \langle v, \ envl, \ sto \rangle  \)
-  \\ \( if \ env_v \ x \ = \ l \)
-  \\ \( and \ sto \ l \ = \ v \)
-  \\ \( where \ envl \ = \ (env_v, \ env_p) \ : \ envl' \)
-  \end{tabular}
-        
- \end{longtable}
-    \caption{Small-step semantics for variables expressions}\label{sem:bool-ass}
-\end{table}
+In the following table, it should be noted that most transitions will be on the form \( \langle envl, sto, a \rangle \Rightarrow_e \langle envl', sto', v \rangle \). This is supposed to be read as "By evaluating a in accord with the runtime stack and the store like an expression, a is evaluated to the value v, and the runtime stack and store is updated
 
 \begin{longtable}[c] { r c }
   \centering
+  
+  [VAR] & \( envl, sto \vdash x \Rightarrow_e v \) \\
+  & if \(env_v x = l \) \\
+  & and \(sto \ l = v \) \\
+  & where \(envl = (env_v, env_p) : envl' \) \\
+  &  \\
+
+  [DCL] & \( 
+    \dfrac{ \langle D_V, envl[x \mapsto l][next \mapsto \text{new} \ l], sto \rangle \Rightarrow_{DV} \langle envl', sto \rangle}
+    { \langle T x, envl, sto \rangle \Rightarrow_{DV} \langle envl', sto \rangle } \) \\
+  & \\
 
   [PARENT-1] & 
-    \( \dfrac { \langle a, envl, sto \rangle \Rightarrow_a \langle a', envl', sto' \rangle }
-      { \langle (a), envl, sto \rangle  \Rightarrow_a \langle (a'), envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e, envl, sto \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
+      { \langle (e), envl, sto \rangle  \Rightarrow_e \langle (e'), envl', sto' \rangle } \) \\
   & \\
 
   [PARENT-2] & 
-    \( \langle (v), envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
+    \( \langle (v), envl, sto \rangle \Rightarrow_e \langle v, envl, sto \rangle \) \\
   & \\
 
   [PLUS-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle )}
-      {\langle a_1 + a_2, envl, sto \rangle \Rightarrow_a \langle a_1' + a_2, envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle )}
+      {\langle e_1 + e_2, envl, sto \rangle \Rightarrow_e \langle e_1' + e_2, envl', sto' \rangle } \) \\
   & \\
 
   [PLUS-2] & 
-    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 + a_2, envl, sto \rangle  \Rightarrow_a \langle a_1 + a_2', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      {\langle v_1 + e_2, envl, sto \rangle  \Rightarrow_e \langle e_1 + e_2', envl', sto' \rangle } \) \\
   & \\
 
   [PLUS-3] & 
-    \( \langle v_1 + v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = v_1 + v_2\) \\
+    \( \langle v_1 + v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
+  & where \( v = v_1 + v_2\) \\
   & \\
 
   [MINUS-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
-      {\langle a_1 - a_2, envl, sto \rangle \Rightarrow_a \langle a_1' - a_2, envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      {\langle e_1 - e_2, envl, sto \rangle \Rightarrow_e \langle e_1' - e_2, envl', sto' \rangle } \) \\
   & \\
 
   [MINUS-2] & 
-    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 - a_2, envl, sto \rangle \Rightarrow_a \langle v_1 - a_2', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      {\langle v_1 - e_2, envl, sto \rangle \Rightarrow_e \langle v_1 - e_2', envl', sto' \rangle } \) \\
   & \\
 
   [MINUS-3] & 
-    \( \langle v_1 - v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = v_1 - v_2\) \\
+    \( \langle v_1 - v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
+  & where \( v = v_1 - v_2\) \\
   & \\
 
   [MULT-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
-      {\langle a_1 * a_2, envl, sto \rangle \Rightarrow_a \langle a_1' * a_2, envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      {\langle e_1 * e_2, envl, sto \rangle \Rightarrow_e \langle e_1' * e_2, envl', sto' \rangle } \) \\
   & \\
 
   [MULT-2] & 
-    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 * a_2, envl, sto \rangle \Rightarrow_a \langle v_1 * a_2', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      {\langle v_1 * e_2, envl, sto \rangle \Rightarrow_e \langle v_1 * e_2', envl', sto' \rangle } \) \\
   & \\
 
   [MULT-3] & 
-    \( \langle v_1 * v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = v_1 * v_2\) \\
+    \( \langle v_1 * v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
+  & where \( v = v_1 * v_2\) \\
   & \\
 
   [DIV-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
-      {\langle a_1 / a_2, envl, sto \rangle \Rightarrow_a \langle a_1' / a_2, envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      {\langle e_1 / e_2, envl, sto \rangle \Rightarrow_e \langle e_1' / e_2, envl', sto' \rangle } \) \\
   & \\
 
   [DIV-2] & 
-    \( \dfrac { \langle a_2, envl, sto \rangle \Rightarrow_a \langle a_2', envl', sto' \rangle }
-      {\langle v_1 / a_2, envl, sto \rangle \Rightarrow_a \langle v_1 / a_2', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_2, envl, sto \rangle \Rightarrow_e \langle e_2', envl', sto' \rangle }
+      {\langle v_1 / e_2, envl, sto \rangle \Rightarrow_e \langle v_1 / e_2', envl', sto' \rangle } \) \\
   & \\
 
   [DIV-3] & 
-    \( \langle v_1 / v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = \dfrac{ v_1 }{ v_2 } \) \\
+    \( \langle v_1 / v_2, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
+  & where \( v = \dfrac{ v_1 }{ v_2 } \) \\
   & \\
 
   [NEGATION-1] & 
-    \( \dfrac { \langle a_1, envl, sto \rangle \Rightarrow_a \langle a_1', envl', sto' \rangle }
-      {\langle -a_1, envl, sto \rangle \Rightarrow_a \langle -a_1', envl', sto' \rangle } \) \\
+    \( \dfrac { \langle e_1, envl, sto \rangle \Rightarrow_e \langle e_1', envl', sto' \rangle }
+      {\langle -e_1, envl, sto \rangle \Rightarrow_e \langle -e_1', envl', sto' \rangle } \) \\
   & \\
 
   [NEGATION-2] & 
-    \( \langle -v_1, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) where \( v = -v_1 \)\\
+    \( \langle -v_1, envl, sto \rangle \Rightarrow \langle v, envl, sto \rangle \) \\
+  & where \( v = -v_1 \)\\
   & \\
 
   [NUM] & 
@@ -145,7 +143,7 @@
   [AND-4] & \( 
     \langle v_1 \ AND \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( !(v_1 \land v_2) \) \\
+  & if \( \neg(v_1 \land v_2) \) \\
   & \\
 
   [OR-1] & \( 
@@ -169,7 +167,7 @@
   [OR-4] & \( 
     \langle v_1 \ OR \ v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( !(v_1 \lor  v_2) \) \\
+  & if \( \neg(v_1 \lor  v_2) \) \\
   & \\
 
   [EQUAL-1] & \( 
@@ -193,7 +191,7 @@
   [EQUAL-4] & \( 
     \langle v_1 = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( v_1 \neq v_2 \) \\
+  & if \( \neg(v_1 = v_2) \) \\
   & \\
 
   [NOT-EQUAL-1] & \( 
@@ -211,7 +209,7 @@
   [NOT-EQUAL-3] & \( 
     \langle v_1 != v_2, envl, sto \rangle \Rightarrow_e \langle tt, envl, sto \rangle \)
   \\
-  & if \( v_1 \neq v_2 \) \\
+  & if \( \neg(v_1 = v_2) \) \\
   & \\
 
   [NOT-EQUAL-4] & \( 
@@ -241,7 +239,7 @@
   [GREATER-THAN-4] & \( 
     \langle v_1 > v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( !(v_1 > v_2) \) \\
+  & if \( \neg(v_1 > v_2) \) \\
   & \\
 
   [GREATER-THAN-OR-EQUAL-1] & \( 
@@ -265,7 +263,7 @@
   [GREATER-THAN-OR-EQUAL-4] & \( 
     \langle v_1 > = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( !(v_1 \geq v_2) \) \\
+  & if \( \neg(v_1 \geq v_2) \) \\
   & \\
 
   [LESS-THAN-1] & \( 
@@ -289,7 +287,7 @@
   [LESS-THAN-4] & \( 
     \langle v_1 < v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( !(v_1 < v_2) \) \\
+  & if \( \neg(v_1 < v_2) \) \\
   & \\
 
   [LESS-THAN-OR-EQUAL-1] & \( 
@@ -313,7 +311,7 @@
   [LESS-THAN-OR-EQUAL-4] & \( 
     \langle v_1 < = v_2, envl, sto \rangle \Rightarrow_e \langle ff, envl, sto \rangle \)
   \\
-  & if \( !(v_1 \leq v_2) \) \\
+  & if \( \neg(v_1 \leq v_2) \) \\
   & \\
   \caption{Small-step semantics boolean expressions}
 \end{longtable}

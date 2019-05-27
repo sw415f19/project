@@ -46,30 +46,30 @@ Expressions are the core of most programming operations. Ezuino supports parenth
   & \\
 
   [PARENTHESIS] & \(
-    \dfrac{T E \vdash  e : T}{T E \vdash  (e) : T} \) \\
+    \dfrac{TE \vdash  e : T}{TE \vdash  (e) : T} \) \\
   & \\
 
   [ARITH] & \(
   \dfrac{TE \vdash e_{1} :  num \ \ TE \vdash e_{2} : num} 
-    {\ TE \vdash e_{1} \ op \ e_{2} : num} \) \\
+    {TE \vdash e_{1} \ op \ e_{2} : num} \) \\
   & where \( op \in \{+, \ -, \ /, \ *\} \) \\
   & \\
 
   [NUMRELATION] & \(
-  \dfrac{T E \vdash  e_1 : num \ T E \vdash  e_2 : num}
-    {T E \vdash  e_1 \ op \ e_2 : bool} \) \\
+  \dfrac{T E \vdash  e_1 : num \ \ TE \vdash  e_2 : num}
+    {T E \vdash  e_1 \ op \ e_2 : boolean} \) \\
   & where \( op \in \{<, >, < =, >=, =, \ !=\} \) \\
   & \\
 
   [STRINGRELATION] & \(
-  \dfrac{T E \vdash  e_1 : string \ TE \vdash  e_2 : string }
-    {TE \vdash  e_1 \ op \ e_2 : bool} \) \\
+  \dfrac{T E \vdash  e_1 : string \ \ TE \vdash  e_2 : string }
+    {TE \vdash  e_1 \ op \ e_2 : boolean} \) \\
   & where \( op \in \{=, \ !=\} \) \\
   & \\
 
   [LOGICAL] & \(
-  \dfrac{T E \vdash  e_1 : bool \ TE \vdash  e_2 : bool }
-    {T E \vdash  e_1 \ op \ e_2 : bool} \) \\
+  \dfrac{T E \vdash  e_1 : boolean \ \ TE \vdash  e_2 : boolean }
+    {T E \vdash  e_1 \ op \ e_2 : boolean} \) \\
   & where \( op \in \{=, \ !=, AND, OR\} \) \\
   & \\
 
@@ -79,171 +79,22 @@ Expressions are the core of most programming operations. Ezuino supports parenth
   & \\
 
   [NEG] & \(
-  \dfrac{T E \vdash  e_1 : num}
-    {T E \vdash -e_1 : num} \) \\
+  \dfrac{TE \vdash  e_1 : num}
+    {TE \vdash -e_1 : num} \) \\
   & \\
 
   [NOT] & \(
-  \dfrac{T E \vdash  e_1 : bool}
-    {T E \vdash \ !e_1 : bool} \) \\
+  \dfrac{TE \vdash  e_1 : boolean}
+    {TE \vdash \ !e_1 : boolean} \) \\
   & \\
 
   [VAR] & \(
-  {TE \vdash x\ :\ T}\ where\ {TE(x) = T} \) \\
-  & \\
+  {TE \vdash x : T}\) \\
+  & where \(TE(x) = T\)\\
 
   \caption{Arithmetic Expressions}
 \end{longtable}
 
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Parenthesis] $
-        & 
-        \( \dfrac{T E  \vdash  e  :  T}{T E  \vdash  (e)  :  T} \)
-    \end{longtable}
-    \caption{}\label{type:expr}
-        \end{center}
-\end{table}
- 
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[ArithInt_{e}]$ 
-        & 
-        \( \dfrac{TE \vdash e_{1} :  int \ \ TE \vdash e_{2} : int} 
-        {\ TE \vdash e_{1} \ op \ e_{2} : int} \) 
-        \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{+, \ -, \ /, \ *\} } \)
-    \end{longtable}
-    \caption{}\label{type:int-arith}
-        \end{center}
-\end{table}
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[ArithDouble_{e}]$ 
-        & 
-        \( \dfrac{TE \vdash e_{1} : double \ \ TE \vdash e_{2} :  double} 
-        {\ TE \vdash e_{1} \ op \ e_{2} : double} \) 
-        \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{+, \ -, \ /, \ *\} } \)
-    \end{longtable}
-    \caption{}\label{type:double-arith}
-        \end{center}
-\end{table}
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[IntRelation_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  :  int \ T E  \vdash  e_2  :  int}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
-        \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{<,\ >,\ < =,\ >=,\ =,\ !=\}} \)
-    \end{longtable}
-    \caption{}\label{type:int-relation}
-        \end{center}
-\end{table}
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[DoubleRelation_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  : double \ T E  \vdash  e_2  :  double}{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
-        \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{<,\ >,\ < =,\ >=,\ =,\ !=\}} \)
-    \end{longtable}
-    \caption{}\label{type:double-relation}
-        \end{center}
-\end{table}
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[StringRelation_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{TE  \vdash  e_1 \ op \ e_2  :  bool} \) 
-        \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{=, \ !=\}} \)
-    \end{longtable}
-    \caption{}\label{type:string-relation}
-        \end{center}
-\end{table}
-
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Logical_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  :  string \ TE  \vdash  e_2  :  string }{T E  \vdash  e_1 \ op \ e_2  :  bool} \) 
-        \\ \\
-        & 
-        \( {where \ op \ \epsilon \ \{=,\ !=\}} \)
-    \end{longtable}
-    \caption{}\label{type:logical-expr}
-        \end{center}
-\end{table}
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Concat]$ 
-        & 
-        \( \dfrac{TE \vdash  e_1  :  string \ \ TE  \vdash  e_2  :  string }{TE \vdash  e_1 \ + \ e_2  :  string} \) 
-    \end{longtable}
-    \caption{}\label{type:string-concat}
-        \end{center}
-\end{table}
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[NegInt_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  :  int}{T E  \vdash  -e_1  :  int} \) 
-    \end{longtable}
-    \caption{}\label{type:int-neg}
-        \end{center}
-\end{table}
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[NegDouble_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  :  double}{T E  \vdash  -e_1  :  double} \) 
-    \end{longtable}
-    \caption{}\label{type:double-neg}
-        \end{center}
-\end{table}
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Not_{e}]$ 
-        & 
-        \( \dfrac{T E  \vdash  e_1  :  bool}{T E  \vdash  !e_1  :  bool} \) 
-    \end{longtable}
-    \caption{}\label{type:bool-neg}
-        \end{center}
-\end{table}
-
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Var]$ 
-        & 
-        \( {TE \vdash x\ :\ T}\ where\ {TE(x) = T} \)
-    \end{longtable}
-    \caption{}\label{type:var-ref}
-        \end{center}
-\end{table}
 In a function declaration, the return type is specified and the types for the formal parameters are saved in the type environment. Afterwards, there can be statements and other function declarations. \\
 Every statement in the function declaration must be OK in regard to the declared return type. This means that return statements in if and else statements as well as return statements in the function declaration body must return the declared return type. \\
 Functions declared in a function declaration must be well typed as well.
@@ -259,48 +110,36 @@ Take note of the special name “return” that encapsulates the return type for
         & 
         \( {where \ TE' = TE[return \mapsto T_r]} \)
     \end{longtable}
-    \caption{}
-        \end{center}
+    \end{center}
+    \caption{Caption}
+    \label{sem:func-type}
 \end{table}
 
-The return statement is only correct when its expression type is the same as the function type. Note the "return" name from before.
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[Return]$ 
-        & 
-        \( \dfrac{T E  \vdash e  :  T\ TE(return) = T}{T E \vdash return \ e : OK} \)
+The [RETURN] statement in Table \ref{sem:bool-ass22} is only correct when its expression type is the same as the function type. Note the "return" name from Table \ref{func-dcl-type}.
+\begin{longtable}[c] { r c }
+\centering
 
-    \end{longtable}
-    \caption{}
-        \end{center}
-\end{table}
+[RETURN] & \(
+\dfrac{TE \vdash e : T\ \ TE(return) = T}
+  {TE \vdash return \ e : OK} \) \\
+& \\
 
-In a while loop the expression must be a bool type while the statement inside the while loop must be OK.
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[While]$ 
-        & 
-        \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S : OK}{T E \vdash while(e) \ S : OK} \)
+[WHILE] & \(
+\dfrac{TE \vdash e : bool \ \ TE \vdash S : OK}
+  {TE \vdash while(e) \ C : OK} \) \\
+& \\
 
-    \end{longtable}
-    \caption{}
-        \end{center}
-\end{table}
+[IF-ELSE] & \( 
+\dfrac{TE \vdash e : bool \ \ TE \vdash S_1 : OK \ \ TE \vdash S_2 : OK}
+  {TE \vdash if (e) \ C_1  \ else \ C_2 : OK} \) \\
+& \\
 
-Check if and else expression are OK, and if they are OK then also make sure the statements of the if and else statements are OK.
-\begin{table}[H]
-    \begin{center}
-    \begin{longtable}[c] { r c }
-        $[If - else]$ 
-        & 
-        \( \dfrac{T E  \vdash e  :  bool \ T E \vdash S_1 : OK \ T E \vdash S_2 : OK}
-        {T E \vdash if(e) \ S_1 \ else \ S_2 : OK} \)
+[IF] & \(
+\dfrac{TE \vdash e : bool \ \ TE \vdash S_1 : OK}
+  {TE \vdash if (e) C : OK} \) \\
 
-    \end{longtable}
-    \caption{}
-        \end{center}
-\end{table}
+\caption{Small-step semantics for variables expressions222}
+\label{sem:bool-ass22}
+\end{longtable}
 
 \input{sections/semantics/type-rules-2.tex}

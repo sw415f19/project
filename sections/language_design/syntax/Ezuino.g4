@@ -129,7 +129,6 @@ IF                  : 'if' ;
 WHILE               : 'while' ;
 RETURN              : 'return' ;
 FUNCTION            : 'func' ;
-DEFAULT             : 'default' ;
 // IDENTIFIERS
 BOOL                : 'true' | 'false' ;
 ID                  : [a-zA-Z_]+[a-zA-Z0-9_]*;

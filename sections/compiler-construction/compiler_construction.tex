@@ -20,13 +20,13 @@ Just like the scanner, a parser is often created through declarative programming
 In order to understand what the parser generator tool does, it is necessary to explain the theory behind parsing techniques. When constructing a parser one of two strategies is usually used to recognize and construct tokens based on the context-free grammar of the language, namely top-down parsing and bottom-up parsing. It is also necessary to keep in mind what kind of parsing the generated parser does. Finally, the different generator tools create a concrete parse tree and how easy they are to convert to an abstract syntax tree should also be taken into consideration.
 \subsubsection*{Top-down and bottom-up parsing}
 Given a starting symbol and a set of rules, a top-down parser will start reading its input as a long line of tokens from a scanner. In general, the tokens are read from left to right\footnote{Unless your source language is a language that writes from right to left, of course}, and are afterwards derived from the starting symbol using a leftmost-derivation of the non-terminals through the grammatical rules\cite{conceptsOfProgrammingLanguages}.\\
-
+\\
 An example of a top-down parsing is the recursive descent parser, which is built from a collection of subprograms that each produces its own top-down parse tree generator. The subprograms in itself are recursive and the recursive descent parser will only create one subprogram for every non-terminal it can find in the user-generated grammar\cite{conceptsOfProgrammingLanguages}.\\
-
+\\
 A bottom-up parser is the other method of parsing. A bottom-up parser also reads a line of tokens, but rather than starting at the top and deriving to terminals, it builds non-terminals based on the symbols it reads, by performing a rightmost-derivation in accord with the grammatical rules, until it reaches the starting symbol\cite{conceptsOfProgrammingLanguages}.\\
-
+\\
 \subsubsection{Parsing trees and abstract parsing tree}
-The end goal of either strategy is to generate a parse tree\footnote{Sometimes known as a concrete syntax tree (a CST)}, which represents the syntactic structure of the program source code. Like the tree data-structure, it features a root node and several tree nodes, however, due to the parsing process, it is also important to maintain ordering, so that the program is aware of the constructions the parser has invoked. As such, the CST also features children and parents. The parse tree is defined by an input string and a grammar, or in this case for the project, a context-free-grammar \\
+The end goal of either strategy is to generate a parse tree\footnote{Sometimes known as a concrete syntax tree (a CST)}, which represents the syntactic structure of the program source code. The parse tree is defined by an input string and a grammar, or in this case for the project, a context-free-grammar \\
 
 \begin{figure}[H]
 \centering
@@ -96,28 +96,7 @@ The other alternative which is also the one we chose, was ANTLR4. ANTLR4 targets
 
 
 
-%ANTLR 3 can either create a tree parser, scanner or parser. 
-%Both parsers uses LL(*) parsing. ANTLR 4 was newer but less documented than ANTLR 3. ANTLR 4 differs from ANTLR 3 because ANTLR 4 creates a general parser tree with either listeners or visitors, which makes it possible to go through the generated tree to find its children \cite{ANTLR4-Why}. It also uses the same parsing technique as ANTLR3. 
 
-%The other parse tool generator that was tested, which were named Coco/R. Coco / R generates a scanner and a parser from the source language and grammar the user has programmed in. The parser that is created is an LL(k)\cite{COCO/R}. \\
-
-%Another parse generator tool that was reviewed, Gold. Gold generates a parser with the LALR parsing algorithm good to discover error recovery and display the information on what happened during the parse phase because the generator knows which token should be expected. GOLD parser generator also supports many programming languages which is another good aspect of it.\\
-%To make a parse tree with GOLD, the first step would be to write a file with the grammar for the programming language. After that, the GOLD builder will create a parse table with the LALR parsing technique and check if the created grammar contains any problems or ambiguities while saving the information into a separate file. If there are some, it will be reported. Once that is done it GOLD could read the created grammar with a parsing engine that can work in different programming languages that GOLD supports \cite{GOLD}. 
-
-%In all cases, the source text is analyzed by the parser engine and a parse tree is constructed.
-%SableCC is another parser generator that can create abstract syntax trees and tree-walker classes. The problem with this parser generator is that the only language that the users can write it with is the programming language Java. Other programming languages are not supported with SableCC. The parsing technique SableCC uses are the LALR(1) parsing\cite{SableCC}.\\
-
-
-
-
-
-
-%ANTLR's visitor has generics and implements methods for navigating the entire parse tree both up and down in the tree. That is the way ANTLR has chosen to generate the tree structure.
-%ANTLR's default BaseVisitor automatically provides an implementation for navigating the parse tree. Thus you only have to override the functionality for the functions where you want to create a node.
-%As each visit functionality has 2 responsibilities. Generate the node for the abstract syntax tree (with properties) and set the relation between nodes in the node and to it's potential children.
-%The BaseVisitor also has supports for generics for explicitly tell what should be returned. By simply setting this to a superclass for all nodes in the abstract syntax tree, all functions in the tree should return a node. 
-
-%In the end, the object that is returned from the ANTLR BaseVisitor is the top node of the abstract syntax tree.
 
 
 %\subsection{Type Checker}

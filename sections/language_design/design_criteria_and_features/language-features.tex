@@ -5,13 +5,13 @@ This section will reflect on the different language features, operators and stru
 \subsubsection*{Data Types and Literals}
 Data types are attributes in programming languages that represent different types of data. One of the things data types affect are what operations may be performed, and therefore data types in a language is an important design decision.
 \\ \\
-We have chosen to keep the data types integer, double and string for Ezuino. We consider integers a necessity, since it is a precise, fast and easy to understand data type, compared to other data types that might be harder to distinguish for new programmers. A case of this is long and unsigned data types. The only difference making a data type long or unsigned is for unsigned that negative numbers are not allowed and for unsigned and long that the upper limit of available numbers are larger. Considering that in most cases it is not necessary to have a larger upper limit the data types will only reduce the overall simplicity of the language.
+We have chosen to keep the data types integer, double and string for Ezuino. We consider integers a necessity, since it is a precise, fast and easy to understand data type, compared to other data types that might be harder to distinguish for new programmers. A case of this is long and unsigned data types. The only difference making a data type long or unsigned is for unsigned that negative numbers are not allowed and for unsigned and long that the upper limit of available numbers are larger. Considering that in most cases it is not necessary to have a larger upper limit, the data types will only reduce the overall simplicity of the language.
 \\ \\
-We chose to only keep double over float in order to also increase overall simplicity. Double was preferred over float due to its increased accuracy that could save the programmer time fixing floating point inaccuracy bugs. We chose to keep the string data type just like in C, as it is necessary for various tasks like an output consoles an Arduino can be connected to. We chose not to include char as strings are more high-level making them easier to understand and cover most of the same uses. This was also to reduce the language feature size and increase overall simplicity.
+We chose to only keep double over float in order to also increase overall simplicity. Double was preferred over float due to its increased accuracy that could save the programmer time fixing floating point inaccuracy bugs. We chose to keep the string data type just like in C, as it is necessary for various tasks like an output console an Arduino can be connected to. We chose not to include char as strings are more high-level, making them easier to understand and cover most of the same uses. This was also to reduce the language feature size and increase overall simplicity.
 \\\\
-To increase readability of logical statements we have introduced the boolean data type. With the boolean data type replacing 1 and 0 with true and false it should increase readability of logical statements.
+To increase readability of logical statements, we have introduced the boolean data type. With the boolean data type replacing 1 and 0 with true and false, it should increase readability of logical statements.
 \\ \\
-We want to introduce a dynamic array type similar in functionality to ArrayList of Java. One of the most complex features of C is using malloc to create dynamic arrays, managing dynamic arrays, and freeing space afterwards. This data type could be simple called “list”. There should be functions for adding and retrieving elements which could be called listAdd and listRemove.
+We want to introduce a dynamic array type similar in functionality to ArrayList of Java. One of the most complex features of C is using malloc to create dynamic arrays, managing dynamic arrays, and freeing space afterwards. This data type could simply be called “list”. There should be functions for adding and retrieving elements that could be called listAdd and listRemove.
 \\ \\
 Since we are developing to the arduino we would ideally also want to have the struct data type. Structs make it possible for the programmer to define their own data type. In Arduino this can make readability easier for the user if they understand this data type. For example being able to create their own library for organizing the time of a day, might be practical and more readable for a project that turns on at different time of the day.  
 \begin{figure}[H]
@@ -41,7 +41,7 @@ As all three logical operators “AND” “OR” and “!” are an important p
 \end{figure}
 \subsubsection*{Relational Operators}
 Relational operators define a relationship between two entities, and returns a boolean value.
-The Ezuino programming language inherits all the features of C, as with the same case as the Logical Operators, relational operators are an important part of the programming language logic. We have chosen to keep the same relational operators as their syntax is very close with the mathematical notations. Compared to C, there will be differences in the equality operator, in ezuiono the syntax will be "=" instead of "==" in C. The different assignment syntax is chosen for its resemblance to mathematical notations in order to increase readability for people unfamiliar with code.
+The Ezuino programming language inherits all the features of C, as with the same case as the Logical Operators, relational operators are an important part of programming language logic. We have chosen to keep the same relational operators as their syntax is very close with the mathematical notations. Compared to C, there will be differences in the equality operator, in Ezuino the syntax will be “=” instead of “==” in C. The different assignment syntax is chosen for its resemblance to mathematical notations in order to increase readability for people unfamiliar with code.
 \begin{figure}[H]
 \centering
 \caption{Relational Operation comparison between Arduino C and Ezuino}
@@ -63,7 +63,7 @@ The "-" sign will also work as negate, converting minus to plus and plus to minu
 \subsubsection*{Pointer Operators}
 As described in the problem analysis, most people have difficulty understanding the pointers and address systems, as it requires a sophisticated understanding of how the computer system works. Therefore, it has been decided not to include pointers in the Ezuino programming language. This also prevents most problems in aliasing increasing reliability.
 \subsubsection*{Assignment Operators}
-A way to assign a value to a variable is essential in any programming language Ezuino has also kept this feature. The syntax will be the one often seen as the mathematical notation for assignment “:=”. Other assignment operators in Arduiono C do several operations at once and while these are nice features we regard them as could have features, as they are not essential.
+A way to assign a value to a variable is essential in any programming language Ezuino has also kept this feature. The syntax will be the one often seen as the mathematical notation for assignment “:=”. Other assignment operators in Arduino C do several operations at once and while these are nice features we regard them as could have features, as they are not essential.
 %\begin{figure}[H]
 %\centering
 %\includegraphics[scale=0.60]{figures/language_features/langf07.png}
@@ -96,7 +96,7 @@ The basic Arduino functions should also be available in Ezuino, in order to comm
 When defining the legal program structure there were three options we considered. \\ \\
 \subsubsection{Option 1: Using global scope as main}
 The global scope could be treated as the main function in Ezuino. This would mean everything inside the global scope should be regarded as legal statements. One of problems with this approach would be that statements and functions could be in arbitrary order. This could easily decrease readability if used improperly.
-This would also require that the users would have to implement a while loop to have the same effect as Arduiono’s standard loop method, which is often necessary in Arduiono programs.
+This would also require that the users would have to implement a while loop to have the same effect as Arduino’s standard loop method, which is often necessary in Arduino programs.
 \input{figures/language_features/Example1.tex}
 
 \subsubsection{Option 2: Having a main that works as a setup requiring the user to implement his own control structure}
@@ -104,8 +104,8 @@ If every statement should be inside main and function declaration should be outs
 This would however also require that the users implement a while loop if they needed repetition.
 \input{figures/language_features/Example2.tex}
 
-\subsubsection{Option 3: Using arduino setup and loop but making loop optional}
-Using the same setup method as Arduino is both relatively easy to read as the option 2, but also semantically reminds the user that a repetition is usually needed for arduino devices by giving it a place that is suitable for grouping such code.
+\subsubsection{Option 3: Using Arduino setup and loop but making loop optional}
+Using the same setup method as Arduino is both relatively easy to read as the option 2, but also semantically reminds the user that a repetition is usually needed for Arduino devices by giving it a place that is suitable for grouping such code.
 \input{figures/language_features/Example3.tex}
 
 \subsubsection{Chosen program structure for Ezuino}
@@ -126,9 +126,7 @@ The print method should only accept the type string. To make sure that the user 
 That means if a user wants to use the print method on an integer, the integer firstly has to be cast to a string in order to print it.
 Likewise, casts to the same type cannot be done. The reasoning for this is that it is important to know which types the variables has. If the user isn't aware of the types, it might be difficult to implement the functionality which user wants.\\
 %The reason for not including casting from String to other data types is that this requires parsing of the string and as such is not a cast that makes sense.\\
-The reason for not including casting from String to other data types is that this would require parsing and this is not the same as casting. One way to do parsing is for example to only accept changing a string to a int is if the string represents a integer
-
-Since parsing strings to other data types have many practical uses but is slightly more time consuming and complex than parsing it should be included in Ezuino if there is enough time.  \\
+The reason for not including casting from String to other data types is that this would require parsing and this is not the same as casting. One way to do parsing is for example to only accept changing a string to a int is if the string represents a integer. Since parsing strings to other data types have many practical uses but is slightly more time consuming and complex than casting it should be included in Ezuino if there is enough time.  \\
 When casting from boolean to integer false will equal 0 and true will equal 1.
 In table \ref{tab:cast-overview}, the entire casts can be seen.
 \begin{table}[H]

@@ -1,36 +1,77 @@
 \chapter{Semantics}
 \label{semantics}
 \section{Abstract Syntax for Ezuino}
-At this stage, we got the syntax made, and we have a general idea of the language. The next step is to construct semantics for the Ezuino programming language. This chapter will go through each semantic rule, in categorized. 
-Before we can start on semantics, we need a table, to provide an overview of the short names in each semantic. This can be  reviewed in syntax table: 
+Now that we have made the syntax for the Ezuino language, the next step is to construct semantics for the programming language. This chapter will describe the semantic rules of the Ezuino language.
+Before we can start on semantics, an overview is needed to provide an overview of the short names in each semantic. This is provided by 
+Table \ref{syntactic-categories}. 
+The context free grammar is interesting when analyzing a language's syntax, as the abstract syntax only describes the structure of the linguistic constructs. The abstract syntax for the Ezuino language can be found in  Table \ref{abstract-syntax}.
 \begin{table}[H]
 \centering
-\label{syntax-table}
-\caption{Syntax table for Ezuino}
 \begin{tabular}{|c|c|}
 \hline
 \textbf{Syntax} & \textbf{Definition}   \\ \hline
-TE              & Type Environment      \\ \hline
+!TE              & Type Environment      \\ \hline
 $D_v$           & Variable Declarations \\ \hline
 $D_f$           & Function Declarations \\ \hline
-r               & Result                \\ \hline
 S               & Statements            \\ \hline
 T               & Type                  \\ \hline
+a               & Arithmetic expressions\\ \hline
+b               & Boolean expressions   \\ \hline
+n               & Numeral literal(Integer or Double) \\ \hline
 e               & Expression            \\ \hline
+$\beta$         & Boolean literal       \\ \hline
+x               & Variables             \\ \hline
+$f$             & Function Names        \\ \hline
+P               & Parameters            \\ \hline
+C               & Block structure       \\ \hline
+param           & Parameters            \\ \hline
+r               & Return statement      \\ \hline
 \end{tabular}
+\caption{Syntactic categories for Ezuino}
+\label{syntactic-categories}
 \end{table}
+
+\begin{longtable}[c] { r c c }
+  \label{abstract-syntax}
+  \centering
+  
+  \(a\) & \(::=\) & \(\ n\ |\ x\ |\ a_1*a_2\ |\ a_1 + a_2\ |\ a_1 - a_2\ |\ a_1 / a_2\ |\ -a \) \\
+    &  & \\
+  
+  \(b\) & \(::=\) & \(\ \beta \ |\ !b\ |\ x\ |\ b_1 = b_2\ |\ b_1 != b_2\ |\ b_1\ AND\ b_2\ |\ b_1\ OR\ b_2\ \) \\
+    &  & \\
+  
+  \(e\) & \(::=\) & \(\ (e)\ |\ f(param)\ |\ a\ |\ b\ \) \\
+    &  & \\
+
+  \(S\) & \(::=\) & \(x := e\ |\ if(e)\ C_1\ else\ C_2\ |\ while\ (e)\ C\ |\ return\ e\ |\ return\ |\ S_1\ S_2\ |\ f(param) |\ \epsilon\ \) \\
+    &  & \\
+
+  \(D_f\) & \(::=\) & \(func\ T\ f(P)\ C \) \\
+    &  & \\
+
+  \(D_v\) & \(::=\) & \( T\ x\ |\ T\ x\ D_v\ |\ \epsilon \) \\
+    &  & \\
+
+  \(P\) & \(::=\) & \( T\ x\ |\ T x,\ P\ |\ \epsilon \) \\
+    &  & \\
+
+  \(param\) & \(::=\) & \( e\ |\ e,\ param\ |\ \epsilon \) \\
+    &  & \\
+
+  \(prog\) & \(::=\) & \( D_v\ S \) \\
+    &  & \\
+
+  \(T\) & \(::=\) & \( int\ |\ double\ |\ boolean\ |\ string \) \\
+    &  & \\
+
+  \caption{Abstract syntax for Ezuino}
+\end{longtable}
+
 \input{sections/language_design/semantics/semantics.tex}
 %% SCOPE RULES INERT HERE
 \section{Type System Semantics}
-The Ezuino programming language data types is only primitive types. This is denoted in future references as :
-\begin{table}[H]
-    \centering
-    \begin{longtable}[c] { r c }
-      
-        \( { T = (string,\ boolean,\ double,\ integer)} \) \\
-    \end{longtable}
-    \caption{}\label{type:primitives}
-\end{table}
+The Ezuino programming language data types is only primitive types. The types have been provided in Table \ref{abstract-syntax}.
 
 \subsection{Type Environment}
 \input{sections/semantics/type-rules.tex}

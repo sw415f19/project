@@ -10,6 +10,7 @@ To describe how the Ezuino compiler handle and store variables, we will use the 
 To continue with the enviromental store model, we got the partial function named Store (Sto), which for an instance of the program binds its storage location to values, which are contained within. An example of this is that if we want to find the value of a specific variable, in this case, named x, we write $"sto \ env_v \ x"$.
 Next, we have the run-time stack named envl. The runtime stack is a list of pairs ($env_v$, $env_p$).
 In figure \ref{evnstoreexmp}, a illustration of the environment store model can be reviewed.
+It should be noted, that the special var "next" is used to denote the next free memory cell in the variable environment.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.75]{figures/evnstore.png}

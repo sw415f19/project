@@ -8,6 +8,24 @@
   & and \(env_V, \ sto \vdash a \rightarrow_a v \) \\
   & \\
 
+  [BLOCK-1] & \( 
+    \dfrac{ \langle D_V, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle }
+      { \langle \{ D_V \ C \}, sto, envl \rangle \Rightarrow \langle \text{active} \ C \ \text{end}, sto', envl' \rangle} \) \\
+  & where \(env_P' = \text{upd}_P(D_P, env_V', env_P) \) \\
+  & where \(envl' = (env_V' env_P') : envl\) \\
+  & where \(envl = (env_V, env_P) : envl'' \) \\
+  & \\
+
+  [BLOCK-2] & \( 
+    \dfrac{ \langle C, sto, envl \rangle \Rightarrow \langle C', envl', sto' \rangle }
+      { \langle \text{active} \ C \ \text{end}, sto, envl \rangle \Rightarrow \langle \text{active} \ C' \ \text{end}, sto', envl' \rangle} \) \\
+  & \\
+
+  [BLOCK-3] & \( 
+    \dfrac{ \langle C, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle}
+      { \langle \text{active} \ C \ \text{end}, sto, envl \rangle \Rightarrow \langle C, sto', envl' \rangle} \) \\
+  & \\
+
   [IF-ELSE-1] & \( 
     \dfrac { \langle e, sto, envl \rangle \Rightarrow_e \langle e', envl', sto' \rangle }
       { \langle if (e) C_1 else C_2, sto, envl \rangle \Rightarrow_e \langle if (e') C_1 else C_2, envl', sto' \rangle } \) \\
@@ -43,32 +61,15 @@
     \langle skip, sto, envl \rangle \Rightarrow_S \langle sto, envl \rangle \) \\
   & \\
 
-  [BLOCK-1] & \( 
-    \dfrac{ \langle D_V, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle }
-      { \langle \{ D_V \ C \}, sto, envl \rangle \Rightarrow \langle \text{active} \ C \ \text{end}, sto', envl' \rangle} \) \\
-  & where \(env_P' = \text{upd}_P(D_P, env_V', env_P) \) \\
-  & where \(envl' = (env_V' env_P') : envl\) \\
-  & where \(envl = (env_V, env_P) : envl'' \) \\
-  & \\
-
-  [BLOCK-2] & \( 
-    \dfrac{ \langle C, sto, envl \rangle \Rightarrow \langle C', envl', sto' \rangle }
-      { \langle \text{active} \ C \ \text{end}, sto, envl \rangle \Rightarrow \langle \text{active} \ C' \ \text{end}, sto', envl' \rangle} \) \\
-  & \\
-
-  [BLOCK-3] & \( 
-    \dfrac{ \langle C, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle}
-      { \langle \text{active} \ C \ \text{end}, sto, envl \rangle \Rightarrow \langle C, sto', envl' \rangle} \) \\
-  & \\
 
   [COMP-1] & \( 
     \dfrac{ \langle C_1, sto, envl \rangle \Rightarrow \langle C_1', envl', sto' \rangle}
-      { \langle C_1;C_2, sto, envl \rangle \Rightarrow \langle C_1';C_2, sto', envl' \rangle} \) \\
+      { \langle C_1\ C_2, sto, envl \rangle \Rightarrow \langle C_1'\ C_2, sto', envl' \rangle} \) \\
   & \\
 
   [COMP-2] & \( 
     \dfrac{ \langle C_1, sto, envl \rangle \Rightarrow \langle envl', sto' \rangle}
-      { \langle C_1;C_2, sto, envl \rangle \Rightarrow \langle C_2, sto', envl' \rangle} \) \\
+      { \langle C_1\ C_2, sto, envl \rangle \Rightarrow \langle C_2, sto', envl' \rangle} \) \\
   & \\
 
   \caption{Small-step semantics for statements}
@@ -81,20 +82,27 @@ As previously mentioned, the function environment is a partial function from the
 \begin{table}[H]
     \centering
     \begin{longtable}[c] { r c }
-        \([FUNC-DEC]\) & \( \dfrac{env_v \vdash \langle D_F, env_F[f \mapsto (S, P, env_v, env_F)] \rangle \Rightarrow_{DF} env_F' } %lower half of dfrac below
-        {env_v \vdash \langle func\ T \cup \epsilon\ f(T\ P_1, T\  P_2,...,T\ P_n)\ C\ D_F, env_F \rangle \Rightarrow_{DF} env_F'} \) \\
+        \([FUNC-DEC]\) & \( \dfrac{env_v \vdash \langle D_F, env_F[f \mapsto (S, P, env_v, env_F)] \rangle \Rightarrow D_{F} env_F' } %lower half of dfrac below
+        {env_v \vdash \langle func\ T \cup \epsilon\ f(T\ P_1, T\  P_2,...,T\ P_n)\ C\ D_F, env_F \rangle \Rightarrow D_{F} env_F'} \) \\
         & where \(P = \{P_1, P_2,..., P_n\}\)\\
         & and \(n \geq 0 \) \\
         & and \(T \in \{int, boolean, double, string\}\)\\
         & \\
-        \([FUNC-CALL]\) & \( \langle f(e_1,...,e_n), sto[return \mapsto  l_ret][next \mapsto new l_{ret}], envl \rangle \Rightarrow\)\\
+        \([FUNC-CALL]\) & \( \langle f(e_1,...,e_n), sto[return \mapsto  l_{ret}][next \mapsto new\ l_{ret}], envl \rangle \Rightarrow\)\\
         & \(\langle active\ C\ end, sto, (env_v'[l_1 \mapsto v_1,..., l_n \mapsto v_n, return \mapsto l_{ret}],\)\\
         & \(env_F'[f \mapsto (C, P, env_v', env_F')]) : envl \rangle \)\\
         & where \(env_F f = (C, P, env_v', env_F')\)\\
         & and \(envl = (env_v, env_F) : envl'\)\\
         & and \(envl, sto \vdash e_1,...,e_n \rightarrow v_1,...,v_n\)\\
+        & and \( P = \{P_1, P_2,...,P_n\} \)\\
         & and \(env_v P_1 = l_1,..., env_v P_n = l_n\)\\
-        & and \(n \geq 0\)\\
+        & and \(n \geq 1\)\\
+         \([FUNC-CALL_\epsilon]\) & \( \langle f(), sto[return \mapsto  l_ret][next \mapsto new\ l_{ret}], envl \rangle \Rightarrow\)\\
+        & \(\langle active\ C\ end, sto, (env_v'[return \mapsto l_{ret}],\)\\
+        & \(env_F'[f \mapsto (C, \epsilon, env_v', env_F')]) : envl \rangle \)\\
+        & where \(env_F f = (C, \epsilon, env_v', env_F')\)\\
+        & and \(envl = (env_v, env_F) : envl'\)\\
+        & \\
         \([RETURN]\) & \( envl', sto' \vdash \langle return\ e \rangle \Rightarrow \langle envl[return \mapsto l_{ret}], sto'[l_ret \mapsto v_ret] \rangle \) \\
         & where \( envl', sto' \vdash e \rightarrow_e v_ret \)\\
     \end{longtable}

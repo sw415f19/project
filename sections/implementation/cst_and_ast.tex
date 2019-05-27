@@ -1,5 +1,5 @@
 \section{Concrete and Abstract Syntax Tree}
-As mentioned in the start of the chapter, Ezuino builds ontop of the ANTLR generated CST. The goal of this section is to explain in detail how Ezuino uses ANTLR to build its own AST.
+As mentioned in the start of the chapter, Ezuino builds on top of the ANTLR generated CST. The goal of this section is to explain in detail how Ezuino uses ANTLR to build its own AST.
 \\\\
 For ANTLR to work, it requires a grammar file in Extended Backus–Naur form (EBNF). For this, Ezuino has its own specified grammar. The grammar can be found in Listing \ref{code:ebnf}.\\
 Based on the grammar ANTLR generates both a lexer and a parser, as well as a CST and a \texttt{BaseVisitor} for visiting the nodes of the CST.

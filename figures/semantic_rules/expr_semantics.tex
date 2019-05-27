@@ -1,6 +1,6 @@
 \subsection{Arithmetic Expressions}
-In the following table, it should be noted that most transitions will be on the form \( \langle envl, sto, a \rangle \Rightarrow_e \langle envl', sto', v \rangle \). This is supposed to be read as "By evaluating a in accord with the runtime stack and the store like an expression, a is evaluated to the value v, and the runtime stack and store is updated
-
+In the following table, it should be noted that most transitions will be on the form \( \langle envl, sto, a \rangle \Rightarrow_e \langle envl', sto', v \rangle \). This is supposed to be read as "By evaluating a in accord with the runtime stack and the store like an expression, a is evaluated to the value v, and the runtime stack and store is updated.
+\newline
 \begin{longtable}[c] { r c }
   \centering
   
@@ -11,8 +11,9 @@ In the following table, it should be noted that most transitions will be on the 
   &  \\
 
   [DCL] & \( 
-    \dfrac{ \langle D_V, envl[x \mapsto l][next \mapsto \text{new} \ l], sto \rangle \Rightarrow_{DV} \langle envl', sto \rangle}
-    { \langle T x, envl, sto \rangle \Rightarrow_{DV} \langle envl', sto \rangle } \) \\
+    \dfrac{ \langle D_V, envl[x \mapsto l][next \mapsto \text{new} \ l], sto \rangle \Rightarrow_{D_V} \langle envl', sto \rangle}
+    { \langle T\ x, envl, sto \rangle \Rightarrow_{D_V} \langle envl', sto \rangle } \) \\
+    & where \( l = env_v next \)
   & \\
 
   [PARENT-1] & 
@@ -94,12 +95,18 @@ In the following table, it should be noted that most transitions will be on the 
   & where \( v = -v_1 \)\\
   & \\
 
-  [NUM] & 
-    \( n \Rightarrow v \) \\
-  & \( \text{if } \mathcal{N} [[n]] = v \) \\
+  [INT] & 
+    \( i \Rightarrow v \) \\
+  & \( \text{if } \mathcal{N} [[i]] = v \) \\
+  & \\
+  
+  [DOUBLE] & 
+    \( f \Rightarrow v \) \\
+  & \( \text{if } \mathcal{N} [[f]] = v \) \\
 
   \caption{Small-step semantics for arithmetic expressions}
 \end{longtable}
+It should be noted that \( \mathcal{N} \) is functions from the numerals to their actual value.
 
 \subsection{Boolean Expressions}
 \begin{longtable}[c] { r c }

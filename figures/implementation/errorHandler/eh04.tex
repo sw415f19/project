@@ -1,9 +1,10 @@
 \begin{lstlisting}[caption={three different error messages from the ErrorHandler class}, label={eh04}]
-public void varAlreadyDeclared(String character) {
-    addError(new SyntaxError(ErrorType.ERROR, "Variable " + character + " is already defined in this scope."));
+public void syntaxError(int errorCount, String msg, int line, int charPositionInLine) {
+    String errorMsg = String.format("#" + errorCount + " - " + "Error parsing expression: '%s' on line %s, position %s", msg, line, charPositionInLine);
+    addError(new SyntaxError(ErrorType.ERROR, errorMsg));
 }
 public void funcAlreadyDeclared(String character) {
-    addError(new SyntaxError(ErrorType.ERROR, "Function " + character + " is already defined in this scope."));
+    addError(new GeneralError(ErrorType.ERROR, "Function " + character + " is already defined in this scope."));
 }
 public void unexpectedType(ITypeNode node, Type type) {
     addError(new GeneralError(ErrorType.ERROR, "Unexpeced type! Expected: " + type.name() + ", was " + node.getType().name() + " - Node: " + node));

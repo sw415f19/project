@@ -6,7 +6,7 @@ The purpose of this section, is to describe how the Eziuno compiler, uses the DS
 There can be multiple code generators, as they follow the visitor pattern to generate the code. This is the point where the designer of the compiler decides what target language(s) the compiler should have.
 
 \subsection{Target languages}\label{CodeGen:TargetLanguage}
-There are several different target languages that would be wise to compile to. These could be C, Assembly or Java-bytecode. Considering that our language is intended for home automation purposes, compiling to C isn't a bad idea, as it makes it easier for us to optimize the compiler to be memory or speed effective.\\
+There are several different target languages that would be wise to compile to. These could be C, Assembly or Java-bytecode. %Considering that our language is intended for home automation purposes, compiling to C isn't a bad idea, as it makes it easier for us to optimize the compiler to be memory or speed effective.\\
 Furthermore, the gcc compiler is on many platforms and architectures, making it trivial for us to port it from one platform to another. Java bytecode is also a good option for a target language, as it runs on the JVM, which is implemented on many platforms too, though it should be noted, that java bytecode still works with a class-based structure, meaning we would have to model our imperative language in an object-oriented space.
 \\\\
 Compiling to an intermediate language is usually a decent idea, as it lets our own language build on top of an already existing compiler-collection, to allow our code to run on many platforms out of the box.\\
@@ -16,7 +16,7 @@ A good approach for high level languages is to translate to a intermediate low l
 Implementing a language this way, means that you can implement a code generator for the high level language to target language, which then can be use to generate code for other languages.\\
 Doing it this way, means that instead of making a high-level $*$ low-level number of compilers, you only have to make a high-level $+$ low-level number of compilers.\\
 This does add abstraction, but might also add complexity if either the source language or the destination language, implements structures that are hard or impossible to implement.\\
-Examples of compilers with intermediate languages are Java and C\#. Java compiles Java Bytecode which is the instruction set of the Java Virtual Machine. C\# compiles to Common Intermediate Language, which is then run on the Common Language Runtime.
+Examples of compilers with intermediate languages are Java and C\#. Java compiles to Java Bytecode which is the instruction set of the Java Virtual Machine. C\# compiles to Common Intermediate Language, which is then run on the Common Language Runtime.
 
 \subsection{Code generator visitors}
 The Ezuino compiler implements three different code generator visitors, each their own target language. The three visitors are C code generator, Arduino code generator and lastly Java Bytecode code generator. The code generators will be discussed in this section, in the same order they were mentioned.
@@ -41,8 +41,6 @@ Unlike the previous two visitors, the jasmin code generator doesn't compile to a
 This combined with a register-based storage model means, that the compiler has to manually keep track of the allocated registers, and when it is safe to overwrite a given register with another value. This is currently handled when the Jasmin visitor visits a block node in the AST.\\
 The code snippet in question can be seen in listing \ref{code:JasminBlock}. Note that a copy of the variable environment is reset to its pre-block state after the entire block has been generated. This is so that a variable declared in an inner scope will take precedence when being referenced in an expression, compared to a variable of the same name declared previously in an outer scope, while still "deallocating" the inner variables after the block has been processed.
 \input{figures/implementation/jasmin-codesnippets/visit_block.tex}
-\\\\
+\noindent\newline
 Furthermore, it should be considered that the JVM is a stack machine, and thus it should be taken into consideration, when writing code for it. Though this is mostly a fact to be considered when evaluating expressions, though it is also important when it comes to function calls (or method invocations, as they are parsed down to), as these use the top i elements of the stack as parameters, and then push the return value of the function back on the stack.\\
 The stack also plays a role in some of the more complex implementations (namely prints and strings), as these use object references like in Java, but on the stack, like any other value. It isn't terribly hard to write the (java) method invocations, but you do have to keep your wits about you, as the order of the stack matters, and the typing syntax of the JVM gets a bit longer and incomprehensible, when referencing custom types like "String".
-\\\\
-%Conclusion/ending? Byte code: implementing arduino functions, so that we can transform byte code into arduino

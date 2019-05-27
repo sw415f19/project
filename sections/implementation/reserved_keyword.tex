@@ -1,8 +1,8 @@
 \section{Reserved keyword visitor}
-As the name somewhat gives away, the reserved keyword visitor is the visitor whose purpose is to check for reserved keywords.\\
+As the name gives away, the reserved keyword visitor is the visitor, whose purpose is to check for reserved keywords.\\
 The Ezuino language has a number of reserved keywords, which cannot be used in things such as variable and function declarations. To uphold this rule, the \texttt{ReservedKeywordsVisitor} class exists. The purpose of this class is to run through the AST and verify that none of the reserved keywords are used for any declarations.
 \\\\
-The \texttt{ReservedKeywordsVisitor} extends from the abstract class \texttt{AstVisitor}, so that it can visit each node in the AST. As the purpose of this visitor is to check that no declaration uses a reserved keyword, the main functionality of the visitor, is to compare each variable and function declaration's Id with a list of reserved keywords. The Id of a variable and function declaration is the name used for that declaration.
+The \texttt{ReservedKeywordsVisitor} extends from the abstract class \texttt{AstVisitor}, so that it can visit each node in the AST. As the purpose of this visitor is to check that no declaration uses a reserved keyword, the main functionality of the visitor, is to compare each variable and function declaration's id with a list of reserved keywords. The Id of a variable and function declaration is the name used for that declaration.
 \\\\
 Listing \ref{code:RKW:keywordList} shows the constructor for the reserved keyword visitor, as well as the HashMap and HashSet that the keywords are stored in. The reason for having two sets to store reserved keywords, comes from the Ezuino specified keywords and Java reserved keywords.\\
 Ezuino specified keywords are stored in the HashMap named \texttt{reservedKeywords}. These are stored with the uppercase version of the keywords.\\
@@ -10,7 +10,7 @@ Java reserved keywords are keywords which are used in the Java language. As such
 \\\\
 The Ezuino keywords are stored in the HashMap with an all uppercase version of the keyword. The reason behind this is that, no variation of the keyword is allowed to be used. Doing this is to reduce the ambiguity of the language.\\
 An example is the spelling of “true” as “tRuE”. This would result in an error because “tRuE” is too similar to “true”. Therefore, any spelling of “true” must be the exact spelling of “true”.\\
-In the case of a Java keyword, only the excat spelling of the Java keyword results in an error. An example is spelling “Integer” as “integer”. This spelling would be allowed since “integer” is not an Ezuino keyword and the spelling is different from the Java “Integer”.\\
+In the case of a Java keyword, only the exact spelling of the Java keyword results in an error. An example is spelling “Integer” as “integer”. This spelling would be allowed since “integer” is not an Ezuino keyword and the spelling is different from the Java “Integer”.\\
 The private methods for executing these checks are shown in listing \ref{code:RKW:keywordCheck}.\\
 \input{figures/implementation/reserved_keyword/reserved_keyword_list.tex}
 \input{figures/implementation/reserved_keyword/reserved_keyword_check.tex}

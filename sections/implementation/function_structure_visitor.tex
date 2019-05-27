@@ -1,9 +1,9 @@
 \section{Function Structure Visitor}
 The purpose of this section is to explain, how the Ezuino compiler guarantees that any function called, always has the correct structure for the given function. Before a function can be called, it must have been declared first. Except for predefined functions such as Arduino functions.
 \\\\
-To accomplish this goal, the Ezuino compiler implements a Visitor named: “FuncStructureVisitor”. The goal for this Visitor is to verify that all functions called in a given program, always has the same structure as the function declaration. This also includes predefined Arduino functions. However, since Arduino functions are predefined by the compiler, the structure of these functions are hard coded into the Visitor.
+To accomplish this goal, the Ezuino compiler implements a visitor named: “FuncStructureVisitor”. The goal for this visitor is to verify that all functions called in a given program, always has the same structure as the function declaration. This also includes predefined Arduino functions. However, since Arduino functions are predefined by the compiler, the structure of these functions are hard coded into the visitor.
 \\\\
-Exactly like the other Visitors in the compiler the FuncStructureVisitor runs through the generated AST, starting at the first node and visiting all of its children nodes.\\
+Exactly like the other visitors in the compiler the FuncStructureVisitor runs through the generated AST, starting at the first node and visiting all of its children nodes.\\
 The nodes that mainly will be affected by the FuncStructureVisitor, is the nodes that has to do with functions. Specifically, these nodes are function declarations, function calls and predefined functions such as Arduino functions.
 \\\\
 Listing \ref{FuncDefNode} shows how a function declaration node is handled by the visitor. Since the node is a function declaration, the node must be stored in a symbol table for the current scope. this is done so that when the visitor meets the function call node, it can look up in the symbol table to find how the function was declared.\\
@@ -26,11 +26,11 @@ Secondly it compares the types of the parameters, in order, of both the call and
 \input{figures/implementation/FuncStructureVisitor/matchParameterList.tex}
 \noindent\newline
 Listing \ref{AnalogReadNode} is an example of a predefined function in the compiler and shows how the visitor generally handles predefined function calls.\\
-In this case the function call is to AnalogRead, which is an Arduino specified function. In the case of AnalogRead, it is necessary to perform an additional check for the size of the int parameter, since Arduino only handles small bit sizes. The additional check occurs on line 8. This check is not present for all predefined functions.
+In this case the function call is to AnalogRead, which is an Ezuino specified function. In the case of AnalogRead, it is necessary to perform an additional check for the size of the int parameter, since Arduino only handles small bit sizes. The additional check occurs on line 8. This check is not present for all predefined functions.
 \\\\
 Since AnalogRead is a predefined function, verifying the function structure is relatively simple. The reason for this is that because the function is predefined, the compiler already knows what parameters are required for the call. Predefined functions therefore have hard coded parameters, which cannot be changed at runtime.\\
 As seen in line 3, the expected type of the AnalogRead function is an int. And since there is only one type, the function only takes one parameter.\\
-Additionally, the parameter must be held within either an IntegerLiteral node or a IdNode. This is to ensure that only the correct int node is the parameter for the function call. A check for this occurs on line 5-6.\\
+Additionally, the parameter must be held within either an IntegerLiteral node or a IdNode. This is to ensure that only the correct int node is the parameter for the function call. A check for this occurs on line 5-6.\\
 Lastly, a call to compare the parameters is made on line 9.
 \\\\
 Other predefined functions are handled similarly to the AnalogRead function. The main detail that changes is how many parameters the function has and which types the parameters have.\\
@@ -48,6 +48,6 @@ The comparison is done by calling another helper method, which compares two type
 The five listings of code looked at in this section, should supply a general idea of the purpose of the Function Structure Visitor and how it works.\\
 Not all of the visit functions were reviewed, but the few selected ones prove good examples of their implementation.
 \\\\
-Summing up, the simple idea of the visitor is to check for declared functions and store them. Then when a function call occurs, check which type of function has been called.\\
+Summing up, the idea of the visitor is to check for declared functions and store them. Then when a function call occurs, check which type of function has been called.\\
 For custom functions calls, the visitor searches for a function declaration with the same Id as the call. If such a declaration exists, it compares the parameters of the call with the declaration.\\
 For predefined function calls, the compiler already knows which type of parameters are required and can therefore perform its parameter check, without searching for a function declaration.

@@ -1,24 +1,23 @@
 \chapter{Implementation}
 This chapter will go through the implementation of the Ezuino programming language\\
-Like any compiler, the Ezuino compiler takes a text file of a program and verifies and translates it to one of the compiler’s target languages.
+The Ezuino compiler takes a text file-stream of a program file and translates it to one of the compiler’s target languages.
 \\\\
-The Ezuino compiler’s foundation is built upon using ANTLR4 for language recognition. To do this, the compiler has its own specified grammar. Giving ANTLR this grammar and a text file, ANTLR generates a Concrete Syntax Tree (CST) based on what is recognized.\\
-Using the CST, the Ezuino compiler generates its own Abstract Syntax tree (AST) and uses that to verify the given program.\\
-To verify the program, the Ezuino compiler has a number of different visitors, each having their own purpose and responsibility. The visitors visit and each node in the AST and does work based on its job.\\
+The Ezuino compiler’s foundation is built upon using ANTLR4 for language recognition. To do this, the compiler has its own specified grammar. Giving ANTLR this grammar and a text file, ANTLR generates a parser and scanner file, together with generating a Concrete Syntax Tree (CST) based on what is recognized.\\
+Using this, we can use the visitor pattern provided by the ANTLR, to create an Abstract Syntax Tree (AST).\\
+To provide functionality to the AST, the Ezuino compiler has a number of different visitors, each having their own purpose and responsibility. The visitors visit and each node in the AST and does work based on its job.\\
 The Ezuino compiler includes eleven different AST visitors used to visit the generated AST.
 \\\\
 Two of the eleven does not have a role in verifying a given program, but has other usages.\\
 The first of these two is the \texttt{AstVisitor} class. this visitor is an abstract class which includes an abstract method for visiting each node in the AST. The other visitors extend from this class to inherit the visit methods.\\
 The second visitor is the \texttt{IndentedPrintVisitor} class. This visitor is used to print a visual structure of the AST. It does not do anything in verifying a program, but does provide a valuable resource for debugging the compiler.
 \\\\
-There are nine AST visitors. These visitors are:
-
+There are nine other AST visitors. These visitors are:
 
 \begin{itemize}
     \setlength\itemsep{0.3em}
     \item Reserved keyword visitor: Checks for reserved keywords in the given program.
-    \item Symbol table visitor: Is responsible for store declarations and such in a symbol table for later look ups.
-    \item Type checker visitor: Is responsible for verifying types for variables.
+    \item Symbol table visitor: Is responsible for store variable and function declaration in a symbol table.
+    \item Type checker visitor: Is responsible for providing and checking types for variables.
     \item Missing return statement visitor: Is responsible for guaranteeing return statement calls.
     \item Return statement type check visitor: Is responsible for ensuring that the type of expression in the return statement matches the type of the function.
     \item Function structure visitor: Is responsible for verifying the structure of function calls.

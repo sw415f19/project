@@ -12,7 +12,7 @@ As seen on line 3, the function declaration is stored in the symbol table with t
 \noindent\newline
 Listing \ref{customFuncCall} shows how a custom function call is handled by the visitor. The name CustomFuncCall tells us that this is not one of the predefined functions in the compiler, but instead a function that has been declared by a user.\\
 Since this is a custom function call, the compiler does not know what the structure of the function is. therefore, it must search the symbol table for a function with the same id as the call.\\
-Once the correct declaration has been found, the visitor compares the parameters of the function call with the parameters of the function declaration. If these does not match, an error has occurred and is thrown to the errorHandler.\\
+Once the correct declaration has been found, the visitor compares the parameters of the function call with the parameters of the function declaration. If these do not match, an error has occurred and is thrown to the errorHandler.\\
 Similarly, if the visitor cannot find a function declaration with the same id as the function call, an error has occurred and is thrown to the errorHandler.
 \input{figures/implementation/FuncStructureVisitor/customFuncCall.tex}
 \noindent\newline

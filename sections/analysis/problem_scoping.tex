@@ -1,34 +1,11 @@
 \section{Problem scoping}
-%This section will describe which features we will not prioritize due to time limitations.\\
-%We will not prioritize list and structs. These data type are more complex than the other features to implement and while we do want to include both data types as we think they both serve important purposes we will only implement them if we have sufficient extra time.
-%We will not prioritize other control structures than the while loop. As mentioned previously the while loop enables everything the other control structures does and therefore the while loop will be prioritized.
-
-%\subsubsection{Scope of features}
-%As there are a lot of IoT devices and other Arduino models, the project will be limited to be developed and tested on Arduino Uno.
-
-%\subsubsection{Scope of tests}
-%As it is essential that the compiler does not contain errors, testing will get focused to a greater extent of this project. Testing of the program, JUnit test should be done in the significant fields of code and functionality, together with running automated Continuous Integration (CI), which will run the tests in every build, together with a PR/Code Quality manager running as a static code analyser. Further testing, such as code coverage test, will not be considered in this development phase. \\
-
-
-%As the scoping reach an end, we can start putting a problem definition together, where we can define the exact problem that we in which can solve with this programming language.
-
-%--------------------------- Old problem 
-%This section will be scoping the problem and the product onwards based on the MoSCoW analysis, and the decisions described in this section.  
-
-%he programming language will create a full code generation, which will be mainly focused and limited to Arduino primary programming language, C. The project will only be fully implemented in this language; however, some Java Bytecode generation will be made as well, but not to the full extent. As there is a lot of IoT devices, and other Arduino models, the project will be limited to be developed and tested on an Arduino Uno.  
-%Syntax of the programming language will be limited to the analysis part, which will take part in the most common syntax used in programming languages today. The functionality and syntax of the programming language will only be limited to the most crucial parts mentioned in the MoSCoW analysis. All the additional functionality, like Java’s Array List, will not be within this project scope at this time but will be available for further development. 
-%As it is essential that the compiler does not contain errors, testing will get focused to a greater extent of this project. Testing of the program, JUnit test should be done in the significant fields of code and functionality, together with running automated Continuous Integration (CI), which will run the tests in every build, together with a PR/Code Quality manager running as a static code analyser. Further testing, such as code coverage test will not get considered in this development phase.  
-%As the scoping reach an end, we can start putting a problem definition together, where we can define the exact problem that we in which can solve with this programming language.  
-
-
-
 This section will scope down the project, to which priorities are most vital for the project, to be called a success. \\
 \\
 The goal of the project is to create a programming language, which has the most essential syntax for the language to be use able in all cases. The language will be targeted for usage on an Arduino, and will have the most essential parts of the special syntax, the Arduino uses in its libraries. All the functionality of the Arduino library will not be implemented, as this is not a part of the project frame, and there is way to many special functions and syntax, that it will be scoped down to the most essential parts. \\
 \\
 The Ezuino programming language will only be code generated for two languages, Arduino C and Java bytecode. The syntax for each of these will be prioritized in a MoSCoW analysis, which will be reviewed in a later chapter. The Ezuino programming language will be made from the most prioritized features first, and going down to the less important features. As the programming language is very big to implement, the project will be scoped to implementing the vital parts at first, leaving some minor syntax priorities to may be discarded if time is critical. \\
 \\
-In a compiler, it is very important that it does not contain any errors, as it can be frustrating for the users programming their code in the language. As of this, it is vital to have testing, to a greater degree of the compiler. The testing of the project will be mainly focused on the technical part, with using JUnit testing and CI, to avoid any errors in the development process. Other testing will not be included in this project. \\
+In a compiler, it is very important that it does not contain any errors, as it can be frustrating for the users programming their code in the language. As of this, it is vital to have testing, to a greater degree of the compiler. The testing of the project will be mainly focused on the technical part, with using JUnit testing and CI, to avoid any errors in the development process and a user test in the end to test the programming language. \\
 \\ 
 In the problem definition, the goal is to provide a programming language for people, with no or little programming knowledge. To provide a clear acceptance of this problem, multiple user testing should be made for well documenting this problem. In this project, the user testing will be scoped down to 1 user test, as the programming language itself, has the up most priority.
 

@@ -1,8 +1,12 @@
 \chapter{Language Design}\label{ch:langspec}
-
-This chapter we will go through the language design criteria to make sure the Ezuino programming language is acceptable and explain the reason for what operators and language features the programming language will have. After explaining the language features, how the features will be prioritized will be described in a MoSCoW. 
-This will be followed by the contextual restraint for the language. Then what a scanner, parser and parser generator tool is as well as what parser generator tool was chosen for the programming language will be explained. Finally the chapter will end with a overview of the syntax for the language, a list of reserved keywords and the context free grammar in the ANTLR4 format.  specification with the grammar that will be used. In the end of the chapter a program example will be showcased. 
-
+This chapter will explain the design decision that was made during the development of the Ezuino programming language. The chapter is divided in four sections Language Design Criteria and Language Features, Contextual Restraints, The Scanner, Parser and Chosen Parser Generator Tool and Syntax Specification. \\
+Language Design Criteria and Language Features will describe what criteria the features of the language will be evaluated on, what features Ezuino will implement and how they will be prioritized. \\
+Contextual restraints will define the contextual restraint for the language describing and choosing scope rules, type binding and block structure.  
+The Scanner, Parser and Chosen Parser Generator Tool will describe what a scanner, parser and parser generator tool is as well as what parser generator tool we chose for Ezuino. \\
+Finally, Syntax Specification will give an overview of the syntax for the language. This will include the syntax, a list of reserved keywords, the context free grammar in the ANTLR4 format and a few programs to illustrate what correct program look like. 
 \section{Language Design Criteria and Language Features}
-The goal of Ezuino is to be an easier option for people previously unfamiliar with code. To evaluate whether this criteria has been achieved or not, it is necessary to have metrics to evaluate the language. We have chosen the metrics from \cite{conceptsOfProgrammingLanguages}, that evaluates a language based on the metrics readability, writability and orthogonality and cost. For the purpose of a language meant for home automation for people new to programming, and not a programming language meant for industry, the metric cost will not be taken into account. \\
+The goal of Ezuino is to be an easier option for people previously unfamiliar with code. To evaluate whether this criteria has been achieved or not, it is necessary to have metrics to evaluate the language. 
+The metrics used to evauluate the language are readability, writability, reliability and cost.
+The method is presented and explained in detail in Concepts of Programming Languages  \cite{conceptsOfProgrammingLanguages}.\\
+For the purpose of a language meant for home automation for people new to programming, and not a programming language meant for commercial use, the metric cost will not be taken into account. \\
 After describing the theory behind the evaluation criteria, the language features Ezuino will include compared to Arduino C will be described. How these features affect language design criteria will also be covered. At the end of the chapter there will be an summary of all the features that are affected by the language design criteria.

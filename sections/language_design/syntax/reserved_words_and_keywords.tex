@@ -1,6 +1,6 @@
 \section{Syntax Specification}
 Now that we have been through the different thoughts about the parsing techniques and we can move on towards the actual syntax and programming example of the Ezuino programming language.
-This section will go through the Ezuino programming language syntax choice, and the reserved keywords used within the language. This goal of this section, is to provide an overview of the different operations, when programming the language. 
+This section will give an overview of the syntax of the Ezuino programming language syntax, the reserved keywords and the context free grammar that is implemented by the scanner. At the end of the section there will be a few programming examples in Ezuino of programs with correct syntax.
 \subsection{Keywords in the Ezuino Programming Language}
 These are the keywords used in the Ezuino programming language, without the reserved and Arduino based syntax.
 \begin{table}[H]
@@ -16,7 +16,12 @@ boolean              & Boolean declaration  & \textless{}=         & Less Than o
 -                    & Minus Operator       & if                   & If Statement            \\ \hline
 /                    & Division Opeartor    & else                 & Else Statement          \\ \hline
 *                    & Mult Operator        & while                & While Statement         \\ \hline
+Loop                 & Loop Structure       & Setup                & Setup Structure         \\ \hline
 func                 & Function Declaration & return               & Return Statement        \\ \hline
+AND                  & Logical AND Operator & OR                   & Logical OR Operator     \\ \hline
+=                    & Equal Operator       & :=                   & Assignment Operator    \\ \hline
+
+
 \end{tabular}
 \end{table}
 \subsection{Reserved words \& Keywords}

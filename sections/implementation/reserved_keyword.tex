@@ -4,7 +4,7 @@ The Ezuino language has a number of reserved keywords, which cannot be used in t
 \\\\
 The \texttt{ReservedKeywordsVisitor} extends from the abstract class \texttt{AstVisitor}, so that it can visit each node in the AST. As the purpose of this visitor is to check that no declaration uses a reserved keyword, the main functionality of the visitor, is to compare each variable and function declaration's Id with a list of reserved keywords. The Id of a variable and function declaration is the name used for that declaration.
 \\\\
-Listing \ref{code:RKW:keywordList} shows the constructor for the reserved keyword visitor, as well as the HashMap and HashSet that the keywords are stored in. The reason for having two sets to store reversed keywords, comes from the Ezuino specified keywords and Java reserved keywords.\\
+Listing \ref{code:RKW:keywordList} shows the constructor for the reserved keyword visitor, as well as the HashMap and HashSet that the keywords are stored in. The reason for having two sets to store reserved keywords, comes from the Ezuino specified keywords and Java reserved keywords.\\
 Ezuino specified keywords are stored in the HashMap named \texttt{reservedKeywords}. These are stored with the uppercase version of the keywords.\\
 Java reserved keywords are keywords which are used in the Java language. As such, the most common Java keywords, which are not already checked in Ezuino keywords, are stored in the HashSet named \texttt{compatibilityKeywords}.
 \\\\

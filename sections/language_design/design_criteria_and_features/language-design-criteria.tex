@@ -1,8 +1,6 @@
 \subsection{Language Design Criteria and Language features}
-The theory of language design criteria is based on \cite{conceptsOfProgrammingLanguages}.
-\label{language-design-criteria}
 \label{design-criteria-theory}
-\subsection*{Readability:}
+\subsection*{Readability}
 \subsubsection*{Overall Simplicity}
 Overall simplicity of a programming language is affected by the amount of basic structures, similarity between previous learned languages, feature multiplicity, operator overloading and trade-off between high and low-level languages.
 It is easier to learn a language with fewer basic constructs than one with a larger amount. Programmers that use large languages usually do not learn all its features. \\\
@@ -12,9 +10,6 @@ Operator overloading happens when operators can have multiple uses depending on 
 Simplicity in readability also has a trade-off in terms of comparing high to low-level languages. A high-level language with more complex control statements might make a language easier to read, i.e. assembly compared to Java.
 
 \subsubsection*{Orthogonality}
-“Orthogonality in a programming language means that a relatively small set
-of primitive constructs can be combined in a relatively small number of ways
-to build the control and data structures of the language. Furthermore, every possible combination of primitives is legal and meaningful.”
 Bad orthogonality is when a programmer can use constructs in combinations where the result is not obvious. An example of this is “+” in C allows the addition of characters and integers. As it does not give a compiler error, it can take longer to find the error as well.
 A limited amount of combinations and therefore orthogonality increases the overall simplicity of a language.
 
@@ -28,7 +23,7 @@ isReady = 1 would signal true. Where in a language with boolean isReady = true w
 \item Allowing keywords to also be legal variable names can be confusing and decrease readability.
 \end{itemize}
 
-\subsection*{Writability:}
+\subsection*{Writability}
 Writability is measured in how easily a language can create programs within a chosen problem domain.
 A language must be efficient at the field it was designed for, i.e. if it was designed for graphical interfaces, that is the domain it must be comparatively efficient.
 \subsubsection*{Simplicity and Orthogonality}
@@ -36,20 +31,13 @@ Simplicity and orthogonality apply the same for writability as in readability. I
 \subsubsection*{Expressivity}
 A high degree of expressivity is having a convenient, rather than cumbersome, ways of specifying computation. Examples of this are powerful ways to execute a great deal of computations like for loops in a very small program while also counting the iterations. It could also be using the special words “and” and “then” like in Ada for short-circuit evaluation of a Boolean expression.
 
-\subsection*{Reliability:}
+\subsection*{Reliability}
 Reliability is closely related to readability and writability. A language has natural ways to support algorithms will use fewer unnatural approaches to solving problems and are more likely to be correct for all possible situations.
 Reliability is also affected by the implementation of a language of type checking, exception handling and aliasing.
 \subsubsection*{Type Checking}
 Type checking is how the language ensures that types are used in a legal way. Java is very reliable in the sense that it has virtually eliminated type errors by type checking all variable and expressions during compile time.
-\subsubsection*{Exception handling}
-“The ability of a program to intercept run- time errors (as well as other
-unusual conditions detectable by the program), take corrective measures, and
-then continue is an obvious aid to reliability.”
-Some languages like C do not feature exception handling, while other languages like C\# and Java does.
 \subsubsection*{Aliasing}
-“Loosely defined, aliasing is having two or more distinct names in a program that can access the same memory cell.” \\
-Allowing aliasing requires the programmer to remember which names are referring to the same memory cell and failure to do this can lead to bugs. It is now generally accepted that aliasing is a dangerous feature in a programming language.
-
+Allowing aliasing means that different variable references may reference the same data field. It is generally considered a dangerous feature, as the programmer will have to keep track of the references when he is programming, or else he will suffer from unwanted side effects.
 
 
 
